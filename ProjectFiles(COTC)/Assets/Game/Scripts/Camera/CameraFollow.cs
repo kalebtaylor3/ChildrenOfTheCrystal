@@ -122,7 +122,7 @@ public class camerafollow : MonoBehaviour
     {
 
         float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / zoomLimiter);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        cam.fieldOfView = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
     }
 
     float GetGreatestDistance()
