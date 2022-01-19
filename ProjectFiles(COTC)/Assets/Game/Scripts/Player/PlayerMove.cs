@@ -159,9 +159,6 @@ public class PlayerMove : MonoBehaviour
 
 		facingRight = checkDirection();
 
-		if(beingLifted)
-			animator.SetBool("Falling", true);
-
 		//get distance to ground, from centre of collider (where floorcheckers should be)
 		float dist = GetComponent<Collider>().bounds.extents.y;
 		//check whats at players feet, at each floorcheckers position
@@ -311,7 +308,6 @@ public class PlayerMove : MonoBehaviour
 	IEnumerator pickupCoolDown(RaycastHit liftedPlayer)
 	{
 		yield return new WaitForSeconds(5);
-		beingLifted = false;
 
 		liftedPlayer.collider.GetComponent<Rigidbody>().isKinematic = false;
 		liftedPlayer.collider.transform.parent = null;
@@ -322,7 +318,11 @@ public class PlayerMove : MonoBehaviour
 	public void ThrowPlayer(Vector3 Direction)
 	{
 		RaycastHit hit = ThrowCheck(Direction);
-		if (hit.collider.tag == "Player")
+		if (hit.collider.gameObject == this.gameObject)
+		{
+			return;
+		}
+		else if (hit.collider.tag == "Player")
 		{
 			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
 			hit.collider.transform.parent = null;
@@ -344,10 +344,6 @@ public class PlayerMove : MonoBehaviour
 
 			Debug.Log("Threw " + hit.collider.name);
 		}
-        else
-        {
-			return;
-        }
 	}
 
 	public RaycastHit ThrowCheck(Vector3 directin)
