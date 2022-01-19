@@ -48,6 +48,12 @@ public class PlayerMove : MonoBehaviour
 	private Rigidbody rigid;
 	private AudioSource aSource;
 
+	private bool canMove = true;
+	private bool beingLifted;
+	public Transform pickupLoc;
+	private float originOffset = 0.4f;
+	private bool facingRight = true;
+
 	//setup
 	void Awake()
 	{
@@ -112,19 +118,22 @@ public class PlayerMove : MonoBehaviour
 
 	public void Move(PlayerMove player)
     {
-		//are we grounded
-		player.grounded = player.IsGrounded();
-		//move, rotate, manage speed
-		player.characterMotor.MoveTo(player.moveDirection, player.curAccel, 0.7f, true);
-		if (player.rotateSpeed != 0 && player.direction.magnitude != 0)
-			player.characterMotor.RotateToDirection(player.moveDirection, player.curRotateSpeed * 5, true);
-		player.characterMotor.ManageSpeed(player.curDecel, player.maxSpeed + player.movingObjSpeed.magnitude, true);
-		//set animation values
-		if (player.animator)
-		{
-			player.animator.SetFloat("DistanceToTarget", player.characterMotor.DistanceToTarget);
-			player.animator.SetBool("Grounded", player.grounded);
-			player.animator.SetFloat("YVelocity", GetComponent<Rigidbody>().velocity.y);
+		if(canMove)
+        {
+			//are we grounded
+			player.grounded = player.IsGrounded();
+			//move, rotate, manage speed
+			player.characterMotor.MoveTo(player.moveDirection, player.curAccel, 0.7f, true);
+			if (player.rotateSpeed != 0 && player.direction.magnitude != 0)
+				player.characterMotor.RotateToDirection(player.moveDirection, player.curRotateSpeed * 5, true);
+			player.characterMotor.ManageSpeed(player.curDecel, player.maxSpeed + player.movingObjSpeed.magnitude, true);
+			//set animation values
+			if (player.animator)
+			{
+				player.animator.SetFloat("DistanceToTarget", player.characterMotor.DistanceToTarget);
+				player.animator.SetBool("Grounded", player.grounded);
+				player.animator.SetFloat("YVelocity", GetComponent<Rigidbody>().velocity.y);
+			}
 		}
 	}
 	
@@ -147,6 +156,12 @@ public class PlayerMove : MonoBehaviour
 	//also: bouncing on enemies, keeping player on moving platforms and slope checking
 	private bool IsGrounded() 
 	{
+
+		facingRight = checkDirection();
+
+		if(beingLifted)
+			animator.SetBool("Falling", true);
+
 		//get distance to ground, from centre of collider (where floorcheckers should be)
 		float dist = GetComponent<Collider>().bounds.extents.y;
 		//check whats at players feet, at each floorcheckers position
@@ -247,5 +262,134 @@ public class PlayerMove : MonoBehaviour
 		rigid.velocity = new Vector3(rigid.velocity.x, 0f, rigid.velocity.z);
 		rigid.AddRelativeForce (jumpVelocity, ForceMode.Impulse);
 		airPressTime = 0f;
+	}
+
+	public void pickup(Vector3 Direction)
+	{
+		RaycastHit hit = PickUpRayCheck(Direction);
+
+		if(hit.collider.gameObject == this.gameObject)
+        {
+			return;
+        }
+		else if (hit.collider.tag == "Player")
+		{
+			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
+			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
+			hit.collider.transform.position = pickupLoc.position;
+			hit.collider.transform.parent = this.pickupLoc.transform;
+			hit.collider.GetComponent<BoxCollider>().isTrigger = true;
+			hit.collider.GetComponent<PlayerMove>().canMove = false;
+			//lifted player will begin playing the being lifted animation
+			Debug.Log("Picking up " + hit.collider.name);
+
+			StartCoroutine(pickupCoolDown(hit));
+		}
+	}
+
+	public RaycastHit PickUpRayCheck(Vector3 directin)
+	{
+
+		RaycastHit hit;
+
+		//this.play animation pick up try
+		float directionOriginOffset = originOffset * (directin.x > 0 ? 1 : -1);
+		Vector3 startingPosition = new Vector3(transform.position.x + directionOriginOffset, transform.position.y, transform.position.z);
+
+		Debug.DrawRay(startingPosition, directin, Color.red);
+		if (Physics.Raycast(startingPosition, directin, out hit, 0.2f))
+		{
+			return hit;
+		}
+		else
+        {
+			return hit;
+        }
+	}
+
+	IEnumerator pickupCoolDown(RaycastHit liftedPlayer)
+	{
+		yield return new WaitForSeconds(5);
+		beingLifted = false;
+
+		liftedPlayer.collider.GetComponent<Rigidbody>().isKinematic = false;
+		liftedPlayer.collider.transform.parent = null;
+		liftedPlayer.collider.GetComponent<BoxCollider>().isTrigger = false;
+		liftedPlayer.collider.GetComponent<PlayerMove>().canMove = true;
+	}
+
+	public void ThrowPlayer(Vector3 Direction)
+	{
+		RaycastHit hit = ThrowCheck(Direction);
+		if (hit.collider.tag == "Player")
+		{
+			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
+			hit.collider.transform.parent = null;
+			hit.collider.GetComponent<BoxCollider>().isTrigger = false;
+			hit.collider.GetComponent<PlayerMove>().canMove = true;
+
+			if (facingRight)
+			{
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+			}
+			else
+			{
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+			}
+
+			animator.SetBool("HoldingPickup", false);
+
+			Debug.Log("Threw " + hit.collider.name);
+		}
+        else
+        {
+			return;
+        }
+	}
+
+	public RaycastHit ThrowCheck(Vector3 directin)
+	{
+
+		RaycastHit hit;
+
+		Vector3 startingPosition = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+
+		Debug.DrawRay(startingPosition, Vector3.up, Color.red);
+		if (Physics.Raycast(startingPosition, directin, out hit))
+		{
+			return hit;
+		}
+		else
+		{
+			return hit;
+		}
+	}
+
+	public bool checkDirection()
+	{
+		if (Input.GetKey(KeyCode.A))
+		{
+			return false;
+		}
+
+		if (Input.GetKey(KeyCode.D))
+		{
+			return true;
+		}
+
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			return false;
+		}
+
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			return true;
+		}
+
+		return true;
 	}
 }
