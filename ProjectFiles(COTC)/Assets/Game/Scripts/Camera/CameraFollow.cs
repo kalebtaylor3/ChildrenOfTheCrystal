@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera))]
-public class camerafollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
 
     public List<Transform> targets;
@@ -14,9 +14,9 @@ public class camerafollow : MonoBehaviour
     private Vector3 velocity;
     public float smoothTime = 0.5f;
 
-    public float minZoom = 2.50f;
+    public float minZoom = 60f;
 
-    public float maxZoom = 9.01f;
+    public float maxZoom = 90f;
     public float zoomLimiter;
     private Camera cam;
     private bool startCountDown = false;
@@ -122,7 +122,7 @@ public class camerafollow : MonoBehaviour
     {
 
         float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / zoomLimiter);
-        cam.fieldOfView = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
     }
 
     float GetGreatestDistance()
