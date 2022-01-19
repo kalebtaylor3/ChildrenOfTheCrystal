@@ -3,7 +3,8 @@ using System.Collections;
 
 public class DoubleJumpEnabler : MonoBehaviour
 {
-
+    [SerializeField]
+    private string jumpKey;
     //This will be used to only allow the double jump if it's before highest jump point. Or not, you choose!
     public bool CanAfterHighestJumpPoint = true;
 
@@ -28,12 +29,15 @@ public class DoubleJumpEnabler : MonoBehaviour
     void Update()
     {
         //If we receive a jump button down, we're not grounded and we can double jump...
-        if (Input.GetButtonDown("Jump") && !GroundedBool && CanDoubleJump)
+        if(Input.GetButtonDown(jumpKey))
         {
-            //Do a jump with the first jump force! :D
-            playerMove.Jump(playerMove.jumpForce);
-            //And lets set the double jump to false!
-            CanDoubleJump = false;
+            if (!GroundedBool && CanDoubleJump)
+            {
+                //Do a jump with the first jump force! :D
+                playerMove.Jump(playerMove.jumpForce);
+                //And lets set the double jump to false!
+                CanDoubleJump = false;
+            }
         }
     }
 

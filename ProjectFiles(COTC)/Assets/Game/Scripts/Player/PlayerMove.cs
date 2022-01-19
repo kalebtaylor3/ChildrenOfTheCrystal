@@ -82,52 +82,49 @@ public class PlayerMove : MonoBehaviour
 		for (int i=0; i < floorCheckers.Length; i++)
 			floorCheckers[i] = floorChecks.GetChild(i);
 	}
-	
-	//get state of player, values and input
-	void Update()
-	{	
-		//stops rigidbody "sleeping" if we don't move, which would stop collision detection
-		rigid.WakeUp();
+
+	public void CalculateMovement(PlayerMove player, float h, float v, string jumpKey)
+    {
+		player.rigid.WakeUp();
 		//handle jumping
-		JumpCalculations ();
+		player.JumpCalculations(jumpKey, player);
 		//adjust movement values if we're in the air or on the ground
-		curAccel = (grounded) ? accel : airAccel;
-		curDecel = (grounded) ? decel : airDecel;
-		curRotateSpeed = (grounded) ? rotateSpeed : airRotateSpeed;
-				
+		player.curAccel = (player.grounded) ? player.accel : player.airAccel;
+		player.curDecel = (player.grounded) ? player.decel : player.airDecel;
+		player.curRotateSpeed = (player.grounded) ? player.rotateSpeed : player.airRotateSpeed;
+
 		//get movement axis relative to camera
-		screenMovementSpace = Quaternion.Euler (0, mainCam.eulerAngles.y, 0);
-		screenMovementForward = screenMovementSpace * Vector3.forward;
-		screenMovementRight = screenMovementSpace * Vector3.right;
-		
+		player.screenMovementSpace = Quaternion.Euler(0, mainCam.eulerAngles.y, 0);
+		player.screenMovementForward = player.screenMovementSpace * Vector3.forward;
+		player.screenMovementRight = player.screenMovementSpace * Vector3.right;
+
 		//get movement input, set direction to move in
-		float h = Input.GetAxisRaw ("Horizontal");
-		float v = Input.GetAxisRaw ("Vertical");
-		
+		//float h = Input.GetAxisRaw("Horizontal");
+		//float v = Input.GetAxisRaw("Vertical");
+
 		//only apply vertical input to movemement, if player is not sidescroller
-		if(!sidescroller)
-			direction = (screenMovementForward * v) + (screenMovementRight * h);
+		if (!player.sidescroller)
+			player.direction = (player.screenMovementForward * v) + (player.screenMovementRight * h);
 		else
-			direction = Vector3.right * h;
-		moveDirection = transform.position + direction;
+			player.direction = Vector3.right * h;
+		player.moveDirection = player.transform.position + player.direction;
 	}
-	
-	//apply correct player movement (fixedUpdate for physics calculations)
-	void FixedUpdate() 
-	{
+
+	public void Move(PlayerMove player)
+    {
 		//are we grounded
-		grounded = IsGrounded ();
+		player.grounded = player.IsGrounded();
 		//move, rotate, manage speed
-		characterMotor.MoveTo (moveDirection, curAccel, 0.7f, true);
-		if (rotateSpeed != 0 && direction.magnitude != 0)
-			characterMotor.RotateToDirection (moveDirection , curRotateSpeed * 5, true);
-		characterMotor.ManageSpeed (curDecel, maxSpeed + movingObjSpeed.magnitude, true);
+		player.characterMotor.MoveTo(player.moveDirection, player.curAccel, 0.7f, true);
+		if (player.rotateSpeed != 0 && player.direction.magnitude != 0)
+			player.characterMotor.RotateToDirection(player.moveDirection, player.curRotateSpeed * 5, true);
+		player.characterMotor.ManageSpeed(player.curDecel, player.maxSpeed + player.movingObjSpeed.magnitude, true);
 		//set animation values
-		if(animator)
+		if (player.animator)
 		{
-			animator.SetFloat("DistanceToTarget", characterMotor.DistanceToTarget);
-			animator.SetBool("Grounded", grounded);
-			animator.SetFloat("YVelocity", GetComponent<Rigidbody>().velocity.y);
+			player.animator.SetFloat("DistanceToTarget", player.characterMotor.DistanceToTarget);
+			player.animator.SetBool("Grounded", player.grounded);
+			player.animator.SetFloat("YVelocity", GetComponent<Rigidbody>().velocity.y);
 		}
 	}
 	
@@ -201,38 +198,38 @@ public class PlayerMove : MonoBehaviour
 	}
 	
 	//jumping
-	private void JumpCalculations()
+	private void JumpCalculations(string key, PlayerMove player)
 	{
 		//keep how long we have been on the ground
-		groundedCount = (grounded) ? groundedCount += Time.deltaTime : 0f;
+		player.groundedCount = (player.grounded) ? player.groundedCount += Time.deltaTime : 0f;
 		
 		//play landing sound
-		if(groundedCount < 0.25 && groundedCount != 0 && !GetComponent<AudioSource>().isPlaying && landSound && GetComponent<Rigidbody>().velocity.y < 1)
+		if(player.groundedCount < 0.25 && player.groundedCount != 0 && !GetComponent<AudioSource>().isPlaying && player.landSound && GetComponent<Rigidbody>().velocity.y < 1)
 		{
-			aSource.volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
-			aSource.clip = landSound;
-			aSource.Play ();
+			player.aSource.volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
+			player.aSource.clip = player.landSound;
+			player.aSource.Play ();
 		}
 		//if we press jump in the air, save the time
-		if (Input.GetButtonDown ("Jump") && !grounded)
-			airPressTime = Time.time;
+		if (Input.GetButtonDown (key) && !player.grounded)
+			player.airPressTime = Time.time;
 		
 		//if were on ground within slope limit
-		if (grounded && slope < slopeLimit)
+		if (player.grounded && player.slope < player.slopeLimit)
 		{
 			//and we press jump, or we pressed jump justt before hitting the ground
-			if (Input.GetButtonDown("Jump") || (airPressTime + jumpLeniancy > Time.time) && (Time.time > jumpLeniancy)) 
-			{	
+			if (Input.GetButtonDown(key) || (player.airPressTime + player.jumpLeniancy > Time.time) && (Time.time > player.jumpLeniancy)) 
+			{
 				//increment our jump type if we haven't been on the ground for long
-				onJump = (groundedCount < jumpDelay) ? Mathf.Min(2, onJump + 1) : 0;
+				player.onJump = (player.groundedCount < player.jumpDelay) ? Mathf.Min(2, player.onJump + 1) : 0;
 				//execute the correct jump (like in mario64, jumping 3 times quickly will do higher jumps)
-				if (onJump == 0)
-						Jump (jumpForce);
-				else if (onJump == 1)
-						Jump (secondJumpForce);
-				else if (onJump == 2){
-						Jump (thirdJumpForce);
-						onJump --;
+				if (player.onJump == 0)
+						Jump (player.jumpForce);
+				else if (player.onJump == 1)
+						Jump (player.secondJumpForce);
+				else if (player.onJump == 2){
+						Jump (player.thirdJumpForce);
+					player.onJump --;
 				}
 			}
 		}

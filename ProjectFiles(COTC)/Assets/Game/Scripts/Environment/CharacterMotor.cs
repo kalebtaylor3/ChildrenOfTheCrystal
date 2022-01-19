@@ -99,12 +99,3 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 }
-
-/* NOTE: ManageSpeed does a similar job to simply increasing the friction property of a rigidbodies "physics material"
- * but this is unpredictable and can result in sluggish controls and things like gripping against walls as you walk/falls past them
- * it's not ideal for gameplay, and so we use 0 friction physics materials and control friction ourselves with the ManageSpeed function instead */
-
-/* NOTE: when you use MoveTo, make sure the stopping distance is something like 0.3 and not 0
- * if it is 0, the object is likely to never truly reach the destination, and it will jitter on the spot as it
- * attempts to move toward the destination vector but overshoots it each frame
- */

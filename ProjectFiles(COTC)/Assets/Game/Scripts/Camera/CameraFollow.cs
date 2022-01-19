@@ -1,109 +1,169 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class CameraFollow : MonoBehaviour 
+[RequireComponent(typeof(Camera))]
+public class camerafollow : MonoBehaviour
 {
-	public Transform target;									//object camera will focus on and follow
-	public Vector3 targetOffset =  new Vector3(0f, 3.5f, 7);	//how far back should camera be from the lookTarget
-	public bool lockRotation;									//should the camera be fixed at the offset (for example: following behind the player)
-	public float followSpeed = 6;								//how fast the camera moves to its intended position
-	public float inputRotationSpeed = 100;						//how fast the camera rotates around lookTarget when you press the camera adjust buttons
-	public bool mouseFreelook;									//should the camera be rotated with the mouse? (only if camera is not fixed)
-	public float rotateDamping = 100;							//how fast camera rotates to look at target
-	public GameObject waterFilter;								//object to render in front of camera when it is underwater
-	public string[] avoidClippingTags;							//tags for big objects in your game, which you want to camera to try and avoid clipping with
-	
-	private Transform followTarget;
-	private bool camColliding;
-	
-	//setup objects
-	void Awake()
-	{
-		followTarget = new GameObject().transform;	//create empty gameObject as camera target, this will follow and rotate around the player
-		followTarget.name = "Camera Target";
-		if(waterFilter)
-			waterFilter.GetComponent<Renderer>().enabled = false;
-		if(!target)
-			Debug.LogError("'CameraFollow script' has no target assigned to it", transform);
-		
-		//don't smooth rotate if were using mouselook
-		if(mouseFreelook)
-			rotateDamping = 0f;
-	}
-	
-	//run our camera functions each frame
-	void Update()
-	{
-		if (!target)
-			return;
-		
-		SmoothFollow ();
-		if(rotateDamping > 0)
-			SmoothLookAt();
-		else
-			transform.LookAt(target.position);
-	}
 
-	//toggle waterfilter, is camera clipping walls?
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Water" && waterFilter)
-			waterFilter.GetComponent<Renderer>().enabled = true;
-	}
-	
-	//toggle waterfilter, is camera clipping walls?
-	void OnTriggerExit(Collider other)
-	{
-		if (other.tag == "Water" && waterFilter)
-			waterFilter.GetComponent<Renderer>().enabled = false;
-	}
-	
-	//rotate smoothly toward the target
-	void SmoothLookAt()
-	{
-		Quaternion rotation = Quaternion.LookRotation (target.position - transform.position);
-		transform.rotation = Quaternion.Slerp (transform.rotation, rotation, rotateDamping * Time.deltaTime);
-	}
-		
-	//move camera smoothly toward its target
-	void SmoothFollow()
-	{
-		//move the followTarget (empty gameobject created in awake) to correct position each frame
-		followTarget.position = target.position;
-		followTarget.Translate(targetOffset, Space.Self);
-		if (lockRotation)
-			followTarget.rotation = target.rotation;
-		
-		if(mouseFreelook)
-		{
-			//mouse look
-			float axisX = Input.GetAxis ("Mouse X") * inputRotationSpeed * Time.deltaTime;
-			followTarget.RotateAround (target.position,Vector3.up, axisX);
-			float axisY = Input.GetAxis ("Mouse Y") * inputRotationSpeed * Time.deltaTime;
-			followTarget.RotateAround (target.position, transform.right, -axisY);
-		}
-		else
-		{
-			//keyboard camera rotation look
-			float axis = Input.GetAxis ("CamHorizontal") * inputRotationSpeed * Time.deltaTime;
-			followTarget.RotateAround (target.position, Vector3.up, axis);
-		}
-		
-		//where should the camera be next frame?
-		Vector3 nextFramePosition = Vector3.Lerp(transform.position, followTarget.position, followSpeed * Time.deltaTime);
-		Vector3 direction = nextFramePosition - target.position;
-		//raycast to this position
-		RaycastHit hit;
-		if(Physics.Raycast (target.position, direction, out hit, direction.magnitude + 0.3f))
-		{
-			transform.position = nextFramePosition;
-			foreach(string tag in avoidClippingTags)
-				if(hit.transform.tag == tag)
-					transform.position = hit.point - direction.normalized * 0.3f;
-		}
-		else
-		{
-			//otherwise, move cam to intended position
-			transform.position = nextFramePosition;
-		}
-	}
+    public List<Transform> targets;
+
+    public Vector3 offset;
+
+    private Vector3 velocity;
+    public float smoothTime = 0.5f;
+
+    public float minZoom = 2.50f;
+
+    public float maxZoom = 9.01f;
+    public float zoomLimiter;
+    private Camera cam;
+    private bool startCountDown = false;
+
+    private bool dead = false;
+    public GameObject tofar;
+    float deathCounter = 0;
+
+    public bool lockRotation;                                   
+    public float inputRotationSpeed = 100;                     
+    public bool mouseFreelook;                                  
+    public float rotateDamping = 100;                           
+    public GameObject waterFilter;                              
+
+    //private Transform followTarget;
+    private bool camColliding;
+
+
+    void Start()
+    {
+        cam = GetComponent<Camera>();
+        tofar.SetActive(false);
+    }
+
+    void Awake()
+    {
+        //followTarget = new GameObject().transform;  //create empty gameObject as camera target, this will follow and rotate around the player
+        //followTarget.name = "Camera Target";
+        if (waterFilter)
+            waterFilter.GetComponent<Renderer>().enabled = false;
+        //if (!target)
+            //Debug.LogError("'CameraFollow script' has no target assigned to it", transform);
+
+        //don't smooth rotate if were using mouselook
+        if (mouseFreelook)
+            rotateDamping = 0f;
+    }
+
+    //run our camera functions each frame
+    void Update()
+    {
+        //if (!target)
+            //return;
+
+       // SmoothFollow();
+       // if (rotateDamping > 0)
+           // SmoothLookAt();
+        //else
+            //transform.LookAt(target.position);
+    }
+
+    void LateUpdate()
+    {
+
+        if (GetGreatestDistance() >= 29.0f)
+        {
+            deathCounter += 10 * Time.deltaTime;
+            startCountDown = true;
+            tofar.SetActive(true);
+            Debug.Log(deathCounter);
+        }
+        else
+        {
+            deathCounter = 0;
+            startCountDown = false;
+            dead = false;
+            tofar.SetActive(false);
+        }
+
+        if (deathCounter >= 30)
+        {
+            dead = true;
+        }
+
+        if (dead == true)
+        {
+            SceneManager.LoadScene("Demo Scene");
+            dead = false;
+        }
+
+
+
+        if (targets.Count == 0)
+        {
+            return;
+        }
+
+        Move();
+        Zoom();
+
+    }
+
+    void Move()
+    {
+        Vector3 centerPoint = GetCenterPoint();
+
+        Vector3 newPosition = centerPoint + offset;
+
+        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+    }
+
+    void Zoom()
+    {
+
+        float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / zoomLimiter);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+    }
+
+    float GetGreatestDistance()
+    {
+        var bounds = new Bounds(targets[0].position, Vector3.zero);
+        for (int i = 0; i < targets.Count; i++)
+        {
+            bounds.Encapsulate(targets[i].position);
+        }
+
+        return bounds.size.x;
+    }
+
+    Vector3 GetCenterPoint()
+    {
+        if (targets.Count == 1)
+        {
+            return targets[0].position;
+        }
+
+        var bounds = new Bounds(targets[0].position, Vector3.zero);
+        for (int i = 0; i < targets.Count; i++)
+        {
+            bounds.Encapsulate(targets[i].position);
+        }
+
+        return bounds.center;
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Water" && waterFilter)
+            waterFilter.GetComponent<Renderer>().enabled = true;
+    }
+
+    //toggle waterfilter, is camera clipping walls?
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Water" && waterFilter)
+            waterFilter.GetComponent<Renderer>().enabled = false;
+    }
+
 }
