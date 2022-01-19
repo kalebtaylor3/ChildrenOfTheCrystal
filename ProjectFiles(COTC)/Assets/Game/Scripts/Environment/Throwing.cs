@@ -34,6 +34,8 @@ public class Throwing : MonoBehaviour
 	//private CharacterMotor characterMotor;	line rendererd unnecessary for now. (see line 85)
 	private TriggerParent triggerParent;
 	private RigidbodyInterpolation objectDefInterpolation;
+
+	public string grabKey;
 	
 	
 	//setup
@@ -64,7 +66,7 @@ public class Throwing : MonoBehaviour
 	void Update()
 	{
 		//when we press grab button, throw object if we're holding one
-		if (Input.GetButtonDown ("Grab") && heldObj && Time.time > timeOfPickup + 0.1f)
+		if (Input.GetButtonDown (grabKey) && heldObj && Time.time > timeOfPickup + 0.1f)
 		{
 			if(heldObj.tag == "Pickup") 
 				ThrowPickup();
@@ -91,7 +93,7 @@ public class Throwing : MonoBehaviour
 			 */
 
 			//if we let go of grab key, drop the pushable
-			if(Input.GetButtonUp ("Grab"))
+			if(Input.GetButtonUp (grabKey))
 			{
 				DropPushable();
 			}
@@ -108,7 +110,7 @@ public class Throwing : MonoBehaviour
 	void OnTriggerStay(Collider other)
 	{
 		//if grab is pressed and an object is inside the players "grabBox" trigger
-		if(Input.GetButton("Grab"))
+		if(Input.GetButton(grabKey))
 		{
 			//pickup
 			if(other.tag == "Pickup" && heldObj == null && timeOfThrow + 0.2f < Time.time)
