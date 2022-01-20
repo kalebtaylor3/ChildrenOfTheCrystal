@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player1 : PlayerMove
 {
-
+    public GameObject[] Dimensions;
     private bool direction = true;
 
     private void Update()
