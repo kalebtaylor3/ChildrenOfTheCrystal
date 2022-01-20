@@ -54,6 +54,8 @@ public class PlayerMove : MonoBehaviour
 	private float originOffset = 0.4f;
 	private bool facingRight = true;
 
+	public bool lifting = false;
+
 	//setup
 	void Awake()
 	{
@@ -130,6 +132,7 @@ public class PlayerMove : MonoBehaviour
 			//set animation values
 			if (player.animator)
 			{
+				player.animator.SetBool("HoldingPickup", player.lifting);
 				player.animator.SetFloat("DistanceToTarget", player.characterMotor.DistanceToTarget);
 				player.animator.SetBool("Grounded", player.grounded);
 				player.animator.SetFloat("YVelocity", GetComponent<Rigidbody>().velocity.y);
@@ -271,6 +274,7 @@ public class PlayerMove : MonoBehaviour
         }
 		else if (hit.collider.tag == "Player")
 		{
+			lifting = true;
 			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
 			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
@@ -309,6 +313,7 @@ public class PlayerMove : MonoBehaviour
 	{
 		yield return new WaitForSeconds(5);
 
+		lifting = false;
 		liftedPlayer.collider.GetComponent<Rigidbody>().isKinematic = false;
 		liftedPlayer.collider.transform.parent = null;
 		liftedPlayer.collider.GetComponent<BoxCollider>().isTrigger = false;
@@ -324,6 +329,7 @@ public class PlayerMove : MonoBehaviour
 		}
 		else if (hit.collider.tag == "Player")
 		{
+			lifting = false;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
 			hit.collider.transform.parent = null;
 			hit.collider.GetComponent<BoxCollider>().isTrigger = false;
