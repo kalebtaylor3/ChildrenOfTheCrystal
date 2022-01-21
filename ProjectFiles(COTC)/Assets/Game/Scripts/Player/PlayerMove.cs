@@ -346,9 +346,9 @@ public class PlayerMove : MonoBehaviour
 				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
 			}
 
-			animator.SetBool("HoldingPickup", false);
-
 			Debug.Log("Threw " + hit.collider.name);
+
+			return;
 		}
 	}
 

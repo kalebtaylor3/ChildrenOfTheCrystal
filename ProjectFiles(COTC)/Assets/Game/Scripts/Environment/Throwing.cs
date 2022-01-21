@@ -72,8 +72,6 @@ public class Throwing : MonoBehaviour
 				ThrowPickup();
 		}
 
-		Debug.Log(playerMove.lifting);
-
 		//set animation value for arms layer
 		if (animator)
 			if(heldObj && heldObj.tag == "Pickup")
