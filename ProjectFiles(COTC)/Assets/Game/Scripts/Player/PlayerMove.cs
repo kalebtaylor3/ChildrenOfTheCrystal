@@ -49,12 +49,12 @@ public class PlayerMove : MonoBehaviour
 	private AudioSource aSource;
 
 	private bool canMove = true;
-	private bool beingLifted;
 	public Transform pickupLoc;
 	private float originOffset = 0.4f;
 	private bool facingRight = true;
 
 	public bool lifting = false;
+	public bool beingLifted = false;
 
 	//setup
 	void Awake()
@@ -282,6 +282,7 @@ public class PlayerMove : MonoBehaviour
 			hit.collider.transform.parent = this.pickupLoc.transform;
 			hit.collider.GetComponent<BoxCollider>().isTrigger = true;
 			hit.collider.GetComponent<PlayerMove>().canMove = false;
+			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
 			//lifted player will begin playing the being lifted animation
 			Debug.Log("Picking up " + hit.collider.name);
 
@@ -318,6 +319,7 @@ public class PlayerMove : MonoBehaviour
 		liftedPlayer.collider.transform.parent = null;
 		liftedPlayer.collider.GetComponent<BoxCollider>().isTrigger = false;
 		liftedPlayer.collider.GetComponent<PlayerMove>().canMove = true;
+		liftedPlayer.collider.GetComponent<PlayerMove>().beingLifted = false;
 	}
 
 	public void ThrowPlayer(Vector3 Direction)
@@ -334,6 +336,7 @@ public class PlayerMove : MonoBehaviour
 			hit.collider.transform.parent = null;
 			hit.collider.GetComponent<BoxCollider>().isTrigger = false;
 			hit.collider.GetComponent<PlayerMove>().canMove = true;
+			hit.collider.GetComponent<PlayerMove>().beingLifted = false;
 
 			if (facingRight)
 			{

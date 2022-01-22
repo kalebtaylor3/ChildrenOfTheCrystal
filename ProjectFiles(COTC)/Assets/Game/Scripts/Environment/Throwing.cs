@@ -74,19 +74,16 @@ public class Throwing : MonoBehaviour
 
 		//set animation value for arms layer
 		if (animator)
-			if(heldObj && heldObj.tag == "Pickup")
+			if (heldObj && heldObj.tag == "Pickup")
 				animator.SetBool ("HoldingPickup", true);
 			else
 				animator.SetBool ("HoldingPickup", false);
-		
 			if(heldObj && heldObj.tag == "Pushable")
 				animator.SetBool ("HoldingPushable", true);
 			else
 				animator.SetBool ("HoldingPushable", false);
 			if (playerMove.lifting)
 				animator.SetBool("HoldingPickup", true);
-			else
-				animator.SetBool("HoldingPickup", false);
 
 		//if we're holding a pushable, rotate to face it
 		if (heldObj && heldObj.tag == "Pushable")
