@@ -4,39 +4,109 @@ using UnityEngine;
 
 public class Dimension : MonoBehaviour
 {
+
+    public enum Dimensions
+    {
+        Red,
+        Main,
+        Hints,
+        Blue,
+        Green
+    };
+
     [SerializeField]
-    GameObject strengthGO;
+    GameObject[] dimensionList;
     public int a = 1;
+
+    private bool inDimension = false;
 
     // Start is called before the first frame update
     void Start()
     {
- 
+        DisableAll();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (!inDimension)
         {
-            Debug.Log("V was pressed");
-            strength();
-        }
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //player1;
+                Strength();
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                //player1;
+                SuperJump();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                //player1;
+                Strength();
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                //player1;
+                SuperJump();
+            }
+        }
+        else
         {
-            Debug.Log("V was pressed");
-            main();
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //player1;
+                DisableAll();
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                //player1;
+                DisableAll();
+            }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                //player1;
+                DisableAll();
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                //player1;
+                DisableAll();
+            }
         }
     }
 
-    private void strength()
+    public void Strength()
     {
-            strengthGO.SetActive(false);
+        if (!inDimension)
+        {
+            DisableAll();
+            dimensionList[(int)Dimensions.Red].SetActive(true);
+            inDimension = true;
+        }
     }
-    private void main()
+
+    public void SuperJump()
     {
-        strengthGO.SetActive(true);
+        if (!inDimension)
+        {
+            DisableAll();
+            dimensionList[(int)Dimensions.Blue].SetActive(true);
+            inDimension = true;
+        }
+    }
+
+    public void DisableAll()
+    {
+        for (int i = 0; i < dimensionList.Length; i++)
+        {
+            dimensionList[i].SetActive(false);
+        }
+        dimensionList[(int)Dimensions.Main].SetActive(true);
+        dimensionList[(int)Dimensions.Hints].SetActive(true);
+        inDimension = false;
     }
 
 }

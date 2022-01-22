@@ -14,6 +14,7 @@ public class Player2 : PlayerMove
 
         this.CalculateMovement(this, h, v, "ArrowJump");
         direction = this.checkDirection();
+
     }
 
     private void FixedUpdate()
