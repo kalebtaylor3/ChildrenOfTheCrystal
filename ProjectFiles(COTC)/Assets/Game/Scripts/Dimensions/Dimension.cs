@@ -20,11 +20,12 @@ public class Dimension : MonoBehaviour
     [SerializeField]
     GameObject[] dimensionList;
 
+    [HideInInspector]
     public bool inDimension = false;
 
     public PostProcessingControll postEffects;
 
-    public static event Action OnLeaveDimension;
+    public PlayerMove[] players;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,53 +38,24 @@ public class Dimension : MonoBehaviour
         if (!inDimension)
         {
             if (Input.GetKeyDown(KeyCode.Z))
-            {
-                //player1;
                 Strength();
-            }
             if (Input.GetKeyDown(KeyCode.X))
-            {
-                //player1;
                 SuperJump();
-            }
             if (Input.GetKeyDown(KeyCode.N))
-            {
-                //player1;
-                inDimension = true;
-                postEffects.ChangeDimension(Dimensions.Green);
-            }
+                Green();
             if (Input.GetKeyDown(KeyCode.M))
-            {
-                inDimension = true;
-                postEffects.ChangeDimension(Dimensions.Purple);
-            }
+                Purple();
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Z))
-            {
-                //player1;
                 DisableAll();
-                OnLeaveDimension?.Invoke();
-            }
             if (Input.GetKeyDown(KeyCode.X))
-            {
-                //player1;
                 DisableAll();
-                OnLeaveDimension?.Invoke();
-            }
             if (Input.GetKeyDown(KeyCode.N))
-            {
-                //player1;
                 DisableAll();
-                OnLeaveDimension?.Invoke();
-            }
             if (Input.GetKeyDown(KeyCode.M))
-            {
-                //player1;
                 DisableAll();
-                OnLeaveDimension?.Invoke();
-            }
         }
     }
 
@@ -94,6 +66,7 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         hints[(int)Dimensions.Red].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Red);
+        players[1].SetLayerRecursively(players[1].gameObject, 3);
     }
 
     public void SuperJump()
@@ -103,6 +76,23 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         hints[(int)Dimensions.Blue].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Blue);
+        players[1].SetLayerRecursively(players[1].gameObject, 3);
+    }
+
+    public void Purple()
+    {
+        DisableAll();
+        inDimension = true;
+        postEffects.ChangeDimension(Dimensions.Purple);
+        players[0].SetLayerRecursively(players[0].gameObject, 3);
+    }
+
+    public void Green()
+    {
+        DisableAll();
+        inDimension = true;
+        postEffects.ChangeDimension(Dimensions.Green);
+        players[0].SetLayerRecursively(players[0].gameObject, 3);
     }
 
     public void DisableAll()
@@ -118,6 +108,8 @@ public class Dimension : MonoBehaviour
         }
         postEffects.ChangeDimension(Dimensions.Main);
         dimensionList[(int)Dimensions.Main].SetActive(true);
+        players[0].SetLayerRecursively(players[0].gameObject, 0);
+        players[1].SetLayerRecursively(players[1].gameObject, 0);
         inDimension = false;
     }
 

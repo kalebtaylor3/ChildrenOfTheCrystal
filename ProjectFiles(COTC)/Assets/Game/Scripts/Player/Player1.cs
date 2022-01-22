@@ -13,15 +13,8 @@ public class Player1 : PlayerMove
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-
-
         this.CalculateMovement(this, h, v, "Jump");
         direction = checkDirection();
-
-        if(Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.M))
-        {
-            this.SetLayerRecursively(this.gameObject, 3);
-        }
     }
 
     private void FixedUpdate()
@@ -39,7 +32,6 @@ public class Player1 : PlayerMove
         if (Input.GetKey(KeyCode.Space))
         {
             this.ThrowPlayer(Vector3.up);
-            //OnWind?.Invoke(wasThrown, m_Grounded);
         }
     }
 

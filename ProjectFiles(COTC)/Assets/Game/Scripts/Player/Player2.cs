@@ -14,11 +14,6 @@ public class Player2 : PlayerMove
 
         this.CalculateMovement(this, h, v, "ArrowJump");
         direction = this.checkDirection();
-
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
-        {
-            this.SetLayerRecursively(this.gameObject, 3);
-        }
     }
 
     private void FixedUpdate()

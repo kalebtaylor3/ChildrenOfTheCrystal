@@ -61,16 +61,6 @@ public class PlayerMove : MonoBehaviour
 
 	public LayerMask IgnoreMe;
 
-    private void OnEnable()
-    {
-		Dimension.OnLeaveDimension += LeaveDimension;
-    }
-
-    private void OnDisable()
-    {
-		Dimension.OnLeaveDimension -= LeaveDimension;
-	}
-
     //setup
     void Awake()
 	{
@@ -154,7 +144,7 @@ public class PlayerMove : MonoBehaviour
 
 	void LeaveDimension()
     {
-		SetLayerRecursively(this.gameObject, 0);
+		SetLayerRecursively(gameObject, 0);
     }
 
 	public void Move(PlayerMove player)
