@@ -18,7 +18,6 @@ public class Dimension : MonoBehaviour
 
     [SerializeField]
     GameObject[] dimensionList;
-    public int a = 1;
 
     private bool inDimension = false;
 
