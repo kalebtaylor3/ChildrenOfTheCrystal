@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Dimension : MonoBehaviour
 {
-
     public enum Dimensions
     {
         Red,
         Blue,
         Green,
+        Purple,
         Main,
     };
     
@@ -19,17 +20,16 @@ public class Dimension : MonoBehaviour
     [SerializeField]
     GameObject[] dimensionList;
 
-    private bool inDimension = false;
+    public bool inDimension = false;
 
+    public PostProcessingControll postEffects;
 
-    public Material[] player1;
-    public Material[] player2;
+    public static event Action OnLeaveDimension;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DisableAll();
-        ClearColour();
     }
 
     private void Update()
@@ -40,28 +40,22 @@ public class Dimension : MonoBehaviour
             {
                 //player1;
                 Strength();
-                hints[(int)Dimensions.Red].SetActive(false);
-                ChangeColour(1, Color.red);
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
                 //player1;
                 SuperJump();
-                hints[(int)Dimensions.Blue].SetActive(false);
-                ChangeColour(1, Color.blue);
             }
-
             if (Input.GetKeyDown(KeyCode.N))
             {
                 //player1;
-                Strength();
-                ChangeColour(2, Color.red);
+                inDimension = true;
+                postEffects.ChangeDimension(Dimensions.Green);
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
-                //player1;
-                SuperJump();
-                ChangeColour(2, Color.blue);
+                inDimension = true;
+                postEffects.ChangeDimension(Dimensions.Purple);
             }
         }
         else
@@ -70,26 +64,25 @@ public class Dimension : MonoBehaviour
             {
                 //player1;
                 DisableAll();
-                ClearColour();
+                OnLeaveDimension?.Invoke();
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
                 //player1;
                 DisableAll();
-                ClearColour();
+                OnLeaveDimension?.Invoke();
             }
-
             if (Input.GetKeyDown(KeyCode.N))
             {
                 //player1;
                 DisableAll();
-                ClearColour();
+                OnLeaveDimension?.Invoke();
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
                 //player1;
                 DisableAll();
-                ClearColour();
+                OnLeaveDimension?.Invoke();
             }
         }
     }
@@ -99,24 +92,8 @@ public class Dimension : MonoBehaviour
         DisableAll();
         dimensionList[(int)Dimensions.Red].SetActive(true);
         inDimension = true;
-    }
-
-    void ChangeColour(int player, Color color)
-    {
-        if(player == 1)
-        {
-            for (int i = 0; i < player1.Length; i++)
-            {
-                player1[i].color = color;
-            }
-        }
-        else if( player == 2)
-        {
-            for (int i = 0; i < player2.Length; i++)
-            {
-                player2[i].color = color;
-            }
-        }
+        hints[(int)Dimensions.Red].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Red);
     }
 
     public void SuperJump()
@@ -124,19 +101,9 @@ public class Dimension : MonoBehaviour
         DisableAll();
         dimensionList[(int)Dimensions.Blue].SetActive(true);
         inDimension = true;
+        hints[(int)Dimensions.Blue].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Blue);
     }
-
-    void ClearColour()
-    {
-        for (int i = 0; i < player1.Length; i++)
-        {
-            player1[i].color = Color.white;
-        }
-        for (int i = 0; i < player2.Length; i++)
-        {
-            player2[i].color = Color.white;
-        }
-    }   
 
     public void DisableAll()
     {
@@ -149,6 +116,7 @@ public class Dimension : MonoBehaviour
         {
             hints[i].SetActive(true);
         }
+        postEffects.ChangeDimension(Dimensions.Main);
         dimensionList[(int)Dimensions.Main].SetActive(true);
         inDimension = false;
     }

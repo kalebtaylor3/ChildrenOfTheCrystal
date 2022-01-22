@@ -17,6 +17,11 @@ public class Player1 : PlayerMove
 
         this.CalculateMovement(this, h, v, "Jump");
         direction = checkDirection();
+
+        if(Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.M))
+        {
+            this.SetLayerRecursively(this.gameObject, 3);
+        }
     }
 
     private void FixedUpdate()

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 //handles player movement, utilising the CharacterMotor class
 [RequireComponent(typeof(CharacterMotor))]
@@ -53,11 +54,25 @@ public class PlayerMove : MonoBehaviour
 	private float originOffset = 0.4f;
 	private bool facingRight = true;
 
+	[HideInInspector]
 	public bool lifting = false;
+	[HideInInspector]
 	public bool beingLifted = false;
 
-	//setup
-	void Awake()
+	public LayerMask IgnoreMe;
+
+    private void OnEnable()
+    {
+		Dimension.OnLeaveDimension += LeaveDimension;
+    }
+
+    private void OnDisable()
+    {
+		Dimension.OnLeaveDimension -= LeaveDimension;
+	}
+
+    //setup
+    void Awake()
 	{
 		//create single floorcheck in centre of object, if none are assigned
 		if(!floorChecks)
@@ -117,6 +132,30 @@ public class PlayerMove : MonoBehaviour
 			player.direction = Vector3.right * h;
 		player.moveDirection = player.transform.position + player.direction;
 	}
+
+	public void SetLayerRecursively(GameObject obj, int newLayer)
+	{
+		if (null == obj)
+		{
+			return;
+		}
+
+		obj.layer = newLayer;
+
+		foreach (Transform child in obj.transform)
+		{
+			if (null == child)
+			{
+				continue;
+			}
+			SetLayerRecursively(child.gameObject, newLayer);
+		}
+	}
+
+	void LeaveDimension()
+    {
+		SetLayerRecursively(this.gameObject, 0);
+    }
 
 	public void Move(PlayerMove player)
     {
@@ -275,14 +314,13 @@ public class PlayerMove : MonoBehaviour
 		else if (hit.collider.tag == "Player")
 		{
 			lifting = true;
-			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
+			//hit.collider.GetComponent<PlayerMove>().beingLifted = true;
 			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
 			hit.collider.transform.position = pickupLoc.position;
 			hit.collider.transform.parent = this.pickupLoc.transform;
 			hit.collider.GetComponent<BoxCollider>().isTrigger = true;
 			hit.collider.GetComponent<PlayerMove>().canMove = false;
-			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
 			//lifted player will begin playing the being lifted animation
 			Debug.Log("Picking up " + hit.collider.name);
 
@@ -300,7 +338,7 @@ public class PlayerMove : MonoBehaviour
 		Vector3 startingPosition = new Vector3(transform.position.x + directionOriginOffset, transform.position.y, transform.position.z);
 
 		Debug.DrawRay(startingPosition, directin, Color.red);
-		if (Physics.Raycast(startingPosition, directin, out hit, 0.2f))
+		if (Physics.Raycast(startingPosition, directin, out hit, 0.2f, ~IgnoreMe))
 		{
 			return hit;
 		}
@@ -329,7 +367,7 @@ public class PlayerMove : MonoBehaviour
 		{
 			return;
 		}
-		else if (hit.collider.tag == "Player")
+		else if (hit.collider.gameObject.tag == "Player")
 		{
 			lifting = false;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
