@@ -97,12 +97,9 @@ public class Dimension : MonoBehaviour
 
     public void Strength()
     {
-        if (!inDimension)
-        {
-            DisableAll();
-            dimensionList[(int)Dimensions.Red].SetActive(true);
-            inDimension = true;
-        }
+        DisableAll();
+        dimensionList[(int)Dimensions.Red].SetActive(true);
+        inDimension = true;
     }
 
     void ChangeColour(int player, Color color)
@@ -125,12 +122,9 @@ public class Dimension : MonoBehaviour
 
     public void SuperJump()
     {
-        if (!inDimension)
-        {
-            DisableAll();
-            dimensionList[(int)Dimensions.Blue].SetActive(true);
-            inDimension = true;
-        }
+        DisableAll();
+        dimensionList[(int)Dimensions.Blue].SetActive(true);
+        inDimension = true;
     }
 
     void ClearColour()
