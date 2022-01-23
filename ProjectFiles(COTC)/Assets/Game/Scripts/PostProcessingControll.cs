@@ -7,7 +7,7 @@ using System;
 public class PostProcessingControll : MonoBehaviour
 {
     public PostProcessVolume volume;
-    public ColorParameter[] colorFilter;
+    public Color[] colorFilter;
 
     private ColorGrading _colorgraiding;
     private Bloom _bloom;
