@@ -15,6 +15,8 @@ public class Player1 : PlayerMove
 
         this.CalculateMovement(this, h, v, "Jump");
         direction = checkDirection();
+
+
     }
 
     private void FixedUpdate()

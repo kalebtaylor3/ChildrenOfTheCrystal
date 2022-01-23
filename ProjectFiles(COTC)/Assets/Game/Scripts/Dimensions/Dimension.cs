@@ -25,7 +25,7 @@ public class Dimension : MonoBehaviour
 
     public PostProcessingControll postEffects;
 
-    public PlayerMove[] players;
+    public PlayerMove[] playersForLayers;
 
     // Start is called before the first frame update
     void Awake()
@@ -57,6 +57,11 @@ public class Dimension : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.M))
                 DisableAll();
         }
+
+        Physics.IgnoreLayerCollision(3, 9);
+        Physics.IgnoreLayerCollision(3, 10);
+        Physics.IgnoreLayerCollision(3, 11);
+        Physics.IgnoreLayerCollision(3, 12);
     }
 
     public void Strength()
@@ -66,7 +71,7 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         hints[(int)Dimensions.Red].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Red);
-        players[1].SetLayerRecursively(players[1].gameObject, 3);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
     }
 
     public void SuperJump()
@@ -76,7 +81,7 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         hints[(int)Dimensions.Blue].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Blue);
-        players[1].SetLayerRecursively(players[1].gameObject, 3);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
     }
 
     public void Purple()
@@ -84,7 +89,7 @@ public class Dimension : MonoBehaviour
         DisableAll();
         inDimension = true;
         postEffects.ChangeDimension(Dimensions.Purple);
-        players[0].SetLayerRecursively(players[0].gameObject, 3);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
     }
 
     public void Green()
@@ -92,7 +97,7 @@ public class Dimension : MonoBehaviour
         DisableAll();
         inDimension = true;
         postEffects.ChangeDimension(Dimensions.Green);
-        players[0].SetLayerRecursively(players[0].gameObject, 3);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
     }
 
     public void DisableAll()
@@ -108,8 +113,8 @@ public class Dimension : MonoBehaviour
         }
         postEffects.ChangeDimension(Dimensions.Main);
         dimensionList[(int)Dimensions.Main].SetActive(true);
-        players[0].SetLayerRecursively(players[0].gameObject, 0);
-        players[1].SetLayerRecursively(players[1].gameObject, 0);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 0);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 0);
         inDimension = false;
     }
 
