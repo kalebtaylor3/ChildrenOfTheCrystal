@@ -12,7 +12,7 @@ public class PostProcessingControll : MonoBehaviour
     private ColorGrading _colorgraiding;
     private Bloom _bloom;
 
-    private void Awake()
+    private void Start()
     {
         volume.profile.TryGetSettings(out _colorgraiding);
         volume.profile.TryGetSettings(out _bloom);

@@ -28,9 +28,10 @@ public class Dimension : MonoBehaviour
     public PlayerMove[] playersForLayers;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        DisableAll();
+        postEffects.ChangeDimension(Dimensions.Main);
+        dimensionList[(int)Dimensions.Main].SetActive(true);
     }
 
     private void Update()
