@@ -194,6 +194,8 @@ public class PlayerMove : MonoBehaviour
 		//get distance to ground, from centre of collider (where floorcheckers should be)
 		float dist = GetComponent<Collider>().bounds.extents.y;
 		//check whats at players feet, at each floorcheckers position
+
+		//if check for camera cutscene
 		foreach (Transform check in floorCheckers)
 		{
 			RaycastHit hit;
