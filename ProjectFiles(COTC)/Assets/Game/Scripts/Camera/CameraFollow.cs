@@ -93,7 +93,7 @@ public class CameraFollow : MonoBehaviour
 
         if (dead == true)
         {
-            SceneManager.LoadScene("Demo Scene");
+            SceneManager.LoadScene("Roy Test");
             dead = false;
         }
 
@@ -120,7 +120,6 @@ public class CameraFollow : MonoBehaviour
 
     void Zoom()
     {
-
         float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / zoomLimiter);
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
     }
