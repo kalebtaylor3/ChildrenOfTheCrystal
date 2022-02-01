@@ -88,7 +88,9 @@ public class Dimension : MonoBehaviour
     public void Purple()
     {
         DisableAll();
+        dimensionList[(int)Dimensions.Purple].SetActive(true);
         inDimension = true;
+        hints[(int)Dimensions.Purple].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Purple);
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
     }
