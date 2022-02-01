@@ -59,7 +59,7 @@ public class PlayerMove : MonoBehaviour
 	[HideInInspector]
 	public bool beingLifted = false;
 
-	public LayerMask IgnoreMe;
+	public LayerMask ingoreMe;
 
     //setup
     void Awake()
@@ -330,7 +330,7 @@ public class PlayerMove : MonoBehaviour
 		Vector3 startingPosition = new Vector3(transform.position.x + directionOriginOffset, transform.position.y, transform.position.z);
 
 		Debug.DrawRay(startingPosition, directin, Color.red);
-		if (Physics.Raycast(startingPosition, directin, out hit, 0.2f, ~IgnoreMe))
+		if (Physics.Raycast(startingPosition, directin, out hit, 0.2f, ~ingoreMe))
 		{
 			return hit;
 		}
@@ -405,25 +405,10 @@ public class PlayerMove : MonoBehaviour
 
 	public bool checkDirection()
 	{
-		if (Input.GetKey(KeyCode.A))
-		{
+		if (transform.rotation.eulerAngles.y > 135)
 			return false;
-		}
-
-		if (Input.GetKey(KeyCode.D))
-		{
+		if (transform.rotation.eulerAngles.y <= 135)
 			return true;
-		}
-
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			return false;
-		}
-
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			return true;
-		}
 
 		return true;
 	}

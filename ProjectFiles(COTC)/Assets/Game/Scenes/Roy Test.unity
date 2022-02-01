@@ -45906,6 +45906,11 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 1934351366}
+    - target: {fileID: 1454687678669625718, guid: 98f20db713aad1d47bfbbca2290cc153,
+        type: 3}
+      propertyPath: ingoreMe.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1454687679191636910, guid: 98f20db713aad1d47bfbbca2290cc153,
         type: 3}
       propertyPath: m_RootOrder
@@ -45965,6 +45970,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Kira
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454687680247717151, guid: 98f20db713aad1d47bfbbca2290cc153,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f20db713aad1d47bfbbca2290cc153, type: 3}
@@ -46095,11 +46105,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5486652338657669819, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339010792301, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5486652339025352344, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 1934351366}
+    - target: {fileID: 5486652339025352344, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: ingoreMe.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339162806585, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339226542003, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339386520611, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339587512928, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339628089077, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5486652339672872680, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
       propertyPath: m_RootOrder
@@ -46159,6 +46209,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Liam
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339682265044, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339700660791, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339775878901, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486652339959309965, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec7cd42960366243b5ad41d2112c616, type: 3}
