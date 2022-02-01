@@ -309,8 +309,8 @@ public class PlayerMove : MonoBehaviour
 			//hit.collider.GetComponent<PlayerMove>().beingLifted = true;
 			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
-			hit.collider.transform.position = pickupLoc.position;
 			hit.collider.transform.parent = this.pickupLoc.transform;
+			hit.collider.transform.position = pickupLoc.position;
 			hit.collider.GetComponent<BoxCollider>().isTrigger = true;
 			hit.collider.GetComponent<PlayerMove>().canMove = false;
 			//lifted player will begin playing the being lifted animation
@@ -354,7 +354,7 @@ public class PlayerMove : MonoBehaviour
 
 	public void ThrowPlayer(Vector3 Direction)
 	{
-		RaycastHit hit = ThrowCheck(Direction);
+		RaycastHit hit = ThrowCheck(Vector3.up);
 		if (hit.collider.gameObject == this.gameObject)
 		{
 			return;

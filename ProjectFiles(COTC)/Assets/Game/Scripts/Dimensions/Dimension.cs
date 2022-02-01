@@ -116,8 +116,8 @@ public class Dimension : MonoBehaviour
         }
         postEffects.ChangeDimension(Dimensions.Main);
         dimensionList[(int)Dimensions.Main].SetActive(true);
-        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 0);
-        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 0);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 13);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 13);
         inDimension = false;
     }
 

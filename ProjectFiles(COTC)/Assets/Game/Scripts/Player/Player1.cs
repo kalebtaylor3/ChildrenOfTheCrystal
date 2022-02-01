@@ -7,13 +7,12 @@ public class Player1 : PlayerMove
     //public GameObject[] Dimensions;
     private bool direction = true;
     [SerializeField]
-    private float h;
-    private float v;
+
     private void Update()
     {
 
-         h = Input.GetAxisRaw("Horizontal");
-         v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
         this.CalculateMovement(this, h, v, "Jump");
         direction = checkDirection();
