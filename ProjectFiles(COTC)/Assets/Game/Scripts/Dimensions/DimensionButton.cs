@@ -23,7 +23,7 @@ public class DimensionButton : MonoBehaviour
     {
         if (isSwitch)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.P))
             {
                 Animation.Invoke();
                 trigger.Invoke();
