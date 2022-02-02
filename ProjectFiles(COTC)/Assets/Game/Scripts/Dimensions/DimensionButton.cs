@@ -5,14 +5,30 @@ using UnityEngine.Events;
 
 public class DimensionButton : MonoBehaviour
 {
+    public bool isSwitch;
+
     [SerializeField] private UnityEvent trigger;
     [SerializeField] private UnityEvent Animation;
 
-
     private void OnTriggerEnter(Collider other)
     {
-        Animation.Invoke();
-        StartCoroutine(WaitForButton());
+        if(!isSwitch)
+        {
+            Animation.Invoke();
+            StartCoroutine(WaitForButton());
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (isSwitch)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                Animation.Invoke();
+                trigger.Invoke();
+            }
+        }
     }
 
     public IEnumerator WaitForButton()
