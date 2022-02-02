@@ -1615,6 +1615,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4762762417117597587, guid: 549119093da66b34bbddf92adead1606,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4762762417265910692, guid: 549119093da66b34bbddf92adead1606,
         type: 3}
       propertyPath: trigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1624,6 +1629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Switch
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762762417265910693, guid: 549119093da66b34bbddf92adead1606,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4762762417265910694, guid: 549119093da66b34bbddf92adead1606,
         type: 3}
@@ -1679,6 +1689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762762418323633620, guid: 549119093da66b34bbddf92adead1606,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 549119093da66b34bbddf92adead1606, type: 3}
@@ -1921,10 +1936,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2640320702792255445, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640320702805071628, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640320703134280139, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640320703138183442, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640320703433568083, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640320703437537162, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9099583399855352486, guid: 2579521fa745c77418bf8b35ca3ff03a,
         type: 3}
       propertyPath: m_Name
       value: Dual Buttons
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099583399855352486, guid: 2579521fa745c77418bf8b35ca3ff03a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9099583399855352487, guid: 2579521fa745c77418bf8b35ca3ff03a,
         type: 3}
