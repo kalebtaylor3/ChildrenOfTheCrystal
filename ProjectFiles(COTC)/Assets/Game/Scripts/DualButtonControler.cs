@@ -29,6 +29,9 @@ public class DualButtonControler : MonoBehaviour
         if (buttonsPressed == 2)
             trigger.Invoke();
 
+        if (buttonsPressed < 0)
+            buttonsPressed = 0;
+
     }
 
     void Increase()
