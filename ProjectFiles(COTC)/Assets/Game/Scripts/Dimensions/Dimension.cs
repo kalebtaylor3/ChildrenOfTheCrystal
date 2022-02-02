@@ -10,7 +10,7 @@ public class Dimension : MonoBehaviour
         Red,
         Blue,
         Green,
-        Purple,
+        Yellow,
         Main,
     };
     
@@ -41,11 +41,11 @@ public class Dimension : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
                 Strength();
             if (Input.GetKeyDown(KeyCode.X))
-                SuperJump();
-            if (Input.GetKeyDown(KeyCode.N))
                 Green();
+            if (Input.GetKeyDown(KeyCode.N))
+                SuperJump();
             if (Input.GetKeyDown(KeyCode.M))
-                Purple();
+                Yellow();
         }
         else
         {
@@ -82,16 +82,16 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         hints[(int)Dimensions.Blue].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Blue);
-        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
     }
 
-    public void Purple()
+    public void Yellow()
     {
         DisableAll();
-        dimensionList[(int)Dimensions.Purple].SetActive(true);
+        dimensionList[(int)Dimensions.Yellow].SetActive(true);
         inDimension = true;
-        hints[(int)Dimensions.Purple].SetActive(false);
-        postEffects.ChangeDimension(Dimensions.Purple);
+        hints[(int)Dimensions.Yellow].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Yellow);
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
     }
 
@@ -100,7 +100,7 @@ public class Dimension : MonoBehaviour
         DisableAll();
         inDimension = true;
         postEffects.ChangeDimension(Dimensions.Green);
-        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
     }
 
     public void DisableAll()

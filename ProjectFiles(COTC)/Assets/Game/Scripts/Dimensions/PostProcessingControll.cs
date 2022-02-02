@@ -32,7 +32,7 @@ public class PostProcessingControll : MonoBehaviour
             case Dimension.Dimensions.Blue:
                 _colorgraiding.colorFilter.value = colorFilter[3];
                 break;
-            case Dimension.Dimensions.Purple:
+            case Dimension.Dimensions.Yellow:
                 _colorgraiding.colorFilter.value = colorFilter[4];
                 break;
         }
