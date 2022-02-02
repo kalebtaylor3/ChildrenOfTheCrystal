@@ -61,8 +61,8 @@ public class PlayerMove : MonoBehaviour
 
 	public LayerMask ingoreMe;
 
-    //setup
-    void Awake()
+	//setup
+	void Awake()
 	{
 		//create single floorcheck in centre of object, if none are assigned
 		if(!floorChecks)

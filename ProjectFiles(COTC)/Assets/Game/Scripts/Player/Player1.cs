@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player1 : PlayerMove
 {
     //public GameObject[] Dimensions;
     private bool direction = true;
     [SerializeField]
+
+    bool happenOnce = false;
 
     private void Update()
     {

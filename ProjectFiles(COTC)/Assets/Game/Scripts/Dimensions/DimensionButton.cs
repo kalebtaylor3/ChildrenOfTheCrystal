@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class DimensionButton : MonoBehaviour
 {
     public bool isSwitch;
+    public bool multiButton;
+
+    public static event Action OnPress;
+    public static event Action OnLeave;
+    bool happenOnce = false;
 
     [SerializeField] private UnityEvent trigger;
     [SerializeField] private UnityEvent Animation;
+
+    [SerializeField] private UnityEvent idle;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +24,16 @@ public class DimensionButton : MonoBehaviour
         {
             Animation.Invoke();
             StartCoroutine(WaitForButton());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(multiButton)
+        {
+            OnLeave?.Invoke();
+            happenOnce = false;
+            idle.Invoke();
         }
     }
 
@@ -28,6 +46,12 @@ public class DimensionButton : MonoBehaviour
                 Animation.Invoke();
                 trigger.Invoke();
             }
+        }
+
+        if (multiButton && !happenOnce)
+        {
+            OnPress?.Invoke();
+            happenOnce = true;
         }
     }
 
