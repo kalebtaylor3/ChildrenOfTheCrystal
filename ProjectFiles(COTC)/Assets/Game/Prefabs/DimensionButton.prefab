@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcaae0d3dd5e354796b4dfb4877d53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSwitch: 0
+  multiButton: 0
+  pressed: 0
   trigger:
     m_PersistentCalls:
       m_Calls:
@@ -157,6 +160,13 @@ MonoBehaviour:
           m_StringArgument: ButtonPress
           m_BoolArgument: 0
         m_CallState: 2
+  _: Only set these triggers if the button will be used as one of the 2 multi buttons
+  idle:
+    m_PersistentCalls:
+      m_Calls: []
+  idlePress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &6551747155631147424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -284,6 +294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcaae0d3dd5e354796b4dfb4877d53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSwitch: 0
+  multiButton: 0
+  pressed: 0
   trigger:
     m_PersistentCalls:
       m_Calls:
@@ -300,5 +313,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Animation:
+    m_PersistentCalls:
+      m_Calls: []
+  _: Only Set t
+  idle:
+    m_PersistentCalls:
+      m_Calls: []
+  idlePress:
     m_PersistentCalls:
       m_Calls: []
