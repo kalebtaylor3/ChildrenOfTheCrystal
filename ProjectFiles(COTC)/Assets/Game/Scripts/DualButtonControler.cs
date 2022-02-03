@@ -10,24 +10,63 @@ public class DualButtonControler : MonoBehaviour
     int buttonsPressed = 0;
     [SerializeField] private UnityEvent trigger;
 
-    private void OnEnable()
-    {
-        DimensionButton.OnPress += Increase;
-        DimensionButton.OnLeave += Decrease;
-    }
+    public DimensionButton[] buttons;
 
-    private void OnDisable()
-    {
-        DimensionButton.OnPress -= Increase;
-        DimensionButton.OnLeave -= Decrease;
-    }
+    #region PressdBools
+    bool pressOnce1 = false;
+    bool leaveOnce1 = false;
+    bool pressOnce2 = false;
+    bool leaveOnce2 = false;
+    #endregion
 
     private void Update()
     {
+
         Debug.Log(buttonsPressed);
 
         if (buttonsPressed == 2)
+        {
             trigger.Invoke();
+            buttonsPressed = 0;
+        }
+
+        if(buttons[0].pressed)
+        {
+            if(!pressOnce1)
+            {
+                pressOnce1 = true;
+                leaveOnce1 = false;
+                Increase();
+            }
+        }
+        else if(!buttons[0].pressed)
+        {
+            if(!leaveOnce1)
+            {
+                leaveOnce1 = true;
+                pressOnce1 = false;
+                Decrease();
+            }
+        }
+
+        if(buttons[1].pressed)
+        {
+            if (!pressOnce2)
+            {
+                pressOnce2 = true;
+                leaveOnce2 = false;
+                Increase();
+            }
+        }
+        else if (!buttons[1].pressed)
+        {
+            if (!leaveOnce2)
+            {
+                leaveOnce2 = true;
+                pressOnce2 = false;
+                Decrease();
+            }
+        }
 
         if (buttonsPressed < 0)
             buttonsPressed = 0;
