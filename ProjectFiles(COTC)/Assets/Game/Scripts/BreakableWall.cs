@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BreakableWall : MonoBehaviour
 {
+    bool hasHappened = false;
+    private AudioSource breakNoise;
+
     [SerializeField]
     private GameObject stableWall;
     [SerializeField]
@@ -11,6 +14,8 @@ public class BreakableWall : MonoBehaviour
 
     private void Start()
     {
+        breakNoise = GetComponent<AudioSource>();
+
         stableWall.SetActive(true);
         brokenWall.SetActive(false);
     }
@@ -19,5 +24,13 @@ public class BreakableWall : MonoBehaviour
     {
         stableWall.SetActive(false);
         brokenWall.SetActive(true);
+
+
+        if (brokenWall == true&&!hasHappened)
+        {
+            breakNoise.Play();
+            hasHappened = true;
+        }
+
     }
 }
