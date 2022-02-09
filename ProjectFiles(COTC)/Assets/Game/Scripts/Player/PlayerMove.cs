@@ -41,8 +41,10 @@ public class PlayerMove : MonoBehaviour
 	private Transform[] floorCheckers;
 	private Quaternion screenMovementSpace;
 	private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope;
-	private Vector3 direction, moveDirection, screenMovementForward, screenMovementRight, movingObjSpeed;
-	
+	private Vector3 direction, screenMovementForward, screenMovementRight, movingObjSpeed;
+
+	public Vector3 moveDirection;
+
 	private CharacterMotor characterMotor;
 	private EnemyAI enemyAI;
 	private DealDamage dealDamage;
@@ -63,7 +65,8 @@ public class PlayerMove : MonoBehaviour
 
 	public LayerMask ingoreMe;
 
-	public static event Action OnBreak;
+	[HideInInspector]
+	public bool climbing = false;
 
 	//setup
 	void Awake()
@@ -124,6 +127,7 @@ public class PlayerMove : MonoBehaviour
 			player.direction = (player.screenMovementForward * v) + (player.screenMovementRight * h);
 		else
 			player.direction = Vector3.right * h;
+
 		player.moveDirection = player.transform.position + player.direction;
 	}
 
@@ -218,6 +222,9 @@ public class PlayerMove : MonoBehaviour
 		//get distance to ground, from centre of collider (where floorcheckers should be)
 		float dist = GetComponent<Collider>().bounds.extents.y;
 		//check whats at players feet, at each floorcheckers position
+
+		if (climbing)
+			return true;
 
 		//if check for camera cutscene
 		foreach (Transform check in floorCheckers)

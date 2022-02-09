@@ -15,6 +15,7 @@ TagManager:
   - Red
   - Button
   - Breakable
+  - StickWall
   layers:
   - Default
   - TransparentFX
