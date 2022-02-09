@@ -29,7 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Game/Scenes/Roy Test.unity
     guid: c9f22f106b257174fb8724e0da873676
+  - enabled: 1
+    path: Assets/Game/Scenes/Nick Test.unity
+    guid: bce099ac40ae50942a5a7c64434dd0a8
   m_configObjects: {}

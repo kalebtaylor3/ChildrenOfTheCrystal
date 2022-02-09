@@ -61,6 +61,8 @@ public class PlayerMove : MonoBehaviour
 
 	public LayerMask ingoreMe;
 
+	public static event Action OnBreak;
+
 	//setup
 	void Awake()
 	{
@@ -123,7 +125,25 @@ public class PlayerMove : MonoBehaviour
 		player.moveDirection = player.transform.position + player.direction;
 	}
 
-	public void SetLayerRecursively(GameObject obj, int newLayer)
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Breakable")
+        {
+			BreakableWall wall = other.GetComponent<BreakableWall>();
+
+			if (wall != null)
+			{
+				//if in the red dimension
+				Debug.Log("Thats a wall");
+				if (Input.GetKey(KeyCode.LeftControl))
+				{
+					wall.BreakWall();
+                }
+			}
+		}
+    }
+
+    public void SetLayerRecursively(GameObject obj, int newLayer)
 	{
 		if (null == obj)
 		{

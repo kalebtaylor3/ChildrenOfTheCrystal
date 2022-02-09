@@ -14,6 +14,7 @@ TagManager:
   - Waypoint
   - Red
   - Button
+  - Breakable
   layers:
   - Default
   - TransparentFX
