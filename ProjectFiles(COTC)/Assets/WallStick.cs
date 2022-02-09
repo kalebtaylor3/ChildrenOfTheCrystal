@@ -25,21 +25,25 @@ public class WallStick : MonoBehaviour
             climbing = false;
         }
 
+        Debug.Log("Climbing is: " + climbing);
+
         if(climbing)
         {
             rb.useGravity = false;
             if (!horizontal)
             {
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                rb.velocity = new Vector3(0, 0, 0);
                 float speedMod = y > 0 ? 0.35f : 1;
                 if (Input.GetKey(KeyCode.UpArrow))
                     player.transform.position += new Vector3(0, 3 * Time.deltaTime, 0);
                 if (Input.GetKey(KeyCode.DownArrow))
                     player.transform.position += new Vector3(0, -3 * Time.deltaTime, 0);
+
             }
-            else
+            
+            if(horizontal)
             {
-                rb.velocity = new Vector3(0, 0, rb.velocity.z);
+                rb.velocity = new Vector3(0, 0, 0);
                 float speedMod = x > 0 ? 0.35f : 1;
                 if (Input.GetKey(KeyCode.RightArrow))
                     player.transform.position += new Vector3(3 * Time.deltaTime, 0, 0);
@@ -50,27 +54,6 @@ public class WallStick : MonoBehaviour
         else
         {
             rb.useGravity = true;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-
-            player = collision.gameObject.GetComponent<Player2>();
-            rb = collision.gameObject.GetComponent<Rigidbody>();
-
-            if (player != null)
-            {
-                if (player.dimensionalController.currentDimension == Dimension.Dimensions.Yellow)
-                {
-                    //if (horizontal)
-                        
-                    //else
-                        
-                }
-            }
         }
     }
 
