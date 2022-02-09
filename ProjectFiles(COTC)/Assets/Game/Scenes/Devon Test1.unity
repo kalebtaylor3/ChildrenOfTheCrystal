@@ -25528,6 +25528,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 201105789409608672, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: dimensionalController
+      value: 
+      objectReference: {fileID: 2074284475}
     - target: {fileID: 5486652339025352344, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
       propertyPath: mainCam
@@ -25667,6 +25672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Kira
       objectReference: {fileID: 0}
+    - target: {fileID: 5241223276907454438, guid: 98f20db713aad1d47bfbbca2290cc153,
+        type: 3}
+      propertyPath: dimensionalController
+      value: 
+      objectReference: {fileID: 2074284475}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f20db713aad1d47bfbbca2290cc153, type: 3}
 --- !u!1 &1493360039
@@ -30622,18 +30632,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74235ad227057734aa6b1feff0287322, type: 3}
---- !u!114 &1532029202 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1289721161817272333, guid: 74235ad227057734aa6b1feff0287322,
-    type: 3}
-  m_PrefabInstance: {fileID: 1532029201}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365bf38727018ab448a20d529a7a9c8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1539644127
 GameObject:
   m_ObjectHideFlags: 0
@@ -36043,38 +36041,18 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2367213976055261625, guid: b44c37c586597094ab69c5b9e306cee8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b44c37c586597094ab69c5b9e306cee8, type: 3}
---- !u!1 &2074284475 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2367213976055261630, guid: b44c37c586597094ab69c5b9e306cee8,
+--- !u!114 &2074284475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4692327578871477179, guid: b44c37c586597094ab69c5b9e306cee8,
     type: 3}
   m_PrefabInstance: {fileID: 2074284474}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2074284476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074284475}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f6004d2dedd4bc46863fe47b1e3273d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hints:
-  - {fileID: 1717187085}
-  - {fileID: 1140832155}
-  dimensionList:
-  - {fileID: 1539644127}
-  - {fileID: 809644519}
-  - {fileID: 371775431}
-  - {fileID: 2056422010}
-  - {fileID: 1397542176}
-  inDimension: 0
-  postEffects: {fileID: 1532029202}
-  playersForLayers:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &2104302916
 PrefabInstance:
   m_ObjectHideFlags: 0

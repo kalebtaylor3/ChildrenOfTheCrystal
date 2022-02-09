@@ -17,6 +17,8 @@ public class Dimension : MonoBehaviour
     [SerializeField]
     GameObject[] hints;
 
+    public Dimensions currentDimension = Dimensions.Main;
+
     [SerializeField]
     GameObject[] dimensionList;
 
@@ -73,6 +75,7 @@ public class Dimension : MonoBehaviour
         hints[(int)Dimensions.Red].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Red);
         playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+        currentDimension = Dimensions.Red;
     }
 
     public void SuperJump()
@@ -83,6 +86,7 @@ public class Dimension : MonoBehaviour
         hints[(int)Dimensions.Blue].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Blue);
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+        currentDimension = Dimensions.Blue;
     }
 
     public void Yellow()
@@ -93,6 +97,7 @@ public class Dimension : MonoBehaviour
         hints[(int)Dimensions.Yellow].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Yellow);
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+        currentDimension = Dimensions.Yellow;
     }
 
     public void Green()
@@ -101,6 +106,7 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         postEffects.ChangeDimension(Dimensions.Green);
         playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+        currentDimension = Dimensions.Green;
     }
 
     public void DisableAll()
@@ -119,6 +125,7 @@ public class Dimension : MonoBehaviour
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 13);
         playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 13);
         inDimension = false;
+        currentDimension = Dimensions.Main;
     }
 
 }

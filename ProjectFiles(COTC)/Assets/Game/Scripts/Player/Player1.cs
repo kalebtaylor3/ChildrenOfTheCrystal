@@ -9,8 +9,6 @@ public class Player1 : PlayerMove
     private bool direction = true;
     [SerializeField]
 
-    bool happenOnce = false;
-
     private void Update()
     {
 

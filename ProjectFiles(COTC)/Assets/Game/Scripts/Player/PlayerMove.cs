@@ -54,6 +54,8 @@ public class PlayerMove : MonoBehaviour
 	private float originOffset = 0.4f;
 	private bool facingRight = true;
 
+	public Dimension dimensionalController;
+
 	[HideInInspector]
 	public bool lifting = false;
 	[HideInInspector]
@@ -133,12 +135,14 @@ public class PlayerMove : MonoBehaviour
 
 			if (wall != null)
 			{
-				//if in the red dimension
-				Debug.Log("Thats a wall");
-				if (Input.GetKey(KeyCode.LeftControl))
-				{
-					wall.BreakWall();
-                }
+				if(dimensionalController.currentDimension == Dimension.Dimensions.Red)
+                {
+					Debug.Log("Thats a wall");
+					if (Input.GetKey(KeyCode.LeftControl))
+					{
+						wall.BreakWall();
+					}
+				}
 			}
 		}
     }
