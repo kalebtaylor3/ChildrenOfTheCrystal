@@ -7,7 +7,14 @@ public class Player1 : PlayerMove
 {
     //public GameObject[] Dimensions;
     private bool direction = true;
-    [SerializeField]
+
+    private DoubleJumpEnabler doubleJump;
+
+
+    private void Start()
+    {
+        doubleJump = GetComponent<DoubleJumpEnabler>();
+    }
 
     private void Update()
     {
@@ -17,13 +24,22 @@ public class Player1 : PlayerMove
 
         this.CalculateMovement(this, h, v, "Jump");
         direction = checkDirection();
+
+        if(this.dimensionalController.currentDimension == Dimension.Dimensions.Green)
+        {
+            EnableJump();
+        }
+        else
+        {
+            DisableJump();
+        }
     }
 
     private void FixedUpdate()
     {
         this.Move(this);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             if (direction)
                 this.pickup(Vector3.right);
@@ -35,6 +51,16 @@ public class Player1 : PlayerMove
         {
             this.ThrowPlayer(Vector3.up);
         }
+    }
+
+    void EnableJump()
+    {
+        doubleJump.enabled = true;
+    }
+
+    void DisableJump()
+    {
+        doubleJump.enabled = false;
     }
 
 }

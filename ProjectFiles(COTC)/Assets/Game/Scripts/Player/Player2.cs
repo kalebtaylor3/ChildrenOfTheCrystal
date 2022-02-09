@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player2 : PlayerMove
 {
     private bool direction;
+    public GameObject speedTrail;
 
     private void Update()
     {
@@ -14,13 +15,23 @@ public class Player2 : PlayerMove
 
         this.CalculateMovement(this, h, v, "ArrowJump");
         direction = this.checkDirection();
+
+        if(this.dimensionalController.currentDimension == Dimension.Dimensions.Blue)
+        {
+            SprintPower();
+        }
+        else
+        {
+            NormalSpeed();
+        }
+
     }
 
     private void FixedUpdate()
     {
         this.Move(this);
 
-        if (Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.RightControl))
         {
             if (direction)
                 this.pickup(Vector3.right);
@@ -32,5 +43,16 @@ public class Player2 : PlayerMove
         {
             this.ThrowPlayer(Vector3.up);
         }
+    }
+
+    void SprintPower()
+    {
+        this.accel = 250;
+        speedTrail.SetActive(true);
+    }
+    void NormalSpeed()
+    {
+        this.accel = 50;
+        speedTrail.SetActive(false);
     }
 }
