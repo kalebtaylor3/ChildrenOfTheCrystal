@@ -29,11 +29,25 @@ public class Dimension : MonoBehaviour
 
     public PlayerMove[] playersForLayers;
 
+
+    [SerializeField]
+    public GameObject redRune;
+    public GameObject greenRune;
+    public GameObject blueRune;
+    public GameObject yellowRune;
+
+
     // Start is called before the first frame update
     void Start()
     {
         postEffects.ChangeDimension(Dimensions.Main);
         dimensionList[(int)Dimensions.Main].SetActive(true);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(false);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(false); // yes I know this is bad code
+
     }
 
     private void Update()
@@ -75,6 +89,12 @@ public class Dimension : MonoBehaviour
         hints[(int)Dimensions.Red].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Red);
         playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+
+        redRune.SetActive(true);
+        greenRune.SetActive(false);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(false);
+
         currentDimension = Dimensions.Red;
     }
 
@@ -86,6 +106,12 @@ public class Dimension : MonoBehaviour
         hints[(int)Dimensions.Blue].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Blue);
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(false);
+        blueRune.SetActive(true);
+        yellowRune.SetActive(false);
+
         currentDimension = Dimensions.Blue;
     }
 
@@ -97,6 +123,12 @@ public class Dimension : MonoBehaviour
         hints[(int)Dimensions.Yellow].SetActive(false);
         postEffects.ChangeDimension(Dimensions.Yellow);
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(false);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(true);
+
         currentDimension = Dimensions.Yellow;
     }
 
@@ -106,6 +138,12 @@ public class Dimension : MonoBehaviour
         inDimension = true;
         postEffects.ChangeDimension(Dimensions.Green);
         playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(true);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(false);
+
         currentDimension = Dimensions.Green;
     }
 
@@ -125,7 +163,12 @@ public class Dimension : MonoBehaviour
         playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 13);
         playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 13);
         inDimension = false;
+
+        redRune.SetActive(false);
+        greenRune.SetActive(false);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(false);
+
         currentDimension = Dimensions.Main;
     }
-
 }
