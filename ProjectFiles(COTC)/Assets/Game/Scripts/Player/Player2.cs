@@ -8,14 +8,10 @@ public class Player2 : PlayerMove
     private bool direction;
     public GameObject speedTrail;
 
-    //public static event Action OnLeave;
     private Rigidbody rb;
 
     float y;
     float x;
-
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,8 +46,7 @@ public class Player2 : PlayerMove
 
         if(this.dimensionalController.currentDimension != Dimension.Dimensions.Yellow)
         {
-            //OnLeave?.Invoke();
-            rb.useGravity = true;
+            OffWall();
         }
 
     }
