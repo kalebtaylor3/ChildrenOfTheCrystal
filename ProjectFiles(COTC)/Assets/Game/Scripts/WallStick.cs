@@ -16,6 +16,7 @@ public class WallStick : MonoBehaviour
 
     private void Update()
     {
+
         y = Input.GetAxisRaw("VerticalArrow");
         x = Input.GetAxisRaw("HorizontalArrow");
 
@@ -23,6 +24,7 @@ public class WallStick : MonoBehaviour
         {
             player.climbing = false;
             climbing = false;
+            rb.useGravity = true;
         }
 
         Debug.Log("Climbing is: " + climbing);
@@ -79,5 +81,6 @@ public class WallStick : MonoBehaviour
     {
         player.climbing = false;
         climbing = false;
+        rb.useGravity = true;
     }
 }
