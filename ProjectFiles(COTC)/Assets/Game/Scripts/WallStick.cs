@@ -14,18 +14,16 @@ public class WallStick : MonoBehaviour
 
     bool climbing = false;
 
+    private void OnEnable()
+    {
+        Player2.OnLeave += NotClimbing;
+    }
+
     private void Update()
     {
 
         y = Input.GetAxisRaw("VerticalArrow");
         x = Input.GetAxisRaw("HorizontalArrow");
-
-        if (player.dimensionalController.currentDimension != Dimension.Dimensions.Yellow)
-        {
-            player.climbing = false;
-            climbing = false;
-            rb.useGravity = true;
-        }
 
         Debug.Log("Climbing is: " + climbing);
 
@@ -53,10 +51,13 @@ public class WallStick : MonoBehaviour
                     player.transform.position += new Vector3(-3 * Time.deltaTime, 0, 0);
             }
         }
-        else
-        {
-            rb.useGravity = true;
-        }
+    }
+
+    void NotClimbing()
+    {
+        player.climbing = false;
+        climbing = false;
+        rb.useGravity = true;
     }
 
     private void OnCollisionStay(Collision collision)
@@ -79,8 +80,6 @@ public class WallStick : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        player.climbing = false;
-        climbing = false;
-        rb.useGravity = true;
+        NotClimbing();
     }
 }

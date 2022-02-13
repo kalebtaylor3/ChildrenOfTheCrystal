@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player2 : PlayerMove
 {
     private bool direction;
     public GameObject speedTrail;
+
+    public static event Action OnLeave;
 
     private void Update()
     {
@@ -23,6 +26,11 @@ public class Player2 : PlayerMove
         else
         {
             NormalSpeed();
+        }
+
+        if(this.dimensionalController.currentDimension != Dimension.Dimensions.Yellow)
+        {
+            OnLeave?.Invoke();
         }
 
     }
