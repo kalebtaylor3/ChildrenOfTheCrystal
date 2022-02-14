@@ -28160,6 +28160,16 @@ PrefabInstance:
       objectReference: {fileID: 768956474}
     - target: {fileID: 6937932955102042001, guid: ac79453cdfd497e4fb70bd15a2766204,
         type: 3}
+      propertyPath: maxZoom
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937932955102042001, guid: ac79453cdfd497e4fb70bd15a2766204,
+        type: 3}
+      propertyPath: zoomLimiter
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937932955102042001, guid: ac79453cdfd497e4fb70bd15a2766204,
+        type: 3}
       propertyPath: targets.Array.data[0]
       value: 
       objectReference: {fileID: 813615499}
@@ -45780,7 +45790,7 @@ PrefabInstance:
     - target: {fileID: 5198358135290659035, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5198358135384380269, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
@@ -45795,7 +45805,7 @@ PrefabInstance:
     - target: {fileID: 5198358136976103022, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b9127d6cc758e94faefe919c82ff322, type: 3}
