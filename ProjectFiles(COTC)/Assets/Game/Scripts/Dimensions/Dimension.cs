@@ -36,6 +36,21 @@ public class Dimension : MonoBehaviour
     public GameObject blueRune;
     public GameObject yellowRune;
 
+    [SerializeField]
+    public GameObject redRuneGrey;
+    public GameObject greenRuneGrey;
+    public GameObject blueRuneGrey;
+    public GameObject yellowRuneGrey;
+
+    [SerializeField]
+    private bool hasRed = false;
+    [SerializeField]
+    private bool hasBlue = false;
+    [SerializeField]
+    private bool hasGreen = false;
+    [SerializeField]
+    private bool hasYellow = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +62,10 @@ public class Dimension : MonoBehaviour
         greenRune.SetActive(false);
         blueRune.SetActive(false);
         yellowRune.SetActive(false); // yes I know this is bad code
+        redRuneGrey.SetActive(false);
+        greenRuneGrey.SetActive(false);
+        blueRuneGrey.SetActive(false);
+        yellowRuneGrey.SetActive(false); // yes I know this is bad code
 
     }
 
@@ -59,7 +78,7 @@ public class Dimension : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
                 Green();
             if (Input.GetKeyDown(KeyCode.N))
-                SuperJump();
+                SuperSpeed();
             if (Input.GetKeyDown(KeyCode.M))
                 Yellow();
         }
@@ -83,69 +102,81 @@ public class Dimension : MonoBehaviour
 
     public void Strength()
     {
-        DisableAll();
-        dimensionList[(int)Dimensions.Red].SetActive(true);
-        inDimension = true;
-        hints[(int)Dimensions.Red].SetActive(false);
-        postEffects.ChangeDimension(Dimensions.Red);
-        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+        if(hasRed)
+        {
+            DisableAll();
+            dimensionList[(int)Dimensions.Red].SetActive(true);
+            inDimension = true;
+            hints[(int)Dimensions.Red].SetActive(false);
+            postEffects.ChangeDimension(Dimensions.Red);
+            playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
 
-        redRune.SetActive(true);
-        greenRune.SetActive(false);
-        blueRune.SetActive(false);
-        yellowRune.SetActive(false);
+            redRune.SetActive(true);
+            greenRune.SetActive(false);
+            blueRune.SetActive(false);
+            yellowRune.SetActive(false);
 
-        currentDimension = Dimensions.Red;
+            currentDimension = Dimensions.Red;
+        }
     }
 
-    public void SuperJump()
+    public void SuperSpeed()
     {
-        DisableAll();
-        dimensionList[(int)Dimensions.Blue].SetActive(true);
-        inDimension = true;
-        hints[(int)Dimensions.Blue].SetActive(false);
-        postEffects.ChangeDimension(Dimensions.Blue);
-        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+        if (hasBlue)
+        {
+            DisableAll();
+            dimensionList[(int)Dimensions.Blue].SetActive(true);
+            inDimension = true;
+            hints[(int)Dimensions.Blue].SetActive(false);
+            postEffects.ChangeDimension(Dimensions.Blue);
+            playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
 
-        redRune.SetActive(false);
-        greenRune.SetActive(false);
-        blueRune.SetActive(true);
-        yellowRune.SetActive(false);
+            redRune.SetActive(false);
+            greenRune.SetActive(false);
+            blueRune.SetActive(true);
+            yellowRune.SetActive(false);
 
-        currentDimension = Dimensions.Blue;
+            currentDimension = Dimensions.Blue;
+        }
     }
 
     public void Yellow()
     {
-        DisableAll();
-        dimensionList[(int)Dimensions.Yellow].SetActive(true);
-        inDimension = true;
-        hints[(int)Dimensions.Yellow].SetActive(false);
-        postEffects.ChangeDimension(Dimensions.Yellow);
-        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+        if (hasYellow)
+        {
+            DisableAll();
+            dimensionList[(int)Dimensions.Yellow].SetActive(true);
+            inDimension = true;
+            hints[(int)Dimensions.Yellow].SetActive(false);
+            postEffects.ChangeDimension(Dimensions.Yellow);
+            playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
 
-        redRune.SetActive(false);
-        greenRune.SetActive(false);
-        blueRune.SetActive(false);
-        yellowRune.SetActive(true);
+            redRune.SetActive(false);
+            greenRune.SetActive(false);
+            blueRune.SetActive(false);
+            yellowRune.SetActive(true);
 
-        currentDimension = Dimensions.Yellow;
+            currentDimension = Dimensions.Yellow;
+        }
     }
 
     public void Green()
     {
-        dimensionList[(int)Dimensions.Green].SetActive(true);
-        inDimension = true;
-        hints[(int)Dimensions.Green].SetActive(false);
-        postEffects.ChangeDimension(Dimensions.Green);
-        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+        if (hasGreen)
+        {
+            dimensionList[(int)Dimensions.Green].SetActive(true);
+            inDimension = true;
+            hints[(int)Dimensions.Green].SetActive(false);
+            postEffects.ChangeDimension(Dimensions.Green);
+            playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
 
-        redRune.SetActive(false);
-        greenRune.SetActive(true);
-        blueRune.SetActive(false);
-        yellowRune.SetActive(false);
+            redRune.SetActive(false);
+            greenRune.SetActive(true);
+            blueRune.SetActive(false);
+            yellowRune.SetActive(false);
 
-        currentDimension = Dimensions.Green;
+            currentDimension = Dimensions.Green;
+        }
     }
 
     public void DisableAll()
@@ -171,5 +202,27 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(false);
 
         currentDimension = Dimensions.Main;
+    }
+
+    public void HasRed()
+    {
+        hasRed = true;
+        redRuneGrey.SetActive(true);
+    }
+
+    public void HasGreen()
+    {
+        hasGreen = true;
+        greenRuneGrey.SetActive(true);
+    }
+    public void HasBlue()
+    {
+        hasBlue = true;
+        blueRuneGrey.SetActive(true);
+    }
+    public void HasYellow()
+    {
+        hasYellow = true;
+        yellowRuneGrey.SetActive(true);
     }
 }
