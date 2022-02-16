@@ -14,7 +14,12 @@ public class WallStick : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
-            OnWall?.Invoke(horizontal);
+        {
+            if(collision.gameObject.GetComponent<Player2>() != null)
+            {
+                OnWall?.Invoke(horizontal);
+            }
+        }
     }
 
     private void OnCollisionExit(Collision collision)
