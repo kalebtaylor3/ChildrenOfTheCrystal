@@ -162,13 +162,11 @@ public class PlayerMove : MonoBehaviour
 
 		foreach (Transform child in obj.transform)
 		{
-			Transform checker = transform.FindChild("PlayerChecker");
 			if (null == child)
 			{
 				continue;
 			}
 			SetLayerRecursively(child.gameObject, newLayer);
-			SetLayerRecursively(checker.gameObject, 0);
 		}
 	}
 
