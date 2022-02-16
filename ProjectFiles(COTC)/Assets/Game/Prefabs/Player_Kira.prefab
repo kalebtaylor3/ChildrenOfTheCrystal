@@ -2322,7 +2322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5910851027947293743}
   - component: {fileID: 336073452644894309}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: PlayerChecker
   m_TagString: Player2
   m_Icon: {fileID: 0}
