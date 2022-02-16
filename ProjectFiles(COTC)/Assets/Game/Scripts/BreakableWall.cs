@@ -25,6 +25,11 @@ public class BreakableWall : MonoBehaviour
         stableWall.SetActive(false);
         brokenWall.SetActive(true);
 
+        foreach (Transform child in brokenWall.transform)
+        {
+            StartCoroutine(DestroyChildren(child.gameObject));
+
+        }
 
         if (brokenWall == true&&!hasHappened)
         {
@@ -32,5 +37,11 @@ public class BreakableWall : MonoBehaviour
             hasHappened = true;
         }
 
+    }
+
+    IEnumerator DestroyChildren(GameObject child)
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(child);
     }
 }
