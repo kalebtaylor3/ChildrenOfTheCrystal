@@ -2038,6 +2038,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1563842294569318440, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563842295096454936, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1563842295407590168, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
         type: 3}
       propertyPath: m_Name
@@ -2096,6 +2106,16 @@ PrefabInstance:
     - target: {fileID: 1563842295407590169, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563842295946939316, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563842296166738186, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2237,6 +2257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c069174febd0534ba33f950ca5437f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1334597297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1563842295241062958, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1232384935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369195498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,6 +2605,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb1199b4ce878624c9d82b60c2c22a6d, type: 3}
+--- !u!1 &1443835661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1563842295141374602, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1232384935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1496838160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,6 +3018,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1797127109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1563842296379791809, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1232384935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1915801901 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9112778951213220074, guid: 93ed658833bdbd546bfdf632cdb53b18,
@@ -3189,6 +3227,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfdd8101948b43548b4bfe7006c70c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2096839847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1563842294581753719, guid: 7e42ea30bda9e684f9a3661ff7d8506c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1232384935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1289721160987949281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3594,6 +3638,26 @@ PrefabInstance:
       propertyPath: postEffects
       value: 
       objectReference: {fileID: 915507436}
+    - target: {fileID: 4692327578871477179, guid: b44c37c586597094ab69c5b9e306cee8,
+        type: 3}
+      propertyPath: redRuneGrey
+      value: 
+      objectReference: {fileID: 1443835661}
+    - target: {fileID: 4692327578871477179, guid: b44c37c586597094ab69c5b9e306cee8,
+        type: 3}
+      propertyPath: blueRuneGrey
+      value: 
+      objectReference: {fileID: 1334597297}
+    - target: {fileID: 4692327578871477179, guid: b44c37c586597094ab69c5b9e306cee8,
+        type: 3}
+      propertyPath: greenRuneGrey
+      value: 
+      objectReference: {fileID: 1797127109}
+    - target: {fileID: 4692327578871477179, guid: b44c37c586597094ab69c5b9e306cee8,
+        type: 3}
+      propertyPath: yellowRuneGrey
+      value: 
+      objectReference: {fileID: 2096839847}
     - target: {fileID: 4692327578871477179, guid: b44c37c586597094ab69c5b9e306cee8,
         type: 3}
       propertyPath: hints.Array.data[0]

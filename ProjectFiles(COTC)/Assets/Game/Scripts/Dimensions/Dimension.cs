@@ -37,6 +37,12 @@ public class Dimension : MonoBehaviour
     public GameObject yellowRune;
 
     [SerializeField]
+    public GameObject redRuneGrey;
+    public GameObject greenRuneGrey;
+    public GameObject blueRuneGrey;
+    public GameObject yellowRuneGrey;
+
+    [SerializeField]
     private bool hasRed = false;
     [SerializeField]
     private bool hasBlue = false;
@@ -56,6 +62,10 @@ public class Dimension : MonoBehaviour
         greenRune.SetActive(false);
         blueRune.SetActive(false);
         yellowRune.SetActive(false); // yes I know this is bad code
+        redRuneGrey.SetActive(false);
+        greenRuneGrey.SetActive(false);
+        blueRuneGrey.SetActive(false);
+        yellowRuneGrey.SetActive(false); // yes I know this is bad code
 
     }
 
@@ -197,18 +207,22 @@ public class Dimension : MonoBehaviour
     public void HasRed()
     {
         hasRed = true;
+        redRuneGrey.SetActive(true);
     }
 
     public void HasGreen()
     {
         hasGreen = true;
+        greenRuneGrey.SetActive(true);
     }
     public void HasBlue()
     {
         hasBlue = true;
+        blueRuneGrey.SetActive(true);
     }
     public void HasYellow()
     {
         hasYellow = true;
+        yellowRuneGrey.SetActive(true);
     }
 }
