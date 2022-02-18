@@ -135,16 +135,19 @@ public class PlayerMove : MonoBehaviour
     {
         if(other.tag == "Breakable")
         {
-			BreakableWall wall = other.GetComponent<BreakableWall>();
+			if(this.GetComponent<Player1>()!= null)
+            {
+				BreakableWall wall = other.GetComponent<BreakableWall>();
 
-			if (wall != null)
-			{
-				if(dimensionalController.currentDimension == Dimension.Dimensions.Red)
-                {
-					Debug.Log("Thats a wall");
-					if (Input.GetKey(KeyCode.LeftControl))
+				if (wall != null)
+				{
+					if (dimensionalController.currentDimension == Dimension.Dimensions.Red)
 					{
-						wall.BreakWall();
+						Debug.Log("Thats a wall");
+						if (Input.GetKey(KeyCode.LeftControl))
+						{
+							wall.BreakWall();
+						}
 					}
 				}
 			}
