@@ -5,6 +5,16 @@ using System;
 
 public class Dimension : MonoBehaviour
 {
+
+    private static Dimension instance;
+    public static Dimension Instance { get { return instance; } }
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public enum Dimensions
     {
         Red,

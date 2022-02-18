@@ -18,23 +18,26 @@ public class PostProcessingControll : MonoBehaviour
 
     public void ChangeDimension(Dimension.Dimensions dimension)
     {
-        switch(dimension)
+        if (_colorgraiding != null)
         {
-            case Dimension.Dimensions.Main:
-                _colorgraiding.colorFilter.value = colorFilter[0];
-                break;
-            case Dimension.Dimensions.Red :
-                _colorgraiding.colorFilter.value = colorFilter[1];
-                break;
-            case Dimension.Dimensions.Green:
-                _colorgraiding.colorFilter.value = colorFilter[2];
-                break;
-            case Dimension.Dimensions.Blue:
-                _colorgraiding.colorFilter.value = colorFilter[3];
-                break;
-            case Dimension.Dimensions.Yellow:
-                _colorgraiding.colorFilter.value = colorFilter[4];
-                break;
+            switch (dimension)
+            {
+                case Dimension.Dimensions.Main:
+                    _colorgraiding.colorFilter.value = colorFilter[0];
+                    break;
+                case Dimension.Dimensions.Red:
+                    _colorgraiding.colorFilter.value = colorFilter[1];
+                    break;
+                case Dimension.Dimensions.Green:
+                    _colorgraiding.colorFilter.value = colorFilter[2];
+                    break;
+                case Dimension.Dimensions.Blue:
+                    _colorgraiding.colorFilter.value = colorFilter[3];
+                    break;
+                case Dimension.Dimensions.Yellow:
+                    _colorgraiding.colorFilter.value = colorFilter[4];
+                    break;
+            }
         }
     }
 }

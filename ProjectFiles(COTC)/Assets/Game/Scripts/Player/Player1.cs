@@ -19,6 +19,9 @@ public class Player1 : PlayerMove
     private void Update()
     {
 
+        if(beingLifted)
+            transform.SetPositionAndRotation(transform.parent.position, Quaternion.identity);
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
