@@ -342,7 +342,7 @@ public class PlayerMove : MonoBehaviour
 		else if (hit.collider.tag == "Player")
 		{
 			lifting = true;
-			//hit.collider.GetComponent<PlayerMove>().beingLifted = true;
+			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
 			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
 			hit.collider.transform.parent = this.pickupLoc.transform;
