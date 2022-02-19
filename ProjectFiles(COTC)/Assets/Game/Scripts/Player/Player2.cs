@@ -26,6 +26,10 @@ public class Player2 : PlayerMove
     private void Update()
     {
 
+        Physics.IgnoreLayerCollision(0, 2);
+        Physics.IgnoreLayerCollision(3, 2);
+
+
         if (beingLifted)
         {
             transform.SetPositionAndRotation(transform.parent.position, Quaternion.identity);
@@ -70,7 +74,7 @@ public class Player2 : PlayerMove
 
         if (Input.GetKey(KeyCode.Space))
         {
-            this.ThrowPlayer(Vector3.up);
+            this.ThrowPlayer();
         }
     }
 

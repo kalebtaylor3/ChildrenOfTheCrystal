@@ -147,6 +147,7 @@ public class PlayerMove : MonoBehaviour
 						if (Input.GetKey(KeyCode.LeftControl))
 						{
 							wall.BreakWall();
+							wall.DestroyChildren();
 						}
 					}
 				}
@@ -388,37 +389,38 @@ public class PlayerMove : MonoBehaviour
 		liftedPlayer.collider.GetComponent<PlayerMove>().beingLifted = false;
 	}
 
-	public void ThrowPlayer(Vector3 Direction)
+	public void ThrowPlayer()
 	{
 		RaycastHit hit = ThrowCheck(Vector3.up);
-		if (hit.collider.gameObject == this.gameObject)
-		{
-			return;
-		}
-		else if (hit.collider.gameObject.tag == "Player")
-		{
-			lifting = false;
-			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
-			hit.collider.transform.parent = null;
-			hit.collider.GetComponent<BoxCollider>().isTrigger = false;
-			hit.collider.GetComponent<PlayerMove>().canMove = true;
-			hit.collider.GetComponent<PlayerMove>().beingLifted = false;
-
-			if (facingRight)
+		if (hit.collider != null)
+			if (hit.collider.gameObject == gameObject)
 			{
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+				return;
 			}
-			else
+			else if (hit.collider.gameObject.tag == "Player")
 			{
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+				lifting = false;
+				hit.collider.GetComponent<Rigidbody>().isKinematic = false;
+				hit.collider.transform.parent = null;
+				hit.collider.GetComponent<BoxCollider>().isTrigger = false;
+				hit.collider.GetComponent<PlayerMove>().canMove = true;
+				hit.collider.GetComponent<PlayerMove>().beingLifted = false;
+
+				if (facingRight)
+				{
+					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
+					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+				}
+				else
+				{
+					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
+					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+				}
+
+				Debug.Log("Threw " + hit.collider.name);
+
+				return;
 			}
-
-			Debug.Log("Threw " + hit.collider.name);
-
-			return;
-		}
 	}
 
 	public RaycastHit ThrowCheck(Vector3 directin)

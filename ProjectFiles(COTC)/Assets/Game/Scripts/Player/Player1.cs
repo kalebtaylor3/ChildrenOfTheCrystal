@@ -19,7 +19,11 @@ public class Player1 : PlayerMove
     private void Update()
     {
 
-        if(beingLifted)
+        Physics.IgnoreLayerCollision(0, 2);
+        Physics.IgnoreLayerCollision(3, 2);
+
+
+        if (beingLifted)
             transform.SetPositionAndRotation(transform.parent.position, Quaternion.identity);
 
         float h = Input.GetAxisRaw("Horizontal");
@@ -52,7 +56,7 @@ public class Player1 : PlayerMove
 
         if (Input.GetKey(KeyCode.Space))
         {
-            this.ThrowPlayer(Vector3.up);
+            this.ThrowPlayer();
         }
     }
 

@@ -25,11 +25,8 @@ public class BreakableWall : MonoBehaviour
         stableWall.SetActive(false);
         brokenWall.SetActive(true);
 
-        foreach (Transform child in brokenWall.transform)
-        {
-            StartCoroutine(DestroyChildren(child.gameObject));
-
-        }
+        StartCoroutine(DestroyChildren());
+        SetLayerRecursively(brokenWall, 2);
 
         if (brokenWall == true&&!hasHappened)
         {
@@ -39,9 +36,25 @@ public class BreakableWall : MonoBehaviour
 
     }
 
-    IEnumerator DestroyChildren(GameObject child)
+    public IEnumerator DestroyChildren()
     {
+        Debug.Log("wall called");
         yield return new WaitForSeconds(3);
-        Destroy(child);
+        brokenWall.SetActive(false);
+    }
+
+    public void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (null == obj)
+        {
+            return;
+        }
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
     }
 }
