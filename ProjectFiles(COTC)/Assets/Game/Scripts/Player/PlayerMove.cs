@@ -393,6 +393,7 @@ public class PlayerMove : MonoBehaviour
 	{
 		RaycastHit hit = ThrowCheck(Vector3.up);
 		if (hit.collider != null)
+		{
 			if (hit.collider.gameObject == gameObject)
 			{
 				return;
@@ -421,6 +422,7 @@ public class PlayerMove : MonoBehaviour
 
 				return;
 			}
+		}
 	}
 
 	public RaycastHit ThrowCheck(Vector3 directin)

@@ -33,12 +33,12 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/Roy Test.unity
     guid: c9f22f106b257174fb8724e0da873676
   - enabled: 0
-    path: Assets/Game/Scenes/Nick Test.unity
-    guid: bce099ac40ae50942a5a7c64434dd0a8
-  - enabled: 0
     path: Assets/Game/Scenes/Tyler Test Scene.unity
     guid: c2b38f7cdedee1e47909ac570a5b5172
-  - enabled: 1
+  - enabled: 0
     path: Assets/Game/Scenes/Devon Test1.unity
     guid: 4477dc98f1904434da4de6fb41bb1d7d
+  - enabled: 1
+    path: Assets/Game/Scenes/Nick Test.unity
+    guid: bce099ac40ae50942a5a7c64434dd0a8
   m_configObjects: {}
