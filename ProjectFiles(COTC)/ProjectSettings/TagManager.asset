@@ -22,7 +22,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - NoPost
+  - NoPostPlayer
   - Water
   - UI
   - 
@@ -33,7 +33,7 @@ TagManager:
   - Green
   - Yellow
   - Player
-  - 
+  - NoPostObject
   - 
   - 
   - 
