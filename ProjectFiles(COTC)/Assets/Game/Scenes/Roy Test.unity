@@ -4383,6 +4383,11 @@ PrefabInstance:
       objectReference: {fileID: 1934351366}
     - target: {fileID: 8140439672640373707, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
+      propertyPath: ingoreMe.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8140439672640373707, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
       propertyPath: dimensionalController
       value: 
       objectReference: {fileID: 472125422}
