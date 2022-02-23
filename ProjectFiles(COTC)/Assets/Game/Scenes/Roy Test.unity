@@ -4050,6 +4050,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -28.798029
       objectReference: {fileID: 0}
+    - target: {fileID: 5198358135475915967, guid: 4b9127d6cc758e94faefe919c82ff322,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 5198358135590572918, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
       propertyPath: m_IsActive
@@ -4060,6 +4065,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -28.94
       objectReference: {fileID: 0}
+    - target: {fileID: 5198358135836166152, guid: 4b9127d6cc758e94faefe919c82ff322,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 5198358136147898569, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
       propertyPath: m_IsActive
@@ -4069,6 +4079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.198029
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198358136449395410, guid: 4b9127d6cc758e94faefe919c82ff322,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5198358136599623780, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
@@ -4084,6 +4099,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198358136892034745, guid: 4b9127d6cc758e94faefe919c82ff322,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7180667040398600693, guid: 4b9127d6cc758e94faefe919c82ff322,
         type: 3}
@@ -4178,6 +4198,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6937932954875433569, guid: ac79453cdfd497e4fb70bd15a2766204,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 16392
+      objectReference: {fileID: 0}
     - target: {fileID: 6937932955102042001, guid: ac79453cdfd497e4fb70bd15a2766204,
         type: 3}
       propertyPath: tofar
@@ -4329,6 +4354,11 @@ PrefabInstance:
       objectReference: {fileID: 1934351366}
     - target: {fileID: 7599329403838102975, guid: 98f20db713aad1d47bfbbca2290cc153,
         type: 3}
+      propertyPath: ingoreMe.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599329403838102975, guid: 98f20db713aad1d47bfbbca2290cc153,
+        type: 3}
       propertyPath: dimensionalController
       value: 
       objectReference: {fileID: 472125422}
@@ -4351,6 +4381,11 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 1934351366}
+    - target: {fileID: 8140439672640373707, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: ingoreMe.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8140439672640373707, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
       propertyPath: dimensionalController
