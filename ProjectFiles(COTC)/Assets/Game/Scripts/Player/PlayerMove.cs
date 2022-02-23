@@ -166,7 +166,7 @@ public class PlayerMove : MonoBehaviour
 
 		foreach (Transform child in obj.transform)
 		{
-			Transform checker = transform.Find("PlayerChecker");
+			Transform checker = transform.FindChild("PlayerChecker");
 			if (null == child)
 			{
 				continue;
