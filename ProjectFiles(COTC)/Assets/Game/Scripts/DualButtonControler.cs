@@ -12,6 +12,9 @@ public class DualButtonControler : MonoBehaviour
 
     public DimensionButton[] buttons;
 
+    [HideInInspector]
+    public bool bothPressed = false;
+
     #region PressdBools
     bool pressOnce1 = false;
     bool leaveOnce1 = false;
@@ -28,6 +31,7 @@ public class DualButtonControler : MonoBehaviour
         {
             trigger.Invoke();
             buttonsPressed = 0;
+            bothPressed = true;
         }
 
         if(buttons[0].pressed)

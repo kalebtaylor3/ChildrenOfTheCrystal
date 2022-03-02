@@ -22,7 +22,7 @@ public class DimensionButton : MonoBehaviour
     [TextArea]
     [Tooltip("Doesn't do anything. Just comments shown in inspector")]
     public string _ = "Only set these triggers if the button will be used as one of the 2 multi buttons";
-    [SerializeField] private UnityEvent idle;
+    [SerializeField] public UnityEvent idle;
     [SerializeField] private UnityEvent idlePress;
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +32,14 @@ public class DimensionButton : MonoBehaviour
             Animation.Invoke();
             StartCoroutine(WaitForButton());
         }
+
+
+        if (multiButton && !happenOnce)
+        {
+            pressed = true;
+            happenOnce = true;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -53,12 +61,6 @@ public class DimensionButton : MonoBehaviour
                 Animation.Invoke();
                 trigger.Invoke();
             }
-        }
-
-        if (multiButton && !happenOnce)
-        {
-            pressed = true;
-            happenOnce = true;
         }
     }
 

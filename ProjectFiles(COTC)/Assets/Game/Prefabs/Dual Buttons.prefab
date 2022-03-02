@@ -757,6 +757,7 @@ MonoBehaviour:
   buttons:
   - {fileID: 3571509452631841105}
   - {fileID: 3571509453557514447}
+  bothPressed: 0
 --- !u!95 &3571509453748505689
 Animator:
   serializedVersion: 3
