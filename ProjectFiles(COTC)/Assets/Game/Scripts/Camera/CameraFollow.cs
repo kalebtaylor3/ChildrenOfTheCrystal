@@ -182,6 +182,7 @@ public class CameraFollow : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         camAm.SetTrigger("Normal");
+        camAm.ResetTrigger("Door");
         offset.x = 0;
         offset.z = -15.22f;
     }
