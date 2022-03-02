@@ -73,6 +73,21 @@ public class CameraFollow : MonoBehaviour
             //transform.LookAt(target.position);
     }
 
+    public void SetOffsetX(float x)
+    {
+        offset.x = x;
+    }
+
+    public void SetOffsetY(float y)
+    {
+        offset.y = y;
+    }
+
+    public void SetOffsetZ(float z)
+    {
+        offset.z = z;
+    }
+
     void LateUpdate()
     {
 
