@@ -34,11 +34,16 @@ public class CameraFollow : MonoBehaviour
     //private Transform followTarget;
     private bool camColliding;
 
+    private Vector3 normalRotation = new Vector3(0, 0, 0);
+    private Vector3 doorRotation = new Vector3(0, 48.555f, 0);
+
+    private Animator camAm;
 
     void Start()
     {
         cam = GetComponent<Camera>();
         tofar.SetActive(false);
+        camAm = GetComponent<Animator>();
     }
 
     void Awake()
@@ -163,6 +168,22 @@ public class CameraFollow : MonoBehaviour
     {
         if (other.tag == "Water" && waterFilter)
             waterFilter.GetComponent<Renderer>().enabled = false;
+    }
+
+    public void DoorOpen()
+    {
+        camAm.SetTrigger("Door");
+        offset.x = -4.1f;
+        offset.z = -8.62f;
+        StartCoroutine(NormalAngle());
+    }
+
+    private IEnumerator NormalAngle()
+    {
+        yield return new WaitForSeconds(3f);
+        camAm.SetTrigger("Normal");
+        offset.x = 0;
+        offset.z = -15.22f;
     }
 
 }
