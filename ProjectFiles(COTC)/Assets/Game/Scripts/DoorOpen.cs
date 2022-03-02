@@ -13,6 +13,12 @@ public class DoorOpen : MonoBehaviour
     }
     public void Open()
     {
+        StartCoroutine(wait());
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1.5f);
         door.Play("DoorTemp");
     }
 }
