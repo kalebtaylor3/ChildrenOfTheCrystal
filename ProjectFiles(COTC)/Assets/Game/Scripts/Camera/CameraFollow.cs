@@ -39,6 +39,11 @@ public class CameraFollow : MonoBehaviour
 
     private Animator camAm;
 
+
+    private float offX = 0;
+    private float offY = 5;
+    private float offZ = -15.22f;
+
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -86,6 +91,13 @@ public class CameraFollow : MonoBehaviour
     public void SetOffsetZ(float z)
     {
         offset.z = z;
+    }
+
+    public void RestOffset()
+    {
+        offset.x = offX;
+        offset.y = offY;
+        offset.z = offZ;
     }
 
     void LateUpdate()
