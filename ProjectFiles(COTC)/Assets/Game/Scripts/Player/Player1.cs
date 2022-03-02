@@ -42,20 +42,6 @@ public class Player1 : PlayerMove
         {
             DisableJump();
         }
-
-        float previousX = transform.position.x;
-
-        if (transform.position.z == 0)
-            previousX = transform.position.x;
-
-        if (transform.position.z != 0)
-        {
-            Vector3 newPosition = transform.position;
-            newPosition.x = previousX;
-            newPosition.z = 0;
-            transform.position = newPosition;
-        }
-
     }
 
     private void FixedUpdate()
