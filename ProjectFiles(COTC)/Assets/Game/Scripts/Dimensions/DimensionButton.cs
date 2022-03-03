@@ -8,6 +8,8 @@ public class DimensionButton : MonoBehaviour
 {
     public bool isSwitch;
     public bool multiButton;
+    [SerializeField]
+    private bool inDimension;
 
     [HideInInspector]
     public bool pressed = false;
@@ -27,17 +29,39 @@ public class DimensionButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isSwitch)
+
+        if(inDimension)
         {
-            Animation.Invoke();
-            StartCoroutine(WaitForButton());
+            if(other.gameObject.layer != 3 && other.gameObject.layer != 0)
+            {
+                if (!isSwitch)
+                {
+                    Animation.Invoke();
+                    StartCoroutine(WaitForButton());
+                }
+
+
+                if (multiButton && !happenOnce)
+                {
+                    pressed = true;
+                    happenOnce = true;
+                }
+            }
         }
-
-
-        if (multiButton && !happenOnce)
+        else
         {
-            pressed = true;
-            happenOnce = true;
+            if (!isSwitch)
+            {
+                Animation.Invoke();
+                StartCoroutine(WaitForButton());
+            }
+
+
+            if (multiButton && !happenOnce)
+            {
+                pressed = true;
+                happenOnce = true;
+            }
         }
 
     }

@@ -40,8 +40,13 @@ public class CameraFollow : MonoBehaviour
     private Animator camAm;
 
 
+    [SerializeField]
     private float offX = 0;
+
+    [SerializeField]
     private float offY = 5;
+
+    [SerializeField]
     private float offZ = -15.22f;
 
     void Start()
