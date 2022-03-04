@@ -8,6 +8,8 @@ public class Rotate : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0, speed * Time.deltaTime, 0);
+        Vector3 rot = transform.localEulerAngles;
+        rot.y += speed * Time.deltaTime;
+        transform.localEulerAngles = rot;
     }
 }
