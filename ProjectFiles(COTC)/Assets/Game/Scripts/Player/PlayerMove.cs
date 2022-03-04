@@ -344,7 +344,7 @@ public class PlayerMove : MonoBehaviour
 		{
 			lifting = true;
 			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
-			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
 			hit.collider.transform.parent = this.pickupLoc.transform;
 			hit.collider.transform.position = pickupLoc.position;
@@ -401,7 +401,6 @@ public class PlayerMove : MonoBehaviour
 			else if (hit.collider.gameObject.tag == "Player")
 			{
 				lifting = false;
-				hit.collider.GetComponent<Rigidbody>().isKinematic = false;
 				hit.collider.transform.parent = null;
 				hit.collider.GetComponent<BoxCollider>().isTrigger = false;
 				hit.collider.GetComponent<PlayerMove>().canMove = true;
@@ -417,6 +416,9 @@ public class PlayerMove : MonoBehaviour
 					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
 					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
 				}
+				hit.collider.GetComponent<Rigidbody>().isKinematic = false;
+				hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+
 
 				Debug.Log("Threw " + hit.collider.name);
 
