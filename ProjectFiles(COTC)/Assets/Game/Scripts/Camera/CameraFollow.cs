@@ -130,7 +130,7 @@ public class CameraFollow : MonoBehaviour
 
         if (dead == true)
         {
-            SceneManager.LoadScene("Roy Test");
+            SceneManager.LoadScene("Tyler Environment Scene");
             dead = false;
         }
 
