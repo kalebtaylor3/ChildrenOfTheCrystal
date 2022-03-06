@@ -30,9 +30,30 @@ public class DimensionButton : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if(inDimension)
+        /*if(inDimension)
         {
             if(other.gameObject.layer != 3 && other.gameObject.layer != 0)
+            {
+                if (other.tag == "Player1" || other.tag == "Player2")
+                {
+                    if (!isSwitch)
+                    {
+                        Animation.Invoke();
+                        StartCoroutine(WaitForButton());
+                    }
+
+
+                    if (multiButton && !happenOnce)
+                    {
+                        pressed = true;
+                        happenOnce = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (other.tag == "Player1" || other.tag == "Player2")
             {
                 if (!isSwitch)
                 {
@@ -47,22 +68,7 @@ public class DimensionButton : MonoBehaviour
                     happenOnce = true;
                 }
             }
-        }
-        else
-        {
-            if (!isSwitch)
-            {
-                Animation.Invoke();
-                StartCoroutine(WaitForButton());
-            }
-
-
-            if (multiButton && !happenOnce)
-            {
-                pressed = true;
-                happenOnce = true;
-            }
-        }
+        }*/
 
     }
 
@@ -86,6 +92,47 @@ public class DimensionButton : MonoBehaviour
                 trigger.Invoke();
             }
         }
+
+        if (inDimension)
+        {
+            if (other.gameObject.layer != 3 && other.gameObject.layer != 0)
+            {
+                if (other.tag == "Player1" || other.tag == "Player2")
+                {
+                    if (!isSwitch)
+                    {
+                        Animation.Invoke();
+                        StartCoroutine(WaitForButton());
+                    }
+
+
+                    if (multiButton && !happenOnce)
+                    {
+                        pressed = true;
+                        happenOnce = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (other.tag == "Player1" || other.tag == "Player2")
+            {
+                if (!isSwitch)
+                {
+                    Animation.Invoke();
+                    StartCoroutine(WaitForButton());
+                }
+
+
+                if (multiButton && !happenOnce)
+                {
+                    pressed = true;
+                    happenOnce = true;
+                }
+            }
+        }
+
     }
 
     public IEnumerator WaitForButton()
