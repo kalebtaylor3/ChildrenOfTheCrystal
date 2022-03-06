@@ -43,7 +43,7 @@ public class Checkpoint : MonoBehaviour
 	//set checkpoint
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Player1" && health)
+		if(other.transform.tag == "Player" && health)
 		{
 			//set respawn position in players health script
 			health.respawnPos = transform.position;
