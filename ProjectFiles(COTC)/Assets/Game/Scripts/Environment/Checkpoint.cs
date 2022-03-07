@@ -19,6 +19,9 @@ public class Checkpoint : MonoBehaviour
 	private Renderer render;
 	private AudioSource aSource;
 
+	private bool player1Once = false;
+	private bool player2Once = false;
+
 	//setup
 	void Awake()
 	{
@@ -56,7 +59,11 @@ public class Checkpoint : MonoBehaviour
 			//toggle checkpoints
 				foreach (GameObject checkpoint in checkpoints)
 					checkpoint.GetComponent<Renderer>().material.color = defColor;
+			if (!player1Once)
+			{
 				aSource.Play();
+				player1Once = true;
+			}
 				render.material.color = activeColor;
 		}
 
@@ -68,7 +75,12 @@ public class Checkpoint : MonoBehaviour
 			//toggle checkpoints
 				foreach (GameObject checkpoint in checkpoints)
 					checkpoint.GetComponent<Renderer>().material.color = defColor;
+
+			if (!player2Once)
+			{
 				aSource.Play();
+				player2Once = true;
+			}
 				render.material.color = activeColor;
 		}
 	}
