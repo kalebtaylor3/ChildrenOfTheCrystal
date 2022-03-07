@@ -405,6 +405,7 @@ public class PlayerMove : MonoBehaviour
 				hit.collider.GetComponent<BoxCollider>().isTrigger = false;
 				hit.collider.GetComponent<PlayerMove>().canMove = true;
 				hit.collider.GetComponent<PlayerMove>().beingLifted = false;
+				hit.collider.GetComponent<Rigidbody>().isKinematic = false;
 
 				if (facingRight)
 				{
@@ -416,7 +417,6 @@ public class PlayerMove : MonoBehaviour
 					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
 					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
 				}
-				hit.collider.GetComponent<Rigidbody>().isKinematic = false;
 				hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
 
