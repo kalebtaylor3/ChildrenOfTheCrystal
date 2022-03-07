@@ -12,6 +12,9 @@ public class BreakableWall : MonoBehaviour
     [SerializeField]
     private GameObject brokenWall;
 
+    [SerializeField]
+    public bool leverControlled;
+
     private void Start()
     {
         breakNoise = GetComponent<AudioSource>();

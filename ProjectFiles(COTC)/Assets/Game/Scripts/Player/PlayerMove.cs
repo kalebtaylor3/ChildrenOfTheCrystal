@@ -146,8 +146,9 @@ public class PlayerMove : MonoBehaviour
 						Debug.Log("Thats a wall");
 						if (Input.GetKey(KeyCode.LeftControl))
 						{
-							wall.BreakWall();
-							wall.DestroyChildren();
+							if(!wall.leverControlled)
+								wall.BreakWall();
+								wall.DestroyChildren();
 						}
 					}
 				}
