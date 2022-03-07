@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 11400000}
   - component: {fileID: 8200000}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -112,6 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeColor: {r: 0, g: 1, b: 0, a: 1}
   activeColorOpacity: 0.4
+  player1Health: {fileID: 0}
+  player2Health: {fileID: 0}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 0

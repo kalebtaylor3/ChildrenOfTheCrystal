@@ -8,7 +8,12 @@ public class Checkpoint : MonoBehaviour
 	public Color activeColor = Color.green;	//color when checkpoint is activated
 	public float activeColorOpacity = 0.4f;	//opacity when checkpoint is activated
 	
-	private Health health;
+	[SerializeField]
+	private Health player1Health;
+
+	[SerializeField]
+	private Health player2Health;
+
 	private Color defColor;
 	private GameObject[] checkpoints;
 	private Renderer render;
@@ -35,27 +40,36 @@ public class Checkpoint : MonoBehaviour
 	void Start()
 	{
 		checkpoints = GameObject.FindGameObjectsWithTag("Respawn");
-		health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-		if(!health)
+		//player1Health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+		if(!player1Health)
 			Debug.LogError("For Checkpoint to work, the Player needs 'Health' script attached", transform);
 	}
 	
 	//set checkpoint
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Player" && health)
+		if(other.transform.tag == "Player1")
 		{
 			//set respawn position in players health script
-			health.respawnPos = transform.position;
+			player1Health.respawnPos = transform.position;
 			
 			//toggle checkpoints
-			if(render.material.color != activeColor)
-			{
 				foreach (GameObject checkpoint in checkpoints)
 					checkpoint.GetComponent<Renderer>().material.color = defColor;
 				aSource.Play();
 				render.material.color = activeColor;
-			}
+		}
+
+		if (other.transform.tag == "Player2")
+		{
+			//set respawn position in players health script
+			player2Health.respawnPos = transform.position;
+
+			//toggle checkpoints
+				foreach (GameObject checkpoint in checkpoints)
+					checkpoint.GetComponent<Renderer>().material.color = defColor;
+				aSource.Play();
+				render.material.color = activeColor;
 		}
 	}
 }
