@@ -393,39 +393,36 @@ public class PlayerMove : MonoBehaviour
 	public void ThrowPlayer()
 	{
 		RaycastHit hit = ThrowCheck(Vector3.up);
-		if (hit.collider != null)
+		if (hit.collider.gameObject == gameObject)
 		{
-			if (hit.collider.gameObject == gameObject)
+			return;
+		}
+
+		if (hit.collider.gameObject.tag == "Player")
+		{
+			lifting = false;
+			hit.collider.transform.parent = null;
+			hit.collider.GetComponent<BoxCollider>().isTrigger = false;
+			hit.collider.GetComponent<PlayerMove>().canMove = true;
+			hit.collider.GetComponent<PlayerMove>().beingLifted = false;
+			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
+
+			if (facingRight)
 			{
-				return;
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
 			}
-
-			if (hit.collider.gameObject.tag == "Player")
+			else
 			{
-				lifting = false;
-				hit.collider.transform.parent = null;
-				hit.collider.GetComponent<BoxCollider>().isTrigger = false;
-				hit.collider.GetComponent<PlayerMove>().canMove = true;
-				hit.collider.GetComponent<PlayerMove>().beingLifted = false;
-				hit.collider.GetComponent<Rigidbody>().isKinematic = false;
-
-				if (facingRight)
-				{
-					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
-					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
-				}
-				else
-				{
-					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
-					hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
-				}
-				hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-
-
-				Debug.Log("Threw " + hit.collider.name);
-
-				return;
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
+				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
 			}
+			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+
+
+			Debug.Log("Threw " + hit.collider.name);
+
+			return;
 		}
 	}
 
