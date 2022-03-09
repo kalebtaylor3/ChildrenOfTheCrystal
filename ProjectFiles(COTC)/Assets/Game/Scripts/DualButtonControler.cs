@@ -25,8 +25,6 @@ public class DualButtonControler : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log(buttonsPressed);
-
         if (buttonsPressed == 2)
         {
             trigger.Invoke();

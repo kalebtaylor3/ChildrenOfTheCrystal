@@ -173,7 +173,7 @@ public class PlayerMove : MonoBehaviour
 				continue;
 			}
 			SetLayerRecursively(child.gameObject, newLayer);
-			SetLayerRecursively(checker.gameObject, 0);
+			SetLayerRecursively(checker.gameObject, 2);
 		}
 	}
 
@@ -436,10 +436,12 @@ public class PlayerMove : MonoBehaviour
 		Debug.DrawRay(startingPosition, Vector3.up, Color.red);
 		if (Physics.Raycast(startingPosition, directin, out hit))
 		{
+			Debug.Log("Threw " + hit.collider.name);
 			return hit;
 		}
 		else
 		{
+			Debug.Log("Threw " + hit.collider.name);
 			return hit;
 		}
 	}
