@@ -5443,6 +5443,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1708158088475371083, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1708158088776119880, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
       propertyPath: m_Name
@@ -6143,6 +6148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Kira
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189411734565571825, guid: 98f20db713aad1d47bfbbca2290cc153,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f20db713aad1d47bfbbca2290cc153, type: 3}
