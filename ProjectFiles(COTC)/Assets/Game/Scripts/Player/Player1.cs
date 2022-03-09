@@ -55,6 +55,12 @@ public class Player1 : PlayerMove
         //    newPosition.z = 0;
         //    transform.position = newPosition;
         //}
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            this.ThrowPlayer();
+        }
+
     }
 
     private void FixedUpdate()
@@ -67,11 +73,6 @@ public class Player1 : PlayerMove
                 this.pickup(Vector3.right);
             else
                 this.pickup(Vector3.left);
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            this.ThrowPlayer();
         }
     }
 

@@ -15,10 +15,15 @@ public class RuneScript : MonoBehaviour
     {
         if (!player2)
         {
-            if (other.gameObject.tag == "Player1")
+            if (other.gameObject.tag == "Player")
             {
-                givePower.Invoke();
-                this.gameObject.SetActive(false);
+                Player1 p1 = other.GetComponent<Player1>();
+
+                if (p1)
+                {
+                    givePower.Invoke();
+                    this.gameObject.SetActive(false);
+                }
             }
             else
             {
@@ -28,10 +33,15 @@ public class RuneScript : MonoBehaviour
 
         if (player2)
         {
-            if (other.gameObject.tag == "Player2")
+            if (other.gameObject.tag == "Player")
             {
-                givePower.Invoke();
-                this.gameObject.SetActive(false);
+                Player2 p2 = other.GetComponent<Player2>();
+
+                if (p2)
+                {
+                    givePower.Invoke();
+                    this.gameObject.SetActive(false);
+                }
             }
             else
             {
