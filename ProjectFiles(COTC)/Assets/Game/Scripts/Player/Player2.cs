@@ -58,18 +58,18 @@ public class Player2 : PlayerMove
             OffWall();
         }
 
-        float previousX = transform.position.x;
+        //float previousX = transform.position.x;
 
-        if (transform.position.z == 0)
-            previousX = transform.position.x;
+        //if (transform.position.z == 0)
+        //    previousX = transform.position.x;
 
-        if (transform.position.z != 0)
-        {
-            Vector3 newPosition = transform.position;
-            newPosition.x = previousX;
-            newPosition.z = 0;
-            transform.position = newPosition;
-        }
+        //if (transform.position.z != 0)
+        //{
+        //    Vector3 newPosition = transform.position;
+        //    newPosition.x = previousX;
+        //    newPosition.z = 0;
+        //    transform.position = newPosition;
+        //}
 
     }
 

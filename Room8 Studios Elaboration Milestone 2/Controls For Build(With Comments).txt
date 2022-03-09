@@ -1,0 +1,28 @@
+Player 1:
+
+W - Jump
+D - Right
+A - Left
+
+left cntrl - Pick Up
+
+(Super Strenght)
+Z - Red Dimension (When a dimension isnt active other wise it will revert to the normal world)
+(Double Jump)
+X - Green Dimension (When a dimension isnt active other wise it will revert to the normal world)
+
+Player 2:
+
+Up Arrow - Jump
+Right Arrow - Right
+Left Arrow - Left
+
+Right cntrl - Pick Up
+
+(Super Speed)
+N - Blue Dimension (When a dimension isnt active other wise it will revert to the normal world)
+(Scale and stick to certain walls)
+M - Yellow Dimension (When a dimension isnt active other wise it will revert to the normal world)
+
+Shared(for now): will eventually just be the pick up button pressed again
+Space - to Throw Player In direction youre running
