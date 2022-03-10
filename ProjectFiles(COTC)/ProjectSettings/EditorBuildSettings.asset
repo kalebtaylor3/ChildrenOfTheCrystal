@@ -41,7 +41,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Game/Scenes/Nick Test.unity
     guid: bce099ac40ae50942a5a7c64434dd0a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Game/Scenes/Tyler Environment Scene.unity
     guid: 61510bf7076f54e42a68f7cea0237ffd
+  - enabled: 1
+    path: Assets/Game/Scenes/Kaleb.unity
+    guid: 4fda01684994a544aa52ef6f7bc7fb32
   m_configObjects: {}
