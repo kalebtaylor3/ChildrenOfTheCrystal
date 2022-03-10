@@ -6264,7 +6264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708158088475371082}
   - component: {fileID: 1708158088475371085}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerChecker
   m_TagString: Player1
   m_Icon: {fileID: 0}
@@ -6920,7 +6920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708158088875668373}
   - component: {fileID: 1708158088875668372}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: PlayerChecker (1)
   m_TagString: Player1
   m_Icon: {fileID: 0}
