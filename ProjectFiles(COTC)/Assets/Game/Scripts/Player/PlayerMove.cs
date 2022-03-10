@@ -398,7 +398,7 @@ public class PlayerMove : MonoBehaviour
 			return;
 		}
 
-		if (hit.collider.gameObject.tag == "Player")
+		if (hit.collider.gameObject.tag == "Player" && hit.collider.gameObject.tag != "Default")
 		{
 			lifting = false;
 			hit.collider.transform.parent = null;
