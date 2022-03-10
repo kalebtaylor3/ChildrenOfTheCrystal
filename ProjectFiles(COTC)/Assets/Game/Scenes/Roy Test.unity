@@ -620,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 1708158088779284934, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
       propertyPath: ingoreMe.m_Bits
-      value: 24383
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1708158088779284934, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
@@ -3690,6 +3690,101 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1803226, y: 1.1011047, z: 1}
   m_Center: {x: 0.014718056, y: 0.05055237, z: 0}
+--- !u!1 &1424034400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424034403}
+  - component: {fileID: 1424034402}
+  - component: {fileID: 1424034401}
+  m_Layer: 0
+  m_Name: Hidden Platforms (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!102 &1424034401
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424034400}
+  m_Text: "CheckPoints &\n Cinimatics at the end-->\n"
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 112
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &1424034402
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424034400}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &1424034403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424034400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.81, y: 12.12, z: 5.06}
+  m_LocalScale: {x: 0.11653135, y: 0.11653135, z: 0.11653135}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 49
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1432680669
 GameObject:
   m_ObjectHideFlags: 0
@@ -6192,7 +6287,7 @@ PrefabInstance:
     - target: {fileID: 6189411733189558829, guid: 98f20db713aad1d47bfbbca2290cc153,
         type: 3}
       propertyPath: ingoreMe.m_Bits
-      value: 24383
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6189411733189558829, guid: 98f20db713aad1d47bfbbca2290cc153,
         type: 3}
