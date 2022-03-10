@@ -68,6 +68,8 @@ public class PlayerMove : MonoBehaviour
 	[HideInInspector]
 	public bool climbing = false;
 
+	private PlayerMove playerbeinglifted;
+
 	//setup
 	void Awake()
 	{
@@ -355,6 +357,7 @@ public class PlayerMove : MonoBehaviour
 			Debug.Log("Picking up " + hit.collider.name);
 
 			StartCoroutine(pickupCoolDown(hit));
+			playerbeinglifted = hit.collider.GetComponent<PlayerMove>();
 		}
 	}
 
@@ -388,43 +391,74 @@ public class PlayerMove : MonoBehaviour
 		liftedPlayer.collider.GetComponent<BoxCollider>().isTrigger = false;
 		liftedPlayer.collider.GetComponent<PlayerMove>().canMove = true;
 		liftedPlayer.collider.GetComponent<PlayerMove>().beingLifted = false;
+		playerbeinglifted = null;
 	}
 
 	public void ThrowPlayer()
 	{
-		RaycastHit hit = ThrowCheck(Vector3.up);
-		if (hit.collider.gameObject == gameObject)
-		{
-			return;
-		}
 
-		if (hit.collider.gameObject.tag == "Player" && hit.collider.gameObject.tag != "Default")
-		{
+		if(playerbeinglifted != null)
+        {
 			lifting = false;
-			hit.collider.transform.parent = null;
-			hit.collider.GetComponent<BoxCollider>().isTrigger = false;
-			hit.collider.GetComponent<PlayerMove>().canMove = true;
-			hit.collider.GetComponent<PlayerMove>().beingLifted = false;
-			hit.collider.GetComponent<Rigidbody>().isKinematic = false;
-
-			if (facingRight)
-			{
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+			playerbeinglifted.transform.parent = null;
+			playerbeinglifted.GetComponent<BoxCollider>().isTrigger = false;
+			playerbeinglifted.canMove = true;
+			playerbeinglifted.beingLifted = false;
+			playerbeinglifted.GetComponent<Rigidbody>().isKinematic = false;
+            if (facingRight)
+            {
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.right * 70);
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.up * 70);
 			}
-			else
-			{
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
-				hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+            else
+            {
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.left * 70);
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.up * 70);
 			}
-			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
+			playerbeinglifted.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+			StartCoroutine(ClearPlayer());
+			//playerbeinglifted = null;
 
-			Debug.Log("Threw " + hit.collider.name);
-
-			return;
 		}
+
+		//RaycastHit hit = ThrowCheck(Vector3.up);
+		//if (hit.collider.gameObject == gameObject)
+		//{
+		//	return;
+		//}
+
+		//if (hit.collider.gameObject.tag == "Player" && hit.collider.gameObject.tag != "Default")
+		//{
+		//	lifting = false;
+		//	hit.collider.transform.parent = null;
+		//	hit.collider.GetComponent<BoxCollider>().isTrigger = false;
+		//	hit.collider.GetComponent<PlayerMove>().canMove = true;
+		//	hit.collider.GetComponent<PlayerMove>().beingLifted = false;
+		//	hit.collider.GetComponent<Rigidbody>().isKinematic = false;
+
+		//	if (facingRight)
+		//	{
+		//		hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.right * 100);
+		//		hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+		//	}
+		//	else
+		//	{
+		//		hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
+		//		hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+		//	}
+		//	hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+
+
+		//	Debug.Log("Threw " + hit.collider.name);
+	//}
 	}
+
+	IEnumerator ClearPlayer()
+    {
+		yield return new WaitForSeconds(0.5f);
+		playerbeinglifted = null;
+    }
 
 	public RaycastHit ThrowCheck(Vector3 directin)
 	{
@@ -434,14 +468,12 @@ public class PlayerMove : MonoBehaviour
 		Vector3 startingPosition = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
 
 		Debug.DrawRay(startingPosition, Vector3.up, Color.red);
-		if (Physics.Raycast(startingPosition, directin, out hit))
+		if (Physics.Raycast(transform.position, directin, out hit, ~ingoreMe))
 		{
-			Debug.Log("Threw " + hit.collider.name);
 			return hit;
 		}
 		else
 		{
-			Debug.Log("Threw " + hit.collider.name);
 			return hit;
 		}
 	}
