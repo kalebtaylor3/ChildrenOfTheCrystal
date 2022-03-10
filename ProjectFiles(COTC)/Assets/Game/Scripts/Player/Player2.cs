@@ -119,9 +119,9 @@ public class Player2 : PlayerMove
                 rb.velocity = new Vector3(0, 0, 0);
                 float speedMod = y > 0 ? 0.35f : 1;
                 if (Input.GetKey(KeyCode.UpArrow))
-                    this.transform.position += new Vector3(0, 3 * Time.deltaTime, 0);
+                    this.transform.position += new Vector3(0, 5 * Time.deltaTime, 0);
                 if (Input.GetKey(KeyCode.DownArrow))
-                    this.transform.position += new Vector3(0, -3 * Time.deltaTime, 0);
+                    this.transform.position += new Vector3(0, -5 * Time.deltaTime, 0);
 
             }
 
@@ -130,9 +130,9 @@ public class Player2 : PlayerMove
                 rb.velocity = new Vector3(0, 0, 0);
                 float speedMod = x > 0 ? 0.35f : 1;
                 if (Input.GetKey(KeyCode.RightArrow))
-                    this.transform.position += new Vector3(3 * Time.deltaTime, 0, 0);
+                    this.transform.position += new Vector3(5 * Time.deltaTime, 0, 0);
                 if (Input.GetKey(KeyCode.LeftArrow))
-                    this.transform.position += new Vector3(-3 * Time.deltaTime, 0, 0);
+                    this.transform.position += new Vector3(-5 * Time.deltaTime, 0, 0);
             }
         }
     }
