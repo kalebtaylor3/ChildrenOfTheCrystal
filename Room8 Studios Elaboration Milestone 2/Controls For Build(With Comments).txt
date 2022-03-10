@@ -25,4 +25,4 @@ N - Blue Dimension (When a dimension isnt active other wise it will revert to th
 M - Yellow Dimension (When a dimension isnt active other wise it will revert to the normal world)
 
 Shared(for now): will eventually just be the pick up button pressed again
-Space - to Throw Player In direction youre running
+Hold Space - to Throw Player In direction youre running. (holding space for longer will throw them further)

@@ -407,13 +407,13 @@ public class PlayerMove : MonoBehaviour
 			playerbeinglifted.GetComponent<Rigidbody>().isKinematic = false;
             if (facingRight)
             {
-				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.right * 70);
-				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.up * 70);
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.right * 55);
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.up * 45);
 			}
             else
             {
-				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.left * 70);
-				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.up * 70);
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.left * 55);
+				playerbeinglifted.GetComponent<Rigidbody>().AddForce(Vector3.up * 45);
 			}
 
 			playerbeinglifted.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
