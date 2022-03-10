@@ -97,7 +97,7 @@ public class DimensionButton : MonoBehaviour
         {
             if (other.gameObject.layer != 3 && other.gameObject.layer != 0)
             {
-                if (other.tag == "Player1" || other.tag == "Player2")
+                if (other.tag == "Player")
                 {
                     if (!isSwitch)
                     {
