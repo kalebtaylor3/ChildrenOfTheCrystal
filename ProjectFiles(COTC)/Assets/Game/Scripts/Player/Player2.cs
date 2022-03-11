@@ -27,7 +27,7 @@ public class Player2 : PlayerMove
     {
 
         Physics.IgnoreLayerCollision(0, 2);
-        Physics.IgnoreLayerCollision(3, 2);
+        //Physics.IgnoreLayerCollision(3, 2);
 
 
         if (beingLifted)

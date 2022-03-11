@@ -20,7 +20,7 @@ public class Player1 : PlayerMove
     {
 
         Physics.IgnoreLayerCollision(0, 2);
-        Physics.IgnoreLayerCollision(3, 2);
+        //Physics.IgnoreLayerCollision(3, 2);
         Physics.IgnoreLayerCollision(13, 3);
         Physics.IgnoreLayerCollision(13, 13);
 
