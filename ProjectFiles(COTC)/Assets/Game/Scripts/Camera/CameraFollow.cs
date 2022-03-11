@@ -210,6 +210,16 @@ public class CameraFollow : MonoBehaviour
         StartCoroutine(NormalAngle());
     }
 
+    public void SetSmoothTime()
+    {
+        smoothTime = 0;
+    }
+
+    public void ResetSmoothTime()
+    {
+        smoothTime = 0.39f;
+    }
+
     private IEnumerator NormalAngle()
     {
         yield return new WaitForSeconds(3f);
