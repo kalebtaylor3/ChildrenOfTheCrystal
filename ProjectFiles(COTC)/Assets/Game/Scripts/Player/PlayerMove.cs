@@ -70,6 +70,7 @@ public class PlayerMove : MonoBehaviour
 
 	private PlayerMove playerbeingpickedup;
 	private PlayerMove playerbeinglifted;
+	private int liftTime = 5;
 
 	//setup
 	void Awake()
@@ -398,32 +399,16 @@ public class PlayerMove : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 		if (other.tag == "Player")
-			playerbeingpickedup = null;
-    }
-
-    public RaycastHit PickUpRayCheck(Vector3 directin)
-	{
-
-		RaycastHit hit;
-
-		//this.play animation pick up try
-		float directionOriginOffset = originOffset * (directin.x > 0 ? 1 : -1);
-		Vector3 startingPosition = new Vector3(transform.position.x + directionOriginOffset, transform.position.y, transform.position.z);
-
-		Debug.DrawRay(startingPosition, directin, Color.red);
-		if (Physics.Raycast(startingPosition, directin, out hit, 0.2f, ~ingoreMe))
-		{
-			return hit;
-		}
-		else
         {
-			return hit;
-        }
-	}
+			StopCoroutine(pickupCoolDown(playerbeingpickedup));
+			playerbeingpickedup = null;
+			liftTime = 5;
+		}
+    }
 
 	IEnumerator pickupCoolDown(PlayerMove liftedPlayer)
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(liftTime);
 
 		lifting = false;
 		liftedPlayer.GetComponent<Rigidbody>().isKinematic = false;
@@ -458,6 +443,8 @@ public class PlayerMove : MonoBehaviour
 
 			playerbeinglifted.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			StartCoroutine(ClearPlayer());
+			StopCoroutine(pickupCoolDown(playerbeingpickedup));
+			liftTime = 5;
 			//playerbeinglifted = null;
 
 		}
