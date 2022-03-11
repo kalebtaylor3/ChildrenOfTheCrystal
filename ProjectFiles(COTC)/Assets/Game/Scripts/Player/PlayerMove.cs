@@ -68,6 +68,7 @@ public class PlayerMove : MonoBehaviour
 	[HideInInspector]
 	public bool climbing = false;
 
+	private PlayerMove playerbeingpickedup;
 	private PlayerMove playerbeinglifted;
 
 	//setup
@@ -337,31 +338,70 @@ public class PlayerMove : MonoBehaviour
 
 	public void pickup(Vector3 Direction)
 	{
-		RaycastHit hit = PickUpRayCheck(Direction);
 
-		if(hit.collider.gameObject == this.gameObject)
+		if(playerbeingpickedup != null)
         {
-			return;
-        }
-		else if (hit.collider.tag == "Player")
-		{
 			lifting = true;
-			hit.collider.GetComponent<PlayerMove>().beingLifted = true;
-			hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-			hit.collider.GetComponent<Rigidbody>().isKinematic = true;
-			hit.collider.transform.parent = this.pickupLoc.transform;
-			hit.collider.transform.position = pickupLoc.position;
-			hit.collider.GetComponent<BoxCollider>().isTrigger = true;
-			hit.collider.GetComponent<PlayerMove>().canMove = false;
-			//lifted player will begin playing the being lifted animation
-			Debug.Log("Picking up " + hit.collider.name);
+			playerbeingpickedup.beingLifted = true;
+			playerbeingpickedup.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+			playerbeingpickedup.GetComponent<Rigidbody>().isKinematic = true;
+			playerbeingpickedup.transform.parent = this.pickupLoc.transform;
+			playerbeingpickedup.transform.position = pickupLoc.position;
+			playerbeingpickedup.GetComponent<BoxCollider>().isTrigger = true;
+			playerbeingpickedup.canMove = false;
+			StartCoroutine(pickupCoolDown(playerbeingpickedup));
+			playerbeinglifted = playerbeingpickedup;
+        }
 
-			StartCoroutine(pickupCoolDown(hit));
-			playerbeinglifted = hit.collider.GetComponent<PlayerMove>();
-		}
+		//RaycastHit hit = PickUpRayCheck(Direction);
+
+		//if(hit.collider.gameObject == this.gameObject)
+  //      {
+		//	return;
+  //      }
+		//else if (hit.collider.tag == "Player")
+		//{
+		//	lifting = true;
+		//	hit.collider.GetComponent<PlayerMove>().beingLifted = true;
+		//	hit.collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+		//	hit.collider.GetComponent<Rigidbody>().isKinematic = true;
+		//	hit.collider.transform.parent = this.pickupLoc.transform;
+		//	hit.collider.transform.position = pickupLoc.position;
+		//	hit.collider.GetComponent<BoxCollider>().isTrigger = true;
+		//	hit.collider.GetComponent<PlayerMove>().canMove = false;
+		//	//lifted player will begin playing the being lifted animation
+		//	Debug.Log("Picking up " + hit.collider.name);
+
+		//	StartCoroutine(pickupCoolDown(hit));
+		//	playerbeinglifted = hit.collider.GetComponent<PlayerMove>();
+		//}
 	}
 
-	public RaycastHit PickUpRayCheck(Vector3 directin)
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+			if(other.GetComponent<Player1>() != null)
+            {
+				playerbeingpickedup = other.GetComponent<PlayerMove>();
+            }
+
+			if (other.GetComponent<Player2>() != null)
+			{
+				playerbeingpickedup = other.GetComponent<PlayerMove>();
+			}
+
+		}
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+		if (other.tag == "Player")
+			playerbeingpickedup = null;
+    }
+
+    public RaycastHit PickUpRayCheck(Vector3 directin)
 	{
 
 		RaycastHit hit;
@@ -381,16 +421,16 @@ public class PlayerMove : MonoBehaviour
         }
 	}
 
-	IEnumerator pickupCoolDown(RaycastHit liftedPlayer)
+	IEnumerator pickupCoolDown(PlayerMove liftedPlayer)
 	{
 		yield return new WaitForSeconds(5);
 
 		lifting = false;
-		liftedPlayer.collider.GetComponent<Rigidbody>().isKinematic = false;
-		liftedPlayer.collider.transform.parent = null;
-		liftedPlayer.collider.GetComponent<BoxCollider>().isTrigger = false;
-		liftedPlayer.collider.GetComponent<PlayerMove>().canMove = true;
-		liftedPlayer.collider.GetComponent<PlayerMove>().beingLifted = false;
+		liftedPlayer.GetComponent<Rigidbody>().isKinematic = false;
+		liftedPlayer.transform.parent = null;
+		liftedPlayer.GetComponent<BoxCollider>().isTrigger = false;
+		liftedPlayer.canMove = true;
+		liftedPlayer.beingLifted = false;
 		playerbeinglifted = null;
 	}
 
