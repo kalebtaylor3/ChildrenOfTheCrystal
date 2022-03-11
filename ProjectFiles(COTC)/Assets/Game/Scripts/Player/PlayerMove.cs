@@ -348,7 +348,7 @@ public class PlayerMove : MonoBehaviour
 			playerbeingpickedup.GetComponent<Rigidbody>().isKinematic = true;
 			playerbeingpickedup.transform.parent = this.pickupLoc.transform;
 			playerbeingpickedup.transform.position = pickupLoc.position;
-			playerbeingpickedup.GetComponent<BoxCollider>().isTrigger = true;
+			//playerbeingpickedup.GetComponent<BoxCollider>().isTrigger = true;
 			playerbeingpickedup.canMove = false;
 			StartCoroutine(pickupCoolDown(playerbeingpickedup));
 			playerbeinglifted = playerbeingpickedup;
@@ -413,7 +413,7 @@ public class PlayerMove : MonoBehaviour
 		lifting = false;
 		liftedPlayer.GetComponent<Rigidbody>().isKinematic = false;
 		liftedPlayer.transform.parent = null;
-		liftedPlayer.GetComponent<BoxCollider>().isTrigger = false;
+		//liftedPlayer.GetComponent<BoxCollider>().isTrigger = false;
 		liftedPlayer.canMove = true;
 		liftedPlayer.beingLifted = false;
 		playerbeinglifted = null;
@@ -426,7 +426,7 @@ public class PlayerMove : MonoBehaviour
         {
 			lifting = false;
 			playerbeinglifted.transform.parent = null;
-			playerbeinglifted.GetComponent<BoxCollider>().isTrigger = false;
+			//playerbeinglifted.GetComponent<BoxCollider>().isTrigger = false;
 			playerbeinglifted.canMove = true;
 			playerbeinglifted.beingLifted = false;
 			playerbeinglifted.GetComponent<Rigidbody>().isKinematic = false;
