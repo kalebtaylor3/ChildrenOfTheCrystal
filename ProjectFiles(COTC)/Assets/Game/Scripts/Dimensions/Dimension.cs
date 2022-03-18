@@ -52,6 +52,11 @@ public class Dimension : MonoBehaviour
     public GameObject blueRuneGrey;
     public GameObject yellowRuneGrey;
 
+    public GameObject redEffect;
+    public GameObject blueEffect;
+    public GameObject greenEffect;
+    public GameObject yellowEffect;
+
     [SerializeField]
     private bool hasRed = false;
     [SerializeField]
@@ -96,13 +101,13 @@ public class Dimension : MonoBehaviour
         else
         {
             if (Input.GetKeyDown(KeyCode.Z))
-                DisableAll();
+                DisableAll(true);
             if (Input.GetKeyDown(KeyCode.X))
-                DisableAll();
+                DisableAll(true);
             if (Input.GetKeyDown(KeyCode.N))
-                DisableAll();
+                DisableAll(true);
             if (Input.GetKeyDown(KeyCode.M))
-                DisableAll();
+                DisableAll(true);
         }
 
         Physics.IgnoreLayerCollision(3, 9);
@@ -111,10 +116,21 @@ public class Dimension : MonoBehaviour
         Physics.IgnoreLayerCollision(3, 12);
     }
 
+    void DisableEffects()
+    {
+        blueEffect.SetActive(false);
+        redEffect.SetActive(false);
+        greenEffect.SetActive(false);
+        yellowEffect.SetActive(false);
+    }
+
     public void Strength()
     {
         if (hasRed)
         {
+            DisableEffects();
+            redEffect.SetActive(true);
+            inDimension = true;
             playersForLayers[0].animator.SetTrigger("Red");
             StartCoroutine(WaitForAnimation(playersForLayers[0], 1));
         }
@@ -122,7 +138,7 @@ public class Dimension : MonoBehaviour
 
     void GiveStrength()
     {
-        DisableAll();
+        DisableAll(false);
         dimensionList[(int)Dimensions.Red].SetActive(true);
         inDimension = true;
         hints[(int)Dimensions.Red].SetActive(false);
@@ -141,6 +157,9 @@ public class Dimension : MonoBehaviour
     {
         if (hasBlue)
         {
+            DisableEffects();
+            blueEffect.SetActive(true);
+            inDimension = true;
             playersForLayers[1].animator.SetTrigger("Blue");
             StartCoroutine(WaitForAnimation(playersForLayers[1], 2));
         }
@@ -148,7 +167,7 @@ public class Dimension : MonoBehaviour
 
     void GiveSpeed()
     {
-        DisableAll();
+        DisableAll(false);
         dimensionList[(int)Dimensions.Blue].SetActive(true);
         inDimension = true;
         hints[(int)Dimensions.Blue].SetActive(false);
@@ -167,7 +186,7 @@ public class Dimension : MonoBehaviour
     {
         if (hasYellow)
         {
-            DisableAll();
+            DisableAll(false);
             dimensionList[(int)Dimensions.Yellow].SetActive(true);
             inDimension = true;
             hints[(int)Dimensions.Yellow].SetActive(false);
@@ -180,6 +199,9 @@ public class Dimension : MonoBehaviour
             yellowRune.SetActive(true);
 
             currentDimension = Dimensions.Yellow;
+
+            DisableEffects();
+            yellowEffect.SetActive(true);
         }
     }
 
@@ -199,11 +221,18 @@ public class Dimension : MonoBehaviour
             yellowRune.SetActive(false);
 
             currentDimension = Dimensions.Green;
+
+            DisableEffects();
+            greenEffect.SetActive(true);
         }
     }
 
-    public void DisableAll()
+    public void DisableAll(bool normal)
     {
+
+        if (normal)
+            DisableEffects();
+
         for (int i = 0; i < dimensionList.Length; i++)
         {
             dimensionList[i].SetActive(false);
