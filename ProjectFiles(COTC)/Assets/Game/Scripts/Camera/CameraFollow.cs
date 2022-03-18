@@ -49,6 +49,11 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float offZ = -15.22f;
 
+    private Vector3 _originalPos;
+    private float _timeAtCurrentFrame;
+    private float _timeAtLastFrame;
+    private float _fakeDelta;
+
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -73,14 +78,42 @@ public class CameraFollow : MonoBehaviour
     //run our camera functions each frame
     void Update()
     {
-        //if (!target)
-            //return;
 
-       // SmoothFollow();
-       // if (rotateDamping > 0)
-           // SmoothLookAt();
+        _timeAtCurrentFrame = Time.realtimeSinceStartup;
+        _fakeDelta = _timeAtCurrentFrame - _timeAtLastFrame;
+        _timeAtLastFrame = _timeAtCurrentFrame;
+
+        //if (!target)
+        //return;
+
+        // SmoothFollow();
+        // if (rotateDamping > 0)
+        // SmoothLookAt();
         //else
-            //transform.LookAt(target.position);
+        //transform.LookAt(target.position);
+    }
+
+    public void Shake(float duration, float amount)
+    {
+        _originalPos = gameObject.transform.localPosition;
+        StopAllCoroutines();
+        StartCoroutine(cShake(duration, amount));
+    }
+
+    public IEnumerator cShake(float duration, float amount)
+    {
+        float endTime = Time.time + duration;
+
+        while (duration > 0)
+        {
+            transform.localPosition = _originalPos + Random.insideUnitSphere * amount;
+
+            duration -= _fakeDelta;
+
+            yield return null;
+        }
+
+        transform.localPosition = _originalPos;
     }
 
     public void SetOffsetX(float x)

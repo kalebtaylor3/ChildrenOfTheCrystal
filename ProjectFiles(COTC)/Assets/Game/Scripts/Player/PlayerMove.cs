@@ -172,6 +172,7 @@ public class PlayerMove : MonoBehaviour
 		yield return new WaitForSeconds(0.8f);
 		wall.BreakWall();
 		wall.DestroyChildren();
+		mainCam.GetComponent<CameraFollow>().Shake(0.5f, 0.2f);
 	}
 
     public void SetLayerRecursively(GameObject obj, int newLayer)
