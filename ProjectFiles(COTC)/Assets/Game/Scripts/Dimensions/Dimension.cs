@@ -115,44 +115,52 @@ public class Dimension : MonoBehaviour
     {
         if (hasRed)
         {
-            DisableAll();
-            dimensionList[(int)Dimensions.Red].SetActive(true);
-            inDimension = true;
-            hints[(int)Dimensions.Red].SetActive(false);
-            postEffects.ChangeDimension(Dimensions.Red);
-            playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
-
-            redRune.SetActive(true);
-            greenRune.SetActive(false);
-            blueRune.SetActive(false);
-            yellowRune.SetActive(false);
-
-            currentDimension = Dimensions.Red;
             playersForLayers[0].animator.SetTrigger("Red");
-            StartCoroutine(WaitForAnimation(playersForLayers[0]));
+            StartCoroutine(WaitForAnimation(playersForLayers[0], 1));
         }
+    }
+
+    void GiveStrength()
+    {
+        DisableAll();
+        dimensionList[(int)Dimensions.Red].SetActive(true);
+        inDimension = true;
+        hints[(int)Dimensions.Red].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Red);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+
+        redRune.SetActive(true);
+        greenRune.SetActive(false);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(false);
+
+        currentDimension = Dimensions.Red;
     }
 
     public void SuperSpeed()
     {
         if (hasBlue)
         {
-            DisableAll();
-            dimensionList[(int)Dimensions.Blue].SetActive(true);
-            inDimension = true;
-            hints[(int)Dimensions.Blue].SetActive(false);
-            postEffects.ChangeDimension(Dimensions.Blue);
-            playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
-
-            redRune.SetActive(false);
-            greenRune.SetActive(false);
-            blueRune.SetActive(true);
-            yellowRune.SetActive(false);
-
-            currentDimension = Dimensions.Blue;
             playersForLayers[1].animator.SetTrigger("Blue");
-            StartCoroutine(WaitForAnimation(playersForLayers[1]));
+            StartCoroutine(WaitForAnimation(playersForLayers[1], 2));
         }
+    }
+
+    void GiveSpeed()
+    {
+        DisableAll();
+        dimensionList[(int)Dimensions.Blue].SetActive(true);
+        inDimension = true;
+        hints[(int)Dimensions.Blue].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Blue);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(false);
+        blueRune.SetActive(true);
+        yellowRune.SetActive(false);
+
+        currentDimension = Dimensions.Blue;
     }
 
     public void Yellow()
@@ -219,11 +227,25 @@ public class Dimension : MonoBehaviour
         currentDimension = Dimensions.Main;
     }
 
-    IEnumerator WaitForAnimation(PlayerMove player)
+    IEnumerator WaitForAnimation(PlayerMove player, int D)
     {
         player.canMove = false;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.8f);
+        switch (D)
+        {
+            case 1:
+                GiveStrength();
+                break;
+            case 2:
+                GiveSpeed();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+        yield return new WaitForSeconds(1.2f);
         player.canMove = true;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
     }

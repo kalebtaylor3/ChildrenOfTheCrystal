@@ -56,7 +56,7 @@ ModelImporter:
       name: Falling To Roll
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
+      firstFrame: 25
       lastFrame: 128
       wrapMode: 0
       orientationOffsetY: -90
@@ -70,9 +70,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
