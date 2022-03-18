@@ -51,7 +51,9 @@ public class PlayerMove : MonoBehaviour
 	private Rigidbody rigid;
 	private AudioSource aSource;
 
-	private bool canMove = true;
+	[HideInInspector]
+	public bool canMove = true;
+
 	public Transform pickupLoc;
 	private float originOffset = 0.4f;
 	private bool facingRight = true;
@@ -148,17 +150,29 @@ public class PlayerMove : MonoBehaviour
 					if (dimensionalController.currentDimension == Dimension.Dimensions.Red)
 					{
 						Debug.Log("Thats a wall");
-						if (Input.GetKey(KeyCode.LeftControl))
+						if (Input.GetKeyDown(KeyCode.LeftControl))
 						{
 							if(!wall.leverControlled)
-								wall.BreakWall();
-								wall.DestroyChildren();
+                            {
+								StartCoroutine(WaitForWall(wall));
+								if (wall.punchDown)
+									animator.SetTrigger("PunchDown");
+								else
+									animator.SetTrigger("Punch");
+							}
 						}
 					}
 				}
 			}
 		}
     }
+
+	IEnumerator WaitForWall(BreakableWall wall)
+    {
+		yield return new WaitForSeconds(0.8f);
+		wall.BreakWall();
+		wall.DestroyChildren();
+	}
 
     public void SetLayerRecursively(GameObject obj, int newLayer)
 	{
@@ -340,7 +354,7 @@ public class PlayerMove : MonoBehaviour
 	public void pickup(Vector3 Direction)
 	{
 
-		if(playerbeingpickedup != null)
+		if(playerbeingpickedup != null && !dimensionalController.inDimension)
         {
 			lifting = true;
 			playerbeingpickedup.beingLifted = true;
@@ -350,9 +364,11 @@ public class PlayerMove : MonoBehaviour
 			playerbeingpickedup.transform.position = pickupLoc.position;
 			//playerbeingpickedup.GetComponent<BoxCollider>().isTrigger = true;
 			playerbeingpickedup.canMove = false;
-			StartCoroutine(pickupCoolDown(playerbeingpickedup));
+			//StartCoroutine(pickupCoolDown(playerbeingpickedup));
 			playerbeinglifted = playerbeingpickedup;
-        }
+			playerbeingpickedup.animator.SetTrigger("Sit");
+			playerbeinglifted.animator.ResetTrigger("Thrown");
+		}
 
 		//RaycastHit hit = PickUpRayCheck(Direction);
 
@@ -443,7 +459,9 @@ public class PlayerMove : MonoBehaviour
 
 			playerbeinglifted.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 			StartCoroutine(ClearPlayer());
-			StopCoroutine(pickupCoolDown(playerbeingpickedup));
+			playerbeinglifted.animator.SetTrigger("Thrown");
+			playerbeinglifted.animator.ResetTrigger("Sit");
+			//StopCoroutine(pickupCoolDown(playerbeingpickedup));
 			liftTime = 5;
 			//playerbeinglifted = null;
 

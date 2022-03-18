@@ -27,4 +27,4 @@ M - Yellow Dimension (When a dimension isnt active other wise it will revert to 
 Hold Space - to Throw Player In direction youre running. (holding space for longer will throw them further)
 Shared(for now): will eventually just be the pick up button pressed again
 
-**Liam cannot die in the design level (this was because of the player model being replaced, we still cant figure out the issue)**
+***Issues with replacing player models so they are just at the begining of the level in t-pose to be shown off***

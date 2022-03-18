@@ -7,6 +7,8 @@ public class BreakableWall : MonoBehaviour
     bool hasHappened = false;
     private AudioSource breakNoise;
 
+    public bool punchDown;
+
     [SerializeField]
     private GameObject stableWall;
     [SerializeField]

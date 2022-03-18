@@ -128,6 +128,8 @@ public class Dimension : MonoBehaviour
             yellowRune.SetActive(false);
 
             currentDimension = Dimensions.Red;
+            playersForLayers[0].animator.SetTrigger("Red");
+            StartCoroutine(WaitForAnimation(playersForLayers[0]));
         }
     }
 
@@ -148,6 +150,8 @@ public class Dimension : MonoBehaviour
             yellowRune.SetActive(false);
 
             currentDimension = Dimensions.Blue;
+            playersForLayers[1].animator.SetTrigger("Blue");
+            StartCoroutine(WaitForAnimation(playersForLayers[1]));
         }
     }
 
@@ -213,6 +217,15 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(false);
 
         currentDimension = Dimensions.Main;
+    }
+
+    IEnumerator WaitForAnimation(PlayerMove player)
+    {
+        player.canMove = false;
+        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        yield return new WaitForSeconds(2);
+        player.canMove = true;
+        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
     }
 
     public void HasRed()
