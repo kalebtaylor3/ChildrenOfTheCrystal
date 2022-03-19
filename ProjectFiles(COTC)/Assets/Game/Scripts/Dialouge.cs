@@ -9,4 +9,5 @@ public class Dialouge
 
     [TextArea(2, 10)]
     public string[] sentances;
+    public bool trap;
 }

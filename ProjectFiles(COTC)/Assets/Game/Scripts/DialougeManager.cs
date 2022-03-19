@@ -14,6 +14,8 @@ public class DialougeManager : MonoBehaviour
     public Queue<string> sentences;
 
     [SerializeField] private UnityEvent trigger;
+    [SerializeField] private UnityEvent door;
+    bool trap;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class DialougeManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
+        trap = dialouge.trap;
         DisplayNextSentance();
     }
 
@@ -39,6 +41,8 @@ public class DialougeManager : MonoBehaviour
     {
         if(sentences.Count == 0)
         {
+            if (trap)
+                door.Invoke();
             EndDialouge();
             return;
         }
