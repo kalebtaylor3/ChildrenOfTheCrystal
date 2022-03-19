@@ -32,6 +32,21 @@ public class DialougeTrigger : MonoBehaviour
         }
     }
 
+    public void TrapDoor()
+    {
+        if(trap)
+            trigger.Invoke();
+    }
+
+    private void Update()
+    {
+        //if(manger)
+        //{
+        //    if (manger.sentences.Count == 0)
+        //        trigger.Invoke();
+        //}
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(!happenOnce)
