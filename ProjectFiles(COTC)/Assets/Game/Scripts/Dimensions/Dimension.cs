@@ -186,45 +186,58 @@ public class Dimension : MonoBehaviour
     {
         if (hasYellow)
         {
-            DisableAll(false);
-            dimensionList[(int)Dimensions.Yellow].SetActive(true);
-            inDimension = true;
-            hints[(int)Dimensions.Yellow].SetActive(false);
-            postEffects.ChangeDimension(Dimensions.Yellow);
-            playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
-
-            redRune.SetActive(false);
-            greenRune.SetActive(false);
-            blueRune.SetActive(false);
-            yellowRune.SetActive(true);
-
-            currentDimension = Dimensions.Yellow;
 
             DisableEffects();
             yellowEffect.SetActive(true);
+            inDimension = true;
+            playersForLayers[1].animator.SetTrigger("Yellow");
+            StartCoroutine(WaitForAnimation(playersForLayers[1], 4));
         }
+    }
+
+    void GiveYellow()
+    {
+        DisableAll(false);
+        dimensionList[(int)Dimensions.Yellow].SetActive(true);
+        inDimension = true;
+        hints[(int)Dimensions.Yellow].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Yellow);
+        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 3);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(false);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(true);
+
+        currentDimension = Dimensions.Yellow;
     }
 
     public void Green()
     {
         if (hasGreen)
         {
-            dimensionList[(int)Dimensions.Green].SetActive(true);
-            inDimension = true;
-            hints[(int)Dimensions.Green].SetActive(false);
-            postEffects.ChangeDimension(Dimensions.Green);
-            playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
-
-            redRune.SetActive(false);
-            greenRune.SetActive(true);
-            blueRune.SetActive(false);
-            yellowRune.SetActive(false);
-
-            currentDimension = Dimensions.Green;
-
             DisableEffects();
             greenEffect.SetActive(true);
+            inDimension = true;
+            playersForLayers[0].animator.SetTrigger("Green");
+            StartCoroutine(WaitForAnimation(playersForLayers[0], 3));
         }
+    }
+
+    void GiveGreen()
+    {
+        dimensionList[(int)Dimensions.Green].SetActive(true);
+        inDimension = true;
+        hints[(int)Dimensions.Green].SetActive(false);
+        postEffects.ChangeDimension(Dimensions.Green);
+        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 3);
+
+        redRune.SetActive(false);
+        greenRune.SetActive(true);
+        blueRune.SetActive(false);
+        yellowRune.SetActive(false);
+
+        currentDimension = Dimensions.Green;
     }
 
     public void DisableAll(bool normal)
@@ -270,8 +283,10 @@ public class Dimension : MonoBehaviour
                 GiveSpeed();
                 break;
             case 3:
+                GiveGreen();
                 break;
             case 4:
+                GiveYellow();
                 break;
         }
         yield return new WaitForSeconds(1.2f);
