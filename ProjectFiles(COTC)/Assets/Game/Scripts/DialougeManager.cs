@@ -23,6 +23,12 @@ public class DialougeManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            DisplayNextSentance();
+    }
+
     public void StartDialouge(Dialouge dialouge)
     {
         animator.SetBool("IsOpen", true);
