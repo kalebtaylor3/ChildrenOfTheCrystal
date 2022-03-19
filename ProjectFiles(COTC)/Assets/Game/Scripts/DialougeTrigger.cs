@@ -7,20 +7,15 @@ public class DialougeTrigger : MonoBehaviour
 {
     public Dialouge dialouge;
     bool happenOnce = false;
-    public bool trap;
     private DialougeManager manger;
     public bool twoWay;
     public Dialouge nextDialouge;
     bool diplay2Once = false;
-
-    [SerializeField] private UnityEvent trigger;
     public void NextDialouge()
     {
         if (manger)
         {
-            if (trap)
-                trigger.Invoke();
-            else if (!diplay2Once)
+            if (!diplay2Once)
             {
                 if (twoWay)
                     manger.StartDialouge(nextDialouge);
@@ -32,14 +27,9 @@ public class DialougeTrigger : MonoBehaviour
         }
     }
 
-    public void TrapDoor()
-    {
-        if(trap)
-            trigger.Invoke();
-    }
-
     private void Update()
     {
+
         //if(manger)
         //{
         //    if (manger.sentences.Count == 0)
