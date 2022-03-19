@@ -106,6 +106,7 @@ public class Player2 : PlayerMove
     void OffWall()
     {
         rb.useGravity = true;
+        animator.SetTrigger("Normal");
     }
 
     void ClimbWall(bool horizontal)
@@ -116,23 +117,44 @@ public class Player2 : PlayerMove
 
             if (!horizontal)
             {
+                animator.SetTrigger("Vert");
                 rb.velocity = new Vector3(0, 0, 0);
                 float speedMod = y > 0 ? 0.35f : 1;
                 if (Input.GetKey(KeyCode.UpArrow))
+                {
                     this.transform.position += new Vector3(0, 5 * Time.deltaTime, 0);
-                if (Input.GetKey(KeyCode.DownArrow))
+                    animator.SetFloat("climbSpeed", 1);
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
                     this.transform.position += new Vector3(0, -5 * Time.deltaTime, 0);
-
+                    animator.SetFloat("climbSpeed", 1);
+                }
+                else
+                {
+                    animator.SetFloat("climbSpeed", 0);
+                }
             }
 
             if (horizontal)
             {
+                animator.SetTrigger("Horz");
                 rb.velocity = new Vector3(0, 0, 0);
                 float speedMod = x > 0 ? 0.35f : 1;
                 if (Input.GetKey(KeyCode.RightArrow))
+                {
                     this.transform.position += new Vector3(5 * Time.deltaTime, 0, 0);
-                if (Input.GetKey(KeyCode.LeftArrow))
+                    animator.SetFloat("climbSpeed", 1);
+                }
+                else if(Input.GetKey(KeyCode.LeftArrow))
+                {
+                    animator.SetFloat("climbSpeed", 1);
                     this.transform.position += new Vector3(-5 * Time.deltaTime, 0, 0);
+                }
+                else
+                {
+                    animator.SetFloat("climbSpeed", 0);
+                }
             }
         }
     }
