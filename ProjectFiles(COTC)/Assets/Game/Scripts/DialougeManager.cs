@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialougeManager : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class DialougeManager : MonoBehaviour
     public Text dialougeText;
     public Animator animator;
 
-    private Queue<string> sentences;
+    [HideInInspector]
+    public Queue<string> sentences;
+
+    [SerializeField] private UnityEvent trigger;
 
     // Start is called before the first frame update
     void Start()
@@ -51,12 +55,13 @@ public class DialougeManager : MonoBehaviour
         foreach(char letter in sentance.ToCharArray())
         {
             dialougeText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
     }
 
     void EndDialouge()
     {
         animator.SetBool("IsOpen", false);
+        trigger.Invoke();
     }
 }
