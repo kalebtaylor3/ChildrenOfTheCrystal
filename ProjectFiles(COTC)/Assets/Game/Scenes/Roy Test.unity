@@ -699,6 +699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708158088779284934, guid: dec7cd42960366243b5ad41d2112c616,
         type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0378b3daa28018245a4745cb859dfc56, type: 3}
+    - target: {fileID: 1708158088779284934, guid: dec7cd42960366243b5ad41d2112c616,
+        type: 3}
       propertyPath: ingoreMe.m_Bits
       value: 0
       objectReference: {fileID: 0}
@@ -6581,6 +6586,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6189411733189558829, guid: 98f20db713aad1d47bfbbca2290cc153,
+        type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0378b3daa28018245a4745cb859dfc56, type: 3}
     - target: {fileID: 6189411733189558829, guid: 98f20db713aad1d47bfbbca2290cc153,
         type: 3}
       propertyPath: ingoreMe.m_Bits
