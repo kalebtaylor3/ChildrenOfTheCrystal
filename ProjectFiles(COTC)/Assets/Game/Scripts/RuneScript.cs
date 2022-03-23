@@ -21,6 +21,8 @@ public class RuneScript : MonoBehaviour
 
                 if (p1)
                 {
+                    PlayerMove player = other.GetComponent<PlayerMove>();
+                    player.aSource.clip = player.runeSound;
                     givePower.Invoke();
                     this.gameObject.SetActive(false);
                 }
@@ -39,6 +41,8 @@ public class RuneScript : MonoBehaviour
 
                 if (p2)
                 {
+                    PlayerMove player = other.GetComponent<PlayerMove>();
+                    player.aSource.clip = player.runeSound;
                     givePower.Invoke();
                     this.gameObject.SetActive(false);
                 }

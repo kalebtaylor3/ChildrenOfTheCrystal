@@ -14,8 +14,10 @@ public class PlayerMove : MonoBehaviour
 	public Transform mainCam, floorChecks;		//main camera, and floorChecks object. FloorChecks are raycasted down from to check the player is grounded.
 	public Animator animator;					//object with animation controller on, which you want to animate
 	public AudioClip jumpSound;					//play when jumping
-	public AudioClip landSound;					//play when landing on ground
-	
+	public AudioClip landSound;                 //play when landing on ground
+	public AudioClip dimensionSound;
+	public AudioClip runeSound;
+
 	//movement
 	public float accel = 70f;					//acceleration/deceleration in air or on the ground
 	public float airAccel = 18f;			
@@ -49,7 +51,8 @@ public class PlayerMove : MonoBehaviour
 	private EnemyAI enemyAI;
 	private DealDamage dealDamage;
 	private Rigidbody rigid;
-	private AudioSource aSource;
+	[HideInInspector]
+	public AudioSource aSource;
 
 	[HideInInspector]
 	public bool canMove = true;

@@ -6,10 +6,12 @@ public class DoorOpen : MonoBehaviour
 {
 
     private Animator door;
+    private AudioSource doorSource;
 
     private void Start()
     {
         door = GetComponent<Animator>();
+        doorSource = GetComponent<AudioSource>();
     }
     public void Open()
     {
@@ -20,5 +22,6 @@ public class DoorOpen : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         door.Play("DoorTemp");
+        doorSource.Play();
     }
 }
