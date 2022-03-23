@@ -132,6 +132,9 @@ public class Dimension : MonoBehaviour
             redEffect.SetActive(true);
             inDimension = true;
             playersForLayers[0].animator.SetTrigger("Red");
+            playersForLayers[0].aSource.clip = playersForLayers[0].dimensionSound;
+            playersForLayers[0].aSource.volume = 1;
+            playersForLayers[0].aSource.Play();
             StartCoroutine(WaitForAnimation(playersForLayers[0], 1));
         }
     }
@@ -161,6 +164,9 @@ public class Dimension : MonoBehaviour
             blueEffect.SetActive(true);
             inDimension = true;
             playersForLayers[1].animator.SetTrigger("Blue");
+            playersForLayers[1].aSource.clip = playersForLayers[1].dimensionSound;
+            playersForLayers[1].aSource.volume = 1;
+            playersForLayers[1].aSource.Play();
             StartCoroutine(WaitForAnimation(playersForLayers[1], 2));
         }
     }
@@ -191,6 +197,9 @@ public class Dimension : MonoBehaviour
             yellowEffect.SetActive(true);
             inDimension = true;
             playersForLayers[1].animator.SetTrigger("Yellow");
+            playersForLayers[1].aSource.clip = playersForLayers[1].dimensionSound;
+            playersForLayers[1].aSource.volume = 1;
+            playersForLayers[1].aSource.Play();
             StartCoroutine(WaitForAnimation(playersForLayers[1], 4));
         }
     }
@@ -220,6 +229,9 @@ public class Dimension : MonoBehaviour
             greenEffect.SetActive(true);
             inDimension = true;
             playersForLayers[0].animator.SetTrigger("Green");
+            playersForLayers[0].aSource.clip = playersForLayers[0].dimensionSound;
+            playersForLayers[0].aSource.volume = 1;
+            playersForLayers[0].aSource.Play();
             StartCoroutine(WaitForAnimation(playersForLayers[0], 3));
         }
     }
