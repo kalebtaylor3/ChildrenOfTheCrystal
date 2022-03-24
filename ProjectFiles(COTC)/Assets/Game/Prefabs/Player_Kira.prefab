@@ -274,12 +274,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6189411732743649301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.021999847, y: 1.151, z: -0.057000015}
+  m_LocalPosition: {x: -0.022003174, y: 0.67800045, z: -0.057000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6189411733597715854}
-  m_Father: {fileID: 6189411733812206067}
-  m_RootOrder: 19
+  m_Father: {fileID: 6189411733189558828}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6189411732749404770
 GameObject:
@@ -6318,7 +6318,6 @@ Transform:
   - {fileID: 6189411734511438715}
   - {fileID: 6189411734294015206}
   - {fileID: 6189411733737041803}
-  - {fileID: 6189411732743649298}
   m_Father: {fileID: 6189411733189558828}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7041,6 +7040,7 @@ Transform:
   - {fileID: 6189411733268153012}
   - {fileID: 6189411734565571838}
   - {fileID: 6189411732481742204}
+  - {fileID: 6189411732743649298}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -7118,6 +7118,11 @@ MonoBehaviour:
   animator: {fileID: 6192585360706322735}
   jumpSound: {fileID: 8300000, guid: 2e8e5af580018034788a23c65a6ccec9, type: 3}
   landSound: {fileID: 8300000, guid: 857ac2f7dc8de0c4389c33422e72fc95, type: 3}
+  dimensionSound: {fileID: 0}
+  runeSound: {fileID: 0}
+  throwSound: {fileID: 0}
+  liftSound: {fileID: 0}
+  punchSound: {fileID: 0}
   accel: 50
   airAccel: 8
   decel: 7.6
@@ -7135,6 +7140,7 @@ MonoBehaviour:
   jumpLeniancy: 0.17
   onEnemyBounce: 0
   moveDirection: {x: 0, y: 0, z: 0}
+  aSource: {fileID: 0}
   canMove: 1
   pickupLoc: {fileID: 6189411733268153012}
   dimensionalController: {fileID: 0}
@@ -7144,6 +7150,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   climbing: 0
+  playerbeinglifted: {fileID: 0}
   speedTrail: {fileID: 6189411732743649301}
 --- !u!114 &6189411734283973607
 MonoBehaviour:

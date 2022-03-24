@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
 	public AudioClip runeSound;
 	public AudioClip throwSound;
 	public AudioClip liftSound;
+	public AudioClip punchSound;
 
 	//movement
 	public float accel = 70f;					//acceleration/deceleration in air or on the ground
@@ -158,7 +159,10 @@ public class PlayerMove : MonoBehaviour
 						Debug.Log("Thats a wall");
 						if (Input.GetKeyDown(KeyCode.LeftControl))
 						{
-							if(!wall.leverControlled)
+							aSource.volume = 1;
+							aSource.clip = punchSound;
+							aSource.Play();
+							if (!wall.leverControlled)
                             {
 								StartCoroutine(WaitForWall(wall));
 								if (wall.punchDown)
@@ -315,8 +319,8 @@ public class PlayerMove : MonoBehaviour
 		//play landing sound
 		if(player.groundedCount < 0.25 && player.groundedCount != 0 && !GetComponent<AudioSource>().isPlaying && player.landSound && GetComponent<Rigidbody>().velocity.y < 1)
 		{
-			//player.aSource.volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
-			player.aSource.volume = 0.4f;
+			player.aSource.volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
+			//player.aSource.volume = 0.4f;
 			player.aSource.clip = player.landSound;
 			player.aSource.Play ();
 		}

@@ -53,12 +53,14 @@ public class CameraFollow : MonoBehaviour
     private float _timeAtCurrentFrame;
     private float _timeAtLastFrame;
     private float _fakeDelta;
+    private AudioSource camSource;
 
     void Start()
     {
         cam = GetComponent<Camera>();
         tofar.SetActive(false);
         camAm = GetComponent<Animator>();
+        camSource = GetComponent<AudioSource>();
     }
 
     void Awake()
@@ -136,6 +138,11 @@ public class CameraFollow : MonoBehaviour
         offset.x = offX;
         offset.y = offY;
         offset.z = offZ;
+    }
+
+    public void PlaySwoosh()
+    {
+        camSource.Play();
     }
 
     void LateUpdate()
@@ -240,6 +247,7 @@ public class CameraFollow : MonoBehaviour
         camAm.SetTrigger("Door");
         offset.x = -4.1f;
         offset.z = -8.62f;
+        PlaySwoosh();
         StartCoroutine(NormalAngle());
     }
 
@@ -260,6 +268,7 @@ public class CameraFollow : MonoBehaviour
         camAm.ResetTrigger("Door");
         offset.x = 0;
         offset.z = -15.22f;
+        PlaySwoosh();
     }
 
 }

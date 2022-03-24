@@ -8,6 +8,7 @@ public class ChangeOffset : MonoBehaviour
 
     [SerializeField] private UnityEvent trigger;
 
+
     private void OnTriggerEnter(Collider other)
     {
         trigger.Invoke();

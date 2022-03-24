@@ -86,10 +86,14 @@ public class DimensionButton : MonoBehaviour
     {
         if (isSwitch)
         {
-            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.P))
+            if(!happenOnce)
             {
-                Animation.Invoke();
-                trigger.Invoke();
+                if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.P))
+                {
+                    Animation.Invoke();
+                    trigger.Invoke();
+                    happenOnce = true;
+                }
             }
         }
 
