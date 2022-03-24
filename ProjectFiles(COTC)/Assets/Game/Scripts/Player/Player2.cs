@@ -58,6 +58,16 @@ public class Player2 : PlayerMove
             OffWall();
         }
 
+        if (playerbeinglifted != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                aSource.clip = throwSound;
+                aSource.volume = 0.8f;
+                aSource.Play();
+            }
+        }
+
         //float previousX = transform.position.x;
 
         //if (transform.position.z == 0)

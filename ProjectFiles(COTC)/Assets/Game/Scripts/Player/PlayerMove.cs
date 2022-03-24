@@ -17,6 +17,8 @@ public class PlayerMove : MonoBehaviour
 	public AudioClip landSound;                 //play when landing on ground
 	public AudioClip dimensionSound;
 	public AudioClip runeSound;
+	public AudioClip throwSound;
+	public AudioClip liftSound;
 
 	//movement
 	public float accel = 70f;					//acceleration/deceleration in air or on the ground
@@ -74,7 +76,8 @@ public class PlayerMove : MonoBehaviour
 	public bool climbing = false;
 
 	private PlayerMove playerbeingpickedup;
-	private PlayerMove playerbeinglifted;
+	[HideInInspector]
+	public PlayerMove playerbeinglifted;
 	private int liftTime = 5;
 
 	//setup
@@ -312,7 +315,8 @@ public class PlayerMove : MonoBehaviour
 		//play landing sound
 		if(player.groundedCount < 0.25 && player.groundedCount != 0 && !GetComponent<AudioSource>().isPlaying && player.landSound && GetComponent<Rigidbody>().velocity.y < 1)
 		{
-			player.aSource.volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
+			//player.aSource.volume = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/40;
+			player.aSource.volume = 0.4f;
 			player.aSource.clip = player.landSound;
 			player.aSource.Play ();
 		}
@@ -360,6 +364,9 @@ public class PlayerMove : MonoBehaviour
 
 		if(playerbeingpickedup != null && !dimensionalController.inDimension)
         {
+			aSource.clip = liftSound;
+			aSource.volume = 0.8f;
+			aSource.Play();
 			lifting = true;
 			playerbeingpickedup.beingLifted = true;
 			playerbeingpickedup.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
@@ -444,7 +451,6 @@ public class PlayerMove : MonoBehaviour
 
 		if(playerbeinglifted != null)
         {
-			lifting = false;
 			playerbeinglifted.transform.parent = null;
 			//playerbeinglifted.GetComponent<BoxCollider>().isTrigger = false;
 			playerbeinglifted.canMove = true;
@@ -465,9 +471,7 @@ public class PlayerMove : MonoBehaviour
 			StartCoroutine(ClearPlayer());
 			playerbeinglifted.animator.SetTrigger("Thrown");
 			playerbeinglifted.animator.ResetTrigger("Sit");
-			//StopCoroutine(pickupCoolDown(playerbeingpickedup));
-			liftTime = 5;
-			//playerbeinglifted = null;
+			lifting = false;
 
 		}
 
