@@ -13,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     private bool paused = false;
 
     public GameObject pauseMenu;
+
+    [SerializeField]
+    private AudioMixer mixer;
     // Update is called once per frame
 
 
@@ -41,5 +44,30 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1f;
             unPausedSnap.TransitionTo(0.1f);
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.LoadLevel(0);
+    }
+
+    public void LoadCredits()
+    {
+
+    }
+
+    public void SetMasterLevel(float sliderv)
+    {
+        mixer.SetFloat("MasterVol", Mathf.Log10(sliderv) * 20f);
+    }
+
+    public void SetMusicLevel(float sliderv)
+    {
+        mixer.SetFloat("MusicVol", Mathf.Log(sliderv) * 20f);
+    }
+
+    public void SetEffectsLevel(float sliderv)
+    {
+        mixer.SetFloat("EffectVol", Mathf.Log(sliderv) * 20f);
     }
 }
