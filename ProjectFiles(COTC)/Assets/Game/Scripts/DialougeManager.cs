@@ -16,11 +16,18 @@ public class DialougeManager : MonoBehaviour
     [SerializeField] private UnityEvent trigger;
     [SerializeField] private UnityEvent door;
     bool trap;
+    private AudioSource audio;
+    public AudioClip letters;
+    public AudioClip nextSentance;
+
+    private float dVolume;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        audio = GetComponent<AudioSource>();
+        dVolume = audio.volume;
     }
 
     private void Update()
@@ -50,12 +57,24 @@ public class DialougeManager : MonoBehaviour
             if (trap)
                 door.Invoke();
             EndDialouge();
+            if (!audio.isPlaying)
+            {
+                audio.clip = nextSentance;
+                audio.volume = 1;
+                audio.Play();
+            }
             return;
         }
 
         string sentance = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(DisplayText(sentance));
+        if (!audio.isPlaying)
+        {
+            audio.clip = nextSentance;
+            audio.volume = 1;
+            audio.Play();
+        }
     }
 
     IEnumerator DisplayText(string sentance)
@@ -65,6 +84,12 @@ public class DialougeManager : MonoBehaviour
         foreach(char letter in sentance.ToCharArray())
         {
             dialougeText.text += letter;
+            if (!audio.isPlaying)
+            {
+                audio.clip = letters;
+                audio.volume = dVolume;
+                audio.Play();
+            }
             yield return new WaitForSeconds(0.03f);
         }
     }

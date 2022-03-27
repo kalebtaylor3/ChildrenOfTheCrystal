@@ -27,9 +27,9 @@ public class DimensionButton : MonoBehaviour
     [SerializeField] public UnityEvent idle;
     [SerializeField] private UnityEvent idlePress;
 
+
     private void OnTriggerEnter(Collider other)
     {
-
         /*if(inDimension)
         {
             if(other.gameObject.layer != 3 && other.gameObject.layer != 0)

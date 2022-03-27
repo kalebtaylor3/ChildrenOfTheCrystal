@@ -159,9 +159,12 @@ public class PlayerMove : MonoBehaviour
 						Debug.Log("Thats a wall");
 						if (Input.GetKeyDown(KeyCode.LeftControl))
 						{
-							aSource.volume = 1;
-							aSource.clip = punchSound;
-							aSource.Play();
+							if (!aSource.isPlaying)
+							{
+								aSource.volume = 1;
+								aSource.clip = punchSound;
+								aSource.Play();
+							}
 							if (!wall.leverControlled)
                             {
 								StartCoroutine(WaitForWall(wall));
@@ -354,9 +357,12 @@ public class PlayerMove : MonoBehaviour
 	{
 		if(jumpSound)
 		{
-			aSource.volume = 1;
-			aSource.clip = jumpSound;
-			aSource.Play ();
+			if (!aSource.isPlaying)
+			{
+				aSource.volume = 1;
+				aSource.clip = jumpSound;
+				aSource.Play();
+			}
 		}
 		rigid.velocity = new Vector3(rigid.velocity.x, 0f, rigid.velocity.z);
 		rigid.AddRelativeForce (jumpVelocity, ForceMode.Impulse);
@@ -368,9 +374,12 @@ public class PlayerMove : MonoBehaviour
 
 		if(playerbeingpickedup != null && !dimensionalController.inDimension)
         {
-			aSource.clip = liftSound;
-			aSource.volume = 0.8f;
-			aSource.Play();
+			if (!aSource.isPlaying)
+			{
+				aSource.clip = liftSound;
+				aSource.volume = 0.8f;
+				aSource.Play();
+			}
 			lifting = true;
 			playerbeingpickedup.beingLifted = true;
 			playerbeingpickedup.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
