@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,12 +17,17 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     private AudioMixer mixer;
+
+    public Slider masterSlide;
+    public Slider effectSlide;
+    public Slider musicSlide;
     // Update is called once per frame
 
 
     private void Start()
     {
         pauseMenu.SetActive(false);
+        LoadSounds();
     }
 
     void Update()
@@ -56,18 +62,25 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    public void SetMasterLevel(float sliderv)
+    private void LoadSounds()
     {
-        mixer.SetFloat("MasterVol", Mathf.Log10(sliderv) * 20f);
+        mixer.SetFloat("MasterVol", Mathf.Log10(masterSlide.value) * 20f);
+        mixer.SetFloat("MusicVol", Mathf.Log(musicSlide.value) * 20f);
+        mixer.SetFloat("EffectVol", Mathf.Log(effectSlide.value) * 20f);
     }
 
-    public void SetMusicLevel(float sliderv)
+    public void SetMasterLevel()
     {
-        mixer.SetFloat("MusicVol", Mathf.Log(sliderv) * 20f);
+        mixer.SetFloat("MasterVol", Mathf.Log10(masterSlide.value) * 20f);
     }
 
-    public void SetEffectsLevel(float sliderv)
+    public void SetMusicLevel()
     {
-        mixer.SetFloat("EffectVol", Mathf.Log(sliderv) * 20f);
+        mixer.SetFloat("MusicVol", Mathf.Log(musicSlide.value) * 20f);
+    }
+
+    public void SetEffectsLevel()
+    {
+        mixer.SetFloat("EffectVol", Mathf.Log(effectSlide.value) * 20f);
     }
 }
