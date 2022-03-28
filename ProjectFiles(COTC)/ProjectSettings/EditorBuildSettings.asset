@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Game/Scenes/Kaleb.unity
     guid: 4fda01684994a544aa52ef6f7bc7fb32
+  - enabled: 1
+    path: Assets/Game/Scenes/Credits.unity
+    guid: fcc3afba01c35aa49b6ebd5eb75d07bf
   m_configObjects: {}

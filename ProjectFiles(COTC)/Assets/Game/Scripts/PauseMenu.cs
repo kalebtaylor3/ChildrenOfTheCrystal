@@ -55,11 +55,13 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.LoadLevel(0);
+        Time.timeScale = 1f;
     }
 
     public void LoadCredits()
     {
-
+        Application.LoadLevel(2);
+        Time.timeScale = 1f;
     }
 
     private void LoadSounds()
