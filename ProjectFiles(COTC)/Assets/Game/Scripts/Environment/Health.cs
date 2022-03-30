@@ -89,7 +89,7 @@ public class Health : MonoBehaviour
 	}
 	
 	//respawn object, or destroy it and create the SpawnOnDeath objects
-	void Death()
+	public void Death()
 	{
 		//player drop item
 		if(tag == "Player")
