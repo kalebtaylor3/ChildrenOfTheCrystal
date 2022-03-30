@@ -16,7 +16,6 @@ public class Checkpoint : MonoBehaviour
 
 	private Color defColor;
 	private GameObject[] checkpoints;
-	private Renderer render;
 	private AudioSource aSource;
 
 	private bool player1Once = false;
@@ -25,7 +24,6 @@ public class Checkpoint : MonoBehaviour
 	//setup
 	void Awake()
 	{
-		render = GetComponent<Renderer>();
 		aSource = GetComponent<AudioSource>();
 		if(tag != "Respawn")
 		{
@@ -33,9 +31,6 @@ public class Checkpoint : MonoBehaviour
 			Debug.LogWarning ("'Checkpoint' script attached to object without the 'Respawn' tag, tag has been assigned automatically", transform);	
 		}
 		GetComponent<Collider>().isTrigger = true;
-		
-		if(render)
-			defColor = render.material.color;
 		activeColor.a = activeColorOpacity;
 	}
 	
@@ -51,20 +46,17 @@ public class Checkpoint : MonoBehaviour
 	//set checkpoint
 	void OnTriggerEnter(Collider other)
 	{
+		Debug.Log("checkpoint");
 		if(other.transform.tag == "Player1")
 		{
 			//set respawn position in players health script
 			player1Health.respawnPos = transform.position;
-			
-			//toggle checkpoints
-				foreach (GameObject checkpoint in checkpoints)
-					checkpoint.GetComponent<Renderer>().material.color = defColor;
+
 			if (!player1Once)
 			{
 				aSource.Play();
 				player1Once = true;
 			}
-				render.material.color = activeColor;
 		}
 
 		if (other.transform.tag == "Player2")
@@ -72,16 +64,11 @@ public class Checkpoint : MonoBehaviour
 			//set respawn position in players health script
 			player2Health.respawnPos = transform.position;
 
-			//toggle checkpoints
-				foreach (GameObject checkpoint in checkpoints)
-					checkpoint.GetComponent<Renderer>().material.color = defColor;
-
 			if (!player2Once)
 			{
 				aSource.Play();
 				player2Once = true;
 			}
-				render.material.color = activeColor;
 		}
 	}
 }
