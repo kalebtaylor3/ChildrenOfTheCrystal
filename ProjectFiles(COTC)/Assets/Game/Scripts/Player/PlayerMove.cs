@@ -56,6 +56,7 @@ public class PlayerMove : MonoBehaviour
 	private Rigidbody rigid;
 	[HideInInspector]
 	public AudioSource aSource;
+	public AudioSource jSource;
 
 	[HideInInspector]
 	public bool canMove = true;
@@ -159,12 +160,9 @@ public class PlayerMove : MonoBehaviour
 						Debug.Log("Thats a wall");
 						if (Input.GetKeyDown(KeyCode.LeftControl))
 						{
-							if (!aSource.isPlaying)
-							{
-								aSource.volume = 1;
-								aSource.clip = punchSound;
-								aSource.Play();
-							}
+							aSource.volume = 1;
+							aSource.clip = punchSound;
+							aSource.Play();
 							if (!wall.leverControlled)
                             {
 								StartCoroutine(WaitForWall(wall));
@@ -357,12 +355,9 @@ public class PlayerMove : MonoBehaviour
 	{
 		if(jumpSound)
 		{
-			if (!aSource.isPlaying)
-			{
-				aSource.volume = 1;
-				aSource.clip = jumpSound;
-				aSource.Play();
-			}
+			jSource.volume = 1;
+			jSource.clip = jumpSound;
+			jSource.Play();
 		}
 		rigid.velocity = new Vector3(rigid.velocity.x, 0f, rigid.velocity.z);
 		rigid.AddRelativeForce (jumpVelocity, ForceMode.Impulse);

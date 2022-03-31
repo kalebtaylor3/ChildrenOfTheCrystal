@@ -27,6 +27,8 @@ public class DimensionButton : MonoBehaviour
     [SerializeField] public UnityEvent idle;
     [SerializeField] private UnityEvent idlePress;
 
+    bool played = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -79,6 +81,7 @@ public class DimensionButton : MonoBehaviour
             happenOnce = false;
             idle.Invoke();
             pressed = false;
+            played = false;
         }
     }
 
@@ -141,6 +144,11 @@ public class DimensionButton : MonoBehaviour
 
     public IEnumerator WaitForButton()
     {
+        if (!played)
+        {
+            GetComponent<AudioSource>().Play();
+            played = true;
+        }
         yield return new WaitForSeconds(0.8f);
         trigger.Invoke();
     }
