@@ -15,6 +15,11 @@ public class Timer : MonoBehaviour
 
     public Text timerText;
 
+    public Transform resetPoint;
+
+    public GameObject[] objectsToBeDisabled;
+    public GameObject[] objectsToBeReset;
+
     private void Start()
     {
         timeRemaining = startTime;
@@ -35,12 +40,29 @@ public class Timer : MonoBehaviour
         else
         {
             Debug.Log("Time has run out!");
-            player1.Death();
-            player2.Death();
+            player1.transform.position = resetPoint.position;
+            player2.transform.position = resetPoint.position;
+            //clearCheckpoint
+            player1.ClearSpawn();
+            player2.ClearSpawn();
+            ResetObjects();
             gameOver.SetActive(true);
             timeRemaining = startTime;
             gameObject.SetActive(false);
             timerText.text = "";
+        }
+    }
+
+    void ResetObjects()
+    {
+        for(int i = 0; i < objectsToBeDisabled.Length; i++)
+        {
+            objectsToBeDisabled[i].SetActive(false);
+        }
+
+        for (int i = 0; i < objectsToBeReset.Length; i++)
+        {
+            objectsToBeReset[i].SetActive(true);
         }
     }
 

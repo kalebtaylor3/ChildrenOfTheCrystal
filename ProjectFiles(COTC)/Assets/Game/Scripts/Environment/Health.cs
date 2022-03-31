@@ -23,6 +23,8 @@ public class Health : MonoBehaviour
 	public bool dead, flashing;
 	[HideInInspector]
 	public Vector3 respawnPos;
+	private Vector3 timerSpawn;
+	public Transform timerSpawner;
 	
 	private Color originalColor;
 	private int defHealth, h, hitForce;
@@ -45,6 +47,7 @@ public class Health : MonoBehaviour
 		originalColor = flashRender.material.color;
 		defHealth = currentHealth;
 		respawnPos = transform.position;
+		timerSpawn = timerSpawner.position;
 	}
 	
 	//detecting damage and dying
@@ -87,6 +90,11 @@ public class Health : MonoBehaviour
 			nextFlash = Time.time + hitFlashDelay;
 		}
 	}
+
+	public void ClearSpawn()
+    {
+		respawnPos = timerSpawn;
+    }
 	
 	//respawn object, or destroy it and create the SpawnOnDeath objects
 	public void Death()
