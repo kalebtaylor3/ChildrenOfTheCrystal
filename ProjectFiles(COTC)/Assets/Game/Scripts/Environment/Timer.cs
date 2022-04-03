@@ -20,6 +20,8 @@ public class Timer : MonoBehaviour
     public GameObject[] objectsToBeDisabled;
     public GameObject[] objectsToBeReset;
 
+    public Dimension dimensionController;
+
     private void Start()
     {
         timeRemaining = startTime;
@@ -50,6 +52,7 @@ public class Timer : MonoBehaviour
             timeRemaining = startTime;
             gameObject.SetActive(false);
             timerText.text = "";
+            dimensionController.DisableAll(true);
         }
     }
 
