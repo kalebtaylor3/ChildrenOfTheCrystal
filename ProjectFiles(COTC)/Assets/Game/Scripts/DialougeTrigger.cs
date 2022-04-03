@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class DialougeTrigger : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DialougeTrigger : MonoBehaviour
     public bool twoWay;
     public Dialouge nextDialouge;
     bool diplay2Once = false;
+
     public void NextDialouge()
     {
         if (manger)

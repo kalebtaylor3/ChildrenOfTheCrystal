@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class DialougeManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class DialougeManager : MonoBehaviour
     public AudioClip nextSentance;
 
     private float dVolume;
+
+    public static event Action onNext;
 
     // Start is called before the first frame update
     void Start()
