@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushForce: 0
   pushHeight: 0
-  damage: 1000
+  damage: 5
   triggerEnter: 1
   collisionEnter: 1
   effectedTags:
