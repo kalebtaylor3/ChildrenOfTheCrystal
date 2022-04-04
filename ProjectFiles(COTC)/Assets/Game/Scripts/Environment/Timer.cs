@@ -32,11 +32,6 @@ public class Timer : MonoBehaviour
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
-        }
-
-        if (timeRemaining > 0)
-        {
-            timeRemaining -= Time.deltaTime;
             DisplayTime(timeRemaining);
         }
         else
