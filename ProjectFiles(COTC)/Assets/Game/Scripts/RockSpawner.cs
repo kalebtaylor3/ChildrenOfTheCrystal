@@ -11,12 +11,15 @@ public class RockSpawner : MonoBehaviour
     // An array of the spawn points this enemy can spawn from.
     public Transform[] spawnPoints;
 
-    public float maxTime = 1;
+    //The time to spawn the object
+    public float spawnTime;
 
-    public float minTime = 1;
+    //  public float maxTime = 1;
+
+    //  public float minTime = 1;
 
 
-   public Vector3 rockDirection;
+    public Vector3 rockDirection;
 
     //rock velocity
     //private float velocity = 5;
@@ -24,8 +27,7 @@ public class RockSpawner : MonoBehaviour
     //current time
     private float time;
 
-    //The time to spawn the object
-    private float spawnTime;
+   
    void Awake()
     {
         rockDirection = new Vector3(0.0f, -1.0f, 0.0f);
@@ -38,17 +40,7 @@ public class RockSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetRandomTime();
         time = 0;
-    }
-
-    // Update is called once per frame
-  
-    //Sets the random time between minTime and maxTime
-    void SetRandomTime()
-    {
-        //spawnTime = Random.Range(minTime, maxTime);
-        spawnTime = 0.4f;
     }
     void FixedUpdate()
     {
@@ -59,7 +51,6 @@ public class RockSpawner : MonoBehaviour
         {
             Debug.Log("Time to spawn: " + Rock.name);
             Spawn();
-            SetRandomTime();
             time = 0;
         }   
     }
@@ -70,5 +61,6 @@ public class RockSpawner : MonoBehaviour
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
         Instantiate(Rock, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        Rock.SetActive(true);
     }
 }
