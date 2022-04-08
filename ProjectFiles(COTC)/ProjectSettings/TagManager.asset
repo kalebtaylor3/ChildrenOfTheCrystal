@@ -20,6 +20,7 @@ TagManager:
   - Player2
   - Temple
   - rockDestroy
+  - Wall
   layers:
   - Default
   - TransparentFX
