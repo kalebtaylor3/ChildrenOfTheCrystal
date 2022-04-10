@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Crystals
+  m_Name: Crystal (Yellow)
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 2
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: bd64ea0bb2344f948bc6ec32dae91371, type: 3}
+        m_Texture: {fileID: 2800000, guid: 69f81d1601c300c408cefd29fd35bac1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -36,23 +36,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 080e97e7feae09b48acf6aed1c0cb5d9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3cc2b75d98a83ec42b0d55b98e903e0e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c2239a9313ebfb2428dcfad14a2c4cd1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 36c70c1111e25cf4fa45f49608c249cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 5a39d814ec4daf040a207a66445b8424, type: 3}
+        m_Texture: {fileID: 2800000, guid: d3bda0f1acbca074083bd52aa979ffa6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 816edd40c2a7c2c4a8c65e282da75f77, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7b44ff2be1084bf4d9c5a0c0421ae0d0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 3eeb0047ec1a0e34ba09c1c47059964b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7034304747d1dec44a5f28d4728af314, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -74,5 +74,5 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 14.259478, b: 14.259478, a: 1}
+    - _EmissionColor: {r: 7.5303288, g: 10.680629, b: 0, a: 1}
   m_BuildTextureStacks: []
