@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 //simple class to add to checkpoint triggers
 [RequireComponent(typeof(CapsuleCollider))]
@@ -20,6 +21,8 @@ public class Checkpoint : MonoBehaviour
 
 	private bool player1Once = false;
 	private bool player2Once = false;
+
+	[SerializeField] private UnityEvent trigger;
 
 	//setup
 	void Awake()
@@ -47,6 +50,7 @@ public class Checkpoint : MonoBehaviour
 	void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("checkpoint");
+		trigger.Invoke();
 		if(other.transform.tag == "Player1")
 		{
 			//set respawn position in players health script
