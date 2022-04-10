@@ -93,9 +93,9 @@ public class Dimension : MonoBehaviour
                 Strength();
             if (Input.GetKeyDown(KeyCode.X))
                 Green();
-            if (Input.GetKeyDown(KeyCode.N))
-                SuperSpeed();
             if (Input.GetKeyDown(KeyCode.M))
+                SuperSpeed();
+            if (Input.GetKeyDown(KeyCode.N))
                 Yellow();
         }
         else
