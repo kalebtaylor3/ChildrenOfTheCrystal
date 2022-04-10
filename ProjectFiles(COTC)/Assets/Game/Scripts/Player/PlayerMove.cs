@@ -176,7 +176,22 @@ public class PlayerMove : MonoBehaviour
 				}
 			}
 		}
-    }
+
+		if (other.tag == "Player")
+		{
+			if (other.GetComponent<Player1>() != null)
+			{
+				playerbeingpickedup = other.GetComponent<PlayerMove>();
+			}
+
+			if (other.GetComponent<Player2>() != null)
+			{
+				playerbeingpickedup = other.GetComponent<PlayerMove>();
+			}
+
+		}
+
+	}
 
 	IEnumerator WaitForWall(BreakableWall wall)
     {
