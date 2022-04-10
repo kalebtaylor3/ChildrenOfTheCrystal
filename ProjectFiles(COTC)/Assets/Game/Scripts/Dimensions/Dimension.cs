@@ -87,7 +87,7 @@ public class Dimension : MonoBehaviour
 
     private void Update()
     {
-        if (!inDimension)
+        if (!inDimension && !playersForLayers[0].beingLifted && !playersForLayers[1].beingLifted)
         {
             if (Input.GetKeyDown(KeyCode.Z))
                 Strength();
