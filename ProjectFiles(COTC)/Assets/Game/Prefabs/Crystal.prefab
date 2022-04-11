@@ -99,3 +99,5 @@ MonoBehaviour:
   greenMat: {fileID: 2100000, guid: bd78e6384edc10f43934971480e721d9, type: 2}
   yellowMat: {fileID: 2100000, guid: 30488a1d5fd2818479bc3d1a728f3cd3, type: 2}
   normalMat: {fileID: 2100000, guid: 97feeaec29da5c24b95d96a12ef345c0, type: 2}
+  crystalRenderer: {fileID: 2513465880349108304}
+  cluster: 0

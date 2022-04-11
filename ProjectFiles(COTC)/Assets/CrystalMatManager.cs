@@ -19,8 +19,6 @@ public class CrystalMatManager : MonoBehaviour
 
     private Renderer crystalRenderer;
 
-
-
     private void Start()
     {
         crystalRenderer = GetComponent<Renderer>();
