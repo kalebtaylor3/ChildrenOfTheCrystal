@@ -1222,6 +1222,7 @@ GameObject:
   - component: {fileID: 6000343739129800769}
   - component: {fileID: 5564329747372676550}
   - component: {fileID: 4401548080351737773}
+  - component: {fileID: 700676893463565847}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -1311,3 +1312,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &700676893463565847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041527704640255823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7749a9bab07d744b83f0831e8046d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redMat: {fileID: 2100000, guid: cf338777f24caa34a899da9117401bcc, type: 2}
+  blueMat: {fileID: 2100000, guid: e087c299e5cdc0e428b478be0c9cf5d7, type: 2}
+  greenMat: {fileID: 2100000, guid: 367d075e30537b74ea73d1f85156f322, type: 2}
+  yellowMat: {fileID: 2100000, guid: f08fd203396bb074190bc9421c15524f, type: 2}
+  normalMat: {fileID: 2100000, guid: 4344b5201a3dfe0409b870a4c1fd7c1b, type: 2}
