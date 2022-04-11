@@ -6,20 +6,21 @@ using UnityEngine.Events;
 public class TriggerBlocks : MonoBehaviour
 {
     [SerializeField] private UnityEvent trigger;
-    int playerCount = 0;
+
+    public Transform playerposition;
+
+    public PlayerMove[] players;
+    bool happenOnce = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        bool happenOnce = false;
-        playerCount++;
-        Debug.Log(playerCount);
 
-        if(playerCount == 2)
+        if (!happenOnce)
+        {
             trigger.Invoke();
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        playerCount--;
+            players[0].transform.position = new Vector3(playerposition.position.x, playerposition.position.y, playerposition.position.z);
+            players[1].transform.position = new Vector3(playerposition.position.x + 1, playerposition.position.y, playerposition.position.z);
+            happenOnce = true;
+        }
     }
 }
