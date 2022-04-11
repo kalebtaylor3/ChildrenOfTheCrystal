@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 7327296889689961172}
   - component: {fileID: 7327296889689961173}
   m_Layer: 2
-  m_Name: Control
+  m_Name: N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 7327296889848897118}
   - component: {fileID: 7327296889848897119}
   m_Layer: 2
-  m_Name: Control (1)
+  m_Name: Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1228,10 +1228,10 @@ RectTransform:
   - {fileID: 7327296890148152089}
   - {fileID: 7327296890148152090}
   - {fileID: 7327296890148152091}
-  - {fileID: 7327296890148152092}
-  - {fileID: 7327296890148152093}
   - {fileID: 7327296890148152095}
   - {fileID: 7327296890148152094}
+  - {fileID: 7327296890148152092}
+  - {fileID: 7327296890148152093}
   m_Father: {fileID: 7327296891418245936}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1852,7 +1852,7 @@ RectTransform:
   m_Children:
   - {fileID: 7327296890192586188}
   m_Father: {fileID: 7327296889988650295}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1928,7 +1928,7 @@ RectTransform:
   m_Children:
   - {fileID: 7327296889689961174}
   m_Father: {fileID: 7327296889988650295}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2153,7 +2153,7 @@ RectTransform:
   m_LocalScale: {x: 1.33872, y: 1.33872, z: 1.33872}
   m_Children: []
   m_Father: {fileID: 7327296889988650295}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2228,7 +2228,7 @@ RectTransform:
   m_LocalScale: {x: 1.33872, y: 1.33872, z: 1.33872}
   m_Children: []
   m_Father: {fileID: 7327296889988650295}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2437,7 +2437,7 @@ GameObject:
   - component: {fileID: 7327296890192586186}
   - component: {fileID: 7327296890192586187}
   m_Layer: 2
-  m_Name: Control (2)
+  m_Name: M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4786,7 +4786,7 @@ GameObject:
   - component: {fileID: 7327296891362866784}
   - component: {fileID: 7327296891362866785}
   m_Layer: 2
-  m_Name: Control (1)
+  m_Name: X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
