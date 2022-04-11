@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 153695862886884081}
   - component: {fileID: 3858971387139910996}
   - component: {fileID: 1326632582222059934}
+  - component: {fileID: 1496142130943224722}
   m_Layer: 0
   m_Name: Crystal Cluster
   m_TagString: Untagged
@@ -82,3 +83,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1496142130943224722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678312080085989451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7749a9bab07d744b83f0831e8046d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redMat: {fileID: 2100000, guid: 62e82cc47d32e5a42a500768b57b2a66, type: 2}
+  blueMat: {fileID: 2100000, guid: a7a37ba7268172d4e86d362089e68374, type: 2}
+  greenMat: {fileID: 2100000, guid: 7ef2511df60903c46896da73fecae424, type: 2}
+  yellowMat: {fileID: 2100000, guid: dc632147f7ea2ac4e84e56ee88b9f506, type: 2}
+  normalMat: {fileID: 2100000, guid: 97feeaec29da5c24b95d96a12ef345c0, type: 2}
+  crystalRenderer: {fileID: 1326632582222059934}
+  cluster: 1

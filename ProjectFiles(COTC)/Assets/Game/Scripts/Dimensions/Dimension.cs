@@ -66,6 +66,19 @@ public class Dimension : MonoBehaviour
     [SerializeField]
     private bool hasYellow = false;
 
+    [SerializeField]
+    private Material redMat;
+    [SerializeField]
+    private Material blueMat;
+    [SerializeField]
+    private Material greenMat;
+    [SerializeField]
+    private Material yellowMat;
+
+    [SerializeField]
+    private GameObject[] crystals;
+
+    public static event Action<string> OnDimension;
 
     // Start is called before the first frame update
     void Start()
@@ -154,6 +167,7 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(false);
 
         currentDimension = Dimensions.Red;
+        OnDimension?.Invoke("Red");
     }
 
     public void SuperSpeed()
@@ -186,6 +200,7 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(false);
 
         currentDimension = Dimensions.Blue;
+        OnDimension?.Invoke("Blue");
     }
 
     public void Yellow()
@@ -219,6 +234,7 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(true);
 
         currentDimension = Dimensions.Yellow;
+        OnDimension?.Invoke("Yellow");
     }
 
     public void Green()
@@ -250,6 +266,7 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(false);
 
         currentDimension = Dimensions.Green;
+        OnDimension?.Invoke("Green");
     }
 
     public void DisableAll(bool normal)
@@ -279,6 +296,7 @@ public class Dimension : MonoBehaviour
         yellowRune.SetActive(false);
 
         currentDimension = Dimensions.Main;
+        OnDimension?.Invoke("Main");
     }
 
     IEnumerator WaitForAnimation(PlayerMove player, int D)
