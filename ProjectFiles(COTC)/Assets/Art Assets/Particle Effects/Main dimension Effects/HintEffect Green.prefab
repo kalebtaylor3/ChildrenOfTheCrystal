@@ -14424,7 +14424,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4ba5db5d035ce4f43b9d41b9ed7ec7e9, type: 2}
+  - {fileID: 2100000, guid: da271193735dfc344b358fe55b292b66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14480,7 +14480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 879303098588877082}
   m_Layer: 0
-  m_Name: HintEffect 1
+  m_Name: HintEffect Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
