@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CrystalMatManager : MonoBehaviour
 {
-
     [SerializeField]
     private Material redMat;
     [SerializeField]
@@ -15,13 +14,21 @@ public class CrystalMatManager : MonoBehaviour
     private Material yellowMat;
     [SerializeField]
     private Material normalMat;
-
+    [SerializeField]
+    private bool multipleMaterials;
 
     private Renderer crystalRenderer;
+
+    Material[] mats;
 
     private void Start()
     {
         crystalRenderer = GetComponent<Renderer>();
+
+        if(multipleMaterials)
+        {
+            mats = gameObject.GetComponent<Renderer>().materials;
+        }
     }
 
     private void OnEnable()
@@ -36,23 +43,52 @@ public class CrystalMatManager : MonoBehaviour
 
     void ChangeCrystals(string dimension)
     {
-        switch (dimension)
+        if (multipleMaterials)
         {
-            case "Red":
-                crystalRenderer.material = redMat;
-                break;
-            case "Blue":
-                crystalRenderer.material = blueMat;
-                break;
-            case "Green":
-                crystalRenderer.material = greenMat;
-                break;
-            case "Yellow":
-                crystalRenderer.material = yellowMat;
-                break;
-            case "Main":
-                crystalRenderer.material = normalMat;
-                break;
+            switch (dimension)
+            {
+                case "Red":
+                    mats[1] = redMat;
+                    crystalRenderer.materials = mats;
+                    break;
+                case "Blue":
+                    mats[1] = blueMat;
+                    crystalRenderer.materials = mats;
+                    break;
+                case "Green":
+                    mats[1] = greenMat;
+                    crystalRenderer.materials = mats;
+                    break;
+                case "Yellow":
+                    mats[1] = yellowMat;
+                    crystalRenderer.materials = mats;
+                    break;
+                case "Main":
+                    mats[1] = normalMat;
+                    crystalRenderer.materials = mats;
+                    break;
+            }
+        }
+        else
+        {
+            switch (dimension)
+            {
+                case "Red":
+                    crystalRenderer.material = redMat;
+                    break;
+                case "Blue":
+                    crystalRenderer.material = blueMat;
+                    break;
+                case "Green":
+                    crystalRenderer.material = greenMat;
+                    break;
+                case "Yellow":
+                    crystalRenderer.material = yellowMat;
+                    break;
+                case "Main":
+                    crystalRenderer.material = normalMat;
+                    break;
+            }
         }
     }
 }
