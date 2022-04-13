@@ -107,9 +107,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 708.5
-        width: 945
-        height: 708.5
+        y: 750
+        width: 750
+        height: 750
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,10 +127,10 @@ TextureImporter:
       name: Dimensional Symbols For UI (Grey)_1
       rect:
         serializedVersion: 2
-        x: 945
-        y: 708.5
-        width: 945
-        height: 708.5
+        x: 750
+        y: 750
+        width: 750
+        height: 750
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,9 +149,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0.5
-        width: 945
-        height: 708.5
+        y: 0
+        width: 750
+        height: 750
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: Dimensional Symbols For UI (Grey)_3
       rect:
         serializedVersion: 2
-        x: 945
-        y: 0.5
-        width: 945
-        height: 708.5
+        x: 750
+        y: 0
+        width: 750
+        height: 750
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
