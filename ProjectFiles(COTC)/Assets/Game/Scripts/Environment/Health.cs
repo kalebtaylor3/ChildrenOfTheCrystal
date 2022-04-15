@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 //attach to any object in the game which takes damage (player, enemies, breakable crates, smashable windows..)
 [RequireComponent(typeof(AudioSource))]
@@ -33,6 +34,9 @@ public class Health : MonoBehaviour
 	private Throwing throwing;
 	private Renderer flashRender;
 	private AudioSource aSource;
+
+	[SerializeField]
+	private Slider healthBar;
 	
 	//setup
 	void Awake()
@@ -78,6 +82,8 @@ public class Health : MonoBehaviour
 		dead = (currentHealth <= 0) ? true : false;
 		if (dead)
 			Death();
+
+		healthBar.value = currentHealth;
 	}
 	
 	//toggle the flashObject material tint color
