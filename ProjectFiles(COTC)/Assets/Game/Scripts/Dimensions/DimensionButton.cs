@@ -32,6 +32,7 @@ public class DimensionButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         /*if(inDimension)
         {
             if(other.gameObject.layer != 3 && other.gameObject.layer != 0)
