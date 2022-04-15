@@ -112,7 +112,7 @@ public class Player2 : PlayerMove
 
     void SprintPower()
     {
-        this.accel = 250;
+        this.accel = 200;
         speedTrail.SetActive(true);
     }
     void NormalSpeed()
