@@ -13,6 +13,8 @@ public class Player2 : PlayerMove
     float y;
     float x;
 
+    public int dashSpeed;
+
     public AudioSource dash;
     private void Start()
     {
@@ -46,20 +48,21 @@ public class Player2 : PlayerMove
         this.CalculateMovement(this, h, v, "ArrowJump");
         direction = this.checkDirection();
 
+
         if(this.dimensionalController.currentDimension == Dimension.Dimensions.Blue)
         {
             SprintPower();
             if (!grounded)
             {
-                if (Input.GetKeyDown(KeyCode.RightControl) && Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKeyDown(KeyCode.RightControl) && direction)
                 {
-                    rb.AddForce(Vector3.right * 1500);
+                    rb.AddForce(Vector3.right * dashSpeed);
                     dash.Play();
                 }
 
-                if (Input.GetKeyDown(KeyCode.RightControl) && Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKeyDown(KeyCode.RightControl) && !direction)
                 {
-                    rb.AddForce(Vector3.left * 1500);
+                    rb.AddForce(Vector3.left * dashSpeed);
                     dash.Play();
                 }
             }
