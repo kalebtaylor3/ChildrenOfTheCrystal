@@ -42,7 +42,8 @@ public class PlayerMove : MonoBehaviour
 	public int onEnemyBounce;					
 	
 	private int onJump;
-	private bool grounded;
+	[HideInInspector]
+	public bool grounded;
 	private Transform[] floorCheckers;
 	private Quaternion screenMovementSpace;
 	private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope;
