@@ -29,6 +29,9 @@ public class DimensionButton : MonoBehaviour
 
     bool played = false;
 
+    [HideInInspector]
+    public bool pulled = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -97,6 +100,7 @@ public class DimensionButton : MonoBehaviour
                     Animation.Invoke();
                     trigger.Invoke();
                     happenOnce = true;
+                    pulled = true;
                 }
             }
         }

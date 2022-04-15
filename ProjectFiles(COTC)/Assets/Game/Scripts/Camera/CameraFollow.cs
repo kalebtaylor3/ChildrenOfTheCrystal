@@ -148,7 +148,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
 
-        if (GetGreatestDistance() >= 40f)
+        if (GetGreatestDistance() >= 45f)
         {
             
             if(targets[0].position.x > targets[1].position.x)

@@ -303,7 +303,7 @@ public class Dimension : MonoBehaviour
     {
         player.canMove = false;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         switch (D)
         {
             case 1:
@@ -319,7 +319,7 @@ public class Dimension : MonoBehaviour
                 GiveYellow();
                 break;
         }
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.4f);
         player.canMove = true;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
     }

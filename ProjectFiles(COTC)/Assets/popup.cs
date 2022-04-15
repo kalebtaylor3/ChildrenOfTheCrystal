@@ -5,6 +5,7 @@ using UnityEngine;
 public class popup : MonoBehaviour
 {
     public GameObject popUp;
+    public DimensionButton lever;
 
     private void Start()
     {
@@ -13,7 +14,8 @@ public class popup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        popUp.SetActive(true);
+        if(!lever.pulled)
+            popUp.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
