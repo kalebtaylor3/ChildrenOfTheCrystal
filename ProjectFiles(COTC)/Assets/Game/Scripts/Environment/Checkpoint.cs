@@ -24,6 +24,9 @@ public class Checkpoint : MonoBehaviour
 
 	[SerializeField] private UnityEvent trigger;
 
+
+	bool happenOnce = false;
+
 	//setup
 	void Awake()
 	{
@@ -49,6 +52,13 @@ public class Checkpoint : MonoBehaviour
 	//set checkpoint
 	void OnTriggerEnter(Collider other)
 	{
+
+		if(!happenOnce)
+        {
+			aSource.Play();
+			happenOnce = true;
+		}
+
 		Debug.Log("checkpoint");
 		trigger.Invoke();
 		if(other.transform.tag == "Player1")
@@ -58,7 +68,6 @@ public class Checkpoint : MonoBehaviour
 
 			if (!player1Once)
 			{
-				aSource.Play();
 				player1Once = true;
 			}
 		}
@@ -70,7 +79,6 @@ public class Checkpoint : MonoBehaviour
 
 			if (!player2Once)
 			{
-				aSource.Play();
 				player2Once = true;
 			}
 		}

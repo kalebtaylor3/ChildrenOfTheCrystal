@@ -148,32 +148,19 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
 
-        if (GetGreatestDistance() >= 29.0f)
+        if (GetGreatestDistance() >= 40f)
         {
-            deathCounter += 10 * Time.deltaTime;
-            startCountDown = true;
-            tofar.SetActive(true);
-            Debug.Log(deathCounter);
-        }
-        else
-        {
-            deathCounter = 0;
-            startCountDown = false;
-            dead = false;
-            tofar.SetActive(false);
-        }
+            
+            if(targets[0].position.x > targets[1].position.x)
+            {
+                targets[1].transform.position = new Vector3(targets[0].position.x, targets[0].position.y, targets[0].position.z);
+            }
 
-        if (deathCounter >= 30)
-        {
-            dead = true;
+            if (targets[1].position.x > targets[0].position.x)
+            {
+                targets[0].transform.position = new Vector3(targets[1].position.x, targets[1].position.y, targets[1].position.z);
+            }
         }
-
-        if (dead == true)
-        {
-            //SceneManager.LoadScene("Tyler Environment Scene");
-            dead = false;
-        }
-
 
 
         if (targets.Count == 0)
