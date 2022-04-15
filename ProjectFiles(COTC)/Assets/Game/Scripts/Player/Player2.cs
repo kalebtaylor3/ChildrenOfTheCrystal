@@ -47,6 +47,15 @@ public class Player2 : PlayerMove
         if(this.dimensionalController.currentDimension == Dimension.Dimensions.Blue)
         {
             SprintPower();
+            if(Input.GetKeyDown(KeyCode.RightControl) && Input.GetKey(KeyCode.RightArrow))
+            {
+                rb.AddForce(Vector3.right * 1500);
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightControl) && Input.GetKey(KeyCode.LeftArrow))
+            {
+                rb.AddForce(Vector3.left * 1500);
+            }
         }
         else
         {
