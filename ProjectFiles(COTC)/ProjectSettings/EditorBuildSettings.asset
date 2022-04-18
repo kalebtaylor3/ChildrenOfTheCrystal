@@ -41,7 +41,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Game/Scenes/Nick Test.unity
     guid: bce099ac40ae50942a5a7c64434dd0a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Game/Scenes/MainMenu.unity
     guid: b739e9357af906e498e98814fedf30b4
   - enabled: 1

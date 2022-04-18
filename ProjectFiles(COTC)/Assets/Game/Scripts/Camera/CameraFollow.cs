@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class CameraFollow : MonoBehaviour
 {
 
-    public List<Transform> targets;
+    public List<Transform> actualTargets;
+
+    public List<Transform> startTargets;
 
     public Vector3 offset;
 
@@ -61,6 +63,12 @@ public class CameraFollow : MonoBehaviour
         tofar.SetActive(false);
         camAm = GetComponent<Animator>();
         camSource = GetComponent<AudioSource>();
+    }
+
+    public void SetTargets()
+    {
+        actualTargets[0] = startTargets[0];
+        actualTargets[1] = startTargets[1];
     }
 
     void Awake()
@@ -151,19 +159,19 @@ public class CameraFollow : MonoBehaviour
         if (GetGreatestDistance() >= 50f)
         {
             
-            if(targets[0].position.x > targets[1].position.x)
+            if(actualTargets[0].position.x > actualTargets[1].position.x)
             {
-                targets[1].transform.position = new Vector3(targets[0].position.x, targets[0].position.y, targets[0].position.z);
+                actualTargets[1].transform.position = new Vector3(actualTargets[0].position.x, actualTargets[0].position.y, actualTargets[0].position.z);
             }
 
-            if (targets[1].position.x > targets[0].position.x)
+            if (actualTargets[1].position.x > actualTargets[0].position.x)
             {
-                targets[0].transform.position = new Vector3(targets[1].position.x, targets[1].position.y, targets[1].position.z);
+                actualTargets[0].transform.position = new Vector3(actualTargets[1].position.x, actualTargets[1].position.y, actualTargets[1].position.z);
             }
         }
 
 
-        if (targets.Count == 0)
+        if (actualTargets.Count == 0)
         {
             return;
         }
@@ -190,10 +198,10 @@ public class CameraFollow : MonoBehaviour
 
     float GetGreatestDistance()
     {
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for (int i = 0; i < targets.Count; i++)
+        var bounds = new Bounds(actualTargets[0].position, Vector3.zero);
+        for (int i = 0; i < actualTargets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            bounds.Encapsulate(actualTargets[i].position);
         }
 
         return bounds.size.x;
@@ -201,15 +209,15 @@ public class CameraFollow : MonoBehaviour
 
     Vector3 GetCenterPoint()
     {
-        if (targets.Count == 1)
+        if (actualTargets.Count == 1)
         {
-            return targets[0].position;
+            return actualTargets[0].position;
         }
 
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for (int i = 0; i < targets.Count; i++)
+        var bounds = new Bounds(actualTargets[0].position, Vector3.zero);
+        for (int i = 0; i < actualTargets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            bounds.Encapsulate(actualTargets[i].position);
         }
 
         return bounds.center;
