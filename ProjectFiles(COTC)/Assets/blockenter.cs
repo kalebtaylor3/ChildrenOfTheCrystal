@@ -15,6 +15,9 @@ public class blockenter : MonoBehaviour
 
     [SerializeField] private UnityEvent trigger;
 
+    public bool forcePlayer;
+    bool dontHappenAgain = false;
+
     private void Update()
     {
         Debug.Log(count);
@@ -33,6 +36,11 @@ public class blockenter : MonoBehaviour
             if (!happenOnce1)
             {
                 count = count + 1;
+                if (forcePlayer && !dontHappenAgain)
+                {
+                    player2.transform.position = other.transform.position + new Vector3(5, 0, 0);
+                    dontHappenAgain = true;
+                }
                 happenOnce1 = true;
             }
         }
@@ -42,6 +50,11 @@ public class blockenter : MonoBehaviour
             if (!happenOnce2)
             {
                 count = count + 1;
+                if (forcePlayer && !dontHappenAgain)
+                {
+                    player1.transform.position = other.transform.position + new Vector3(5, 0, 0);
+                    dontHappenAgain = true;
+                }
                 happenOnce2 = true;
             }
         }
