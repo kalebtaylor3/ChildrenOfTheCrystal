@@ -16,6 +16,8 @@ public class Player2 : PlayerMove
     public int dashSpeed;
 
     public AudioSource dash;
+
+    bool canDash = true;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,6 +34,9 @@ public class Player2 : PlayerMove
 
         Physics.IgnoreLayerCollision(0, 2);
         //Physics.IgnoreLayerCollision(3, 2);
+
+        if (grounded)
+            canDash = true;
 
 
         if (beingLifted)
@@ -54,16 +59,21 @@ public class Player2 : PlayerMove
             SprintPower();
             if (!grounded)
             {
-                if (Input.GetKeyDown(KeyCode.RightControl) && direction)
+                if (canDash)
                 {
-                    rb.AddForce(Vector3.right * dashSpeed);
-                    dash.Play();
-                }
+                    if (Input.GetKeyDown(KeyCode.RightControl) && direction)
+                    {
+                        rb.AddForce(Vector3.right * dashSpeed);
+                        dash.Play();
+                        canDash = false;
+                    }
 
-                if (Input.GetKeyDown(KeyCode.RightControl) && !direction)
-                {
-                    rb.AddForce(Vector3.left * dashSpeed);
-                    dash.Play();
+                    if (Input.GetKeyDown(KeyCode.RightControl) && !direction)
+                    {
+                        rb.AddForce(Vector3.left * dashSpeed);
+                        dash.Play();
+                        canDash = false;
+                    }
                 }
             }
         }
