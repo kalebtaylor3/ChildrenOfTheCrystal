@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4787959, y: 1.5, z: 0.1228856}
-  m_Center: {x: -0.0016455874, y: 0.27999997, z: 0.043430895}
+  m_Size: {x: 0.4787959, y: 1.4726636, z: 0.1228856}
+  m_Center: {x: -0.0016455948, y: 0.29366815, z: 0.043430895}
 --- !u!1 &6189411732483444140
 GameObject:
   m_ObjectHideFlags: 0
@@ -7139,8 +7139,10 @@ MonoBehaviour:
   jumpDelay: 0.1
   jumpLeniancy: 0.17
   onEnemyBounce: 0
+  grounded: 0
   moveDirection: {x: 0, y: 0, z: 0}
   aSource: {fileID: 0}
+  jSource: {fileID: 0}
   canMove: 1
   pickupLoc: {fileID: 6189411733268153012}
   dimensionalController: {fileID: 0}
@@ -7152,6 +7154,8 @@ MonoBehaviour:
   climbing: 0
   playerbeinglifted: {fileID: 0}
   speedTrail: {fileID: 6189411732743649301}
+  dashSpeed: 0
+  dash: {fileID: 0}
 --- !u!114 &6189411734283973607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7207,6 +7211,8 @@ MonoBehaviour:
   dead: 0
   flashing: 0
   respawnPos: {x: 0, y: 0, z: 0}
+  timerSpawner: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!82 &6189411734283973606
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7314,8 +7320,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.09, y: 1.03, z: 0.46}
-  m_Center: {x: 0, y: 0.18, z: 0.79}
+  m_Size: {x: 1.09, y: 0.881047, z: 0.46000004}
+  m_Center: {x: 0, y: 0.25447643, z: 0.78999996}
 --- !u!1 &6189411734294015257
 GameObject:
   m_ObjectHideFlags: 0
@@ -7794,8 +7800,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4805683, y: 1.5, z: 0.11535245}
-  m_Center: {x: -0.0041231215, y: 0.27999997, z: 0.04137294}
+  m_Size: {x: 0.4805683, y: 1.4709456, z: 0.11535245}
+  m_Center: {x: -0.0041231215, y: 0.29452717, z: 0.04137294}
 --- !u!1 &6189411734574620510
 GameObject:
   m_ObjectHideFlags: 0
