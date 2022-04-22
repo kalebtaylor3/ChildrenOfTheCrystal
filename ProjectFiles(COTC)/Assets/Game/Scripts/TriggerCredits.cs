@@ -18,7 +18,7 @@ public class TriggerCredits : MonoBehaviour
     {
         animation.SetTrigger("black");
         yield return new WaitForSeconds(4);
-        Application.LoadLevel(1);
+        Application.LoadLevel(2);
     }
 
     public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
