@@ -54,13 +54,13 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.LoadLevel(0);
+        Application.Quit();
         Time.timeScale = 1f;
     }
 
     public void LoadCredits()
     {
-        Application.LoadLevel(2);
+        Application.LoadLevel(1);
         Time.timeScale = 1f;
     }
 
