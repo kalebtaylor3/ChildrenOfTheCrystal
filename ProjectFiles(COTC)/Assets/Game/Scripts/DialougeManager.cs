@@ -47,12 +47,6 @@ public class DialougeManager : MonoBehaviour
         nameText.text = dialouge.name;
         sentences.Clear();
 
-        if (dialouge.name == "Evil Crystal")
-        {
-            if(!evilSource.isPlaying)
-                evilSource.Play();
-        }
-
         foreach(string sentence in dialouge.sentances)
         {
             sentences.Enqueue(sentence);
