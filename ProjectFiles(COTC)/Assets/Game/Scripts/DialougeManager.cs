@@ -25,6 +25,8 @@ public class DialougeManager : MonoBehaviour
 
     public static event Action onNext;
 
+    public AudioSource evilSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,12 @@ public class DialougeManager : MonoBehaviour
         animator.SetBool("IsOpen", true);
         nameText.text = dialouge.name;
         sentences.Clear();
+
+        if (dialouge.name == "Evil Crystal")
+        {
+            if(!evilSource.isPlaying)
+                evilSource.Play();
+        }
 
         foreach(string sentence in dialouge.sentances)
         {
