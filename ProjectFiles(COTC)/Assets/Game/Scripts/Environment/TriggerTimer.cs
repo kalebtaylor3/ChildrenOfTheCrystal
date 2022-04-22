@@ -12,11 +12,17 @@ public class TriggerTimer : MonoBehaviour
     public float shakeInX = 0.5f;
     public float shakeInY = 0.2f;
 
+    bool happenOnce = false;
+
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other)
     {
-        trigger.Invoke();
-        mainCam.GetComponent<CameraFollow>().Shake(shakeInX, shakeInY);
+        if (happenOnce)
+        {
+            trigger.Invoke();
+            mainCam.GetComponent<CameraFollow>().Shake(shakeInX, shakeInY);
+            happenOnce = true;
+        }
     }
 }
