@@ -40,6 +40,11 @@ public class blockenter : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        message.text = "";
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
