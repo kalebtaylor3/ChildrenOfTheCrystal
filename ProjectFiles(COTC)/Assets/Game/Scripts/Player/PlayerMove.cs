@@ -83,6 +83,8 @@ public class PlayerMove : MonoBehaviour
 	public PlayerMove playerbeinglifted;
 	private int liftTime = 5;
 
+	bool canPunch = true;
+
 	//setup
 	void Awake()
 	{
@@ -159,18 +161,23 @@ public class PlayerMove : MonoBehaviour
 					if (dimensionalController.currentDimension == Dimension.Dimensions.Red)
 					{
 						Debug.Log("Thats a wall");
-						if (Input.GetKeyDown(KeyCode.LeftControl))
+						if (canPunch)
 						{
-							aSource.volume = 1;
-							aSource.clip = punchSound;
-							aSource.Play();
-							if (!wall.leverControlled)
-                            {
-								StartCoroutine(WaitForWall(wall));
-								if (wall.punchDown)
-									animator.SetTrigger("PunchDown");
-								else
-									animator.SetTrigger("Punch");
+							if (Input.GetKeyDown(KeyCode.LeftControl))
+							{
+								aSource.volume = 1;
+								aSource.clip = punchSound;
+								aSource.Play();
+								if (!wall.leverControlled)
+								{
+									StartCoroutine(WaitForWall(wall));
+									if (wall.punchDown)
+										animator.SetTrigger("PunchDown");
+									else
+										animator.SetTrigger("Punch");
+
+									canPunch = false;
+								}
 							}
 						}
 					}
@@ -200,6 +207,7 @@ public class PlayerMove : MonoBehaviour
 		wall.BreakWall();
 		wall.DestroyChildren();
 		mainCam.GetComponent<CameraFollow>().Shake(0.5f, 0.2f);
+		canPunch = true;
 	}
 
     public void SetLayerRecursively(GameObject obj, int newLayer)
