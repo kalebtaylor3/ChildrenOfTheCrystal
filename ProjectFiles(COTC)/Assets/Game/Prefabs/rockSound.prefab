@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9025880991765313243}
   - component: {fileID: 5320009849976888407}
   - component: {fileID: 7269451740018364344}
+  - component: {fileID: -4013328722348709512}
   m_Layer: 0
   m_Name: rockSound
   m_TagString: Untagged
@@ -41,8 +42,9 @@ AudioSource:
   m_GameObject: {fileID: 5078517153985080886}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1f9a12c34676e844a858293328501f1d, type: 3}
+  OutputAudioMixerGroup: {fileID: -2170347298820244678, guid: 887e46151fd4338408e7578c4d0733fe,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: b6d2ccce85ac311418fc3fa6b0589d32, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -144,3 +146,15 @@ MonoBehaviour:
   delay: 5
   destroyChildren: 1
   pushChildAmount: 0
+--- !u!114 &-4013328722348709512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078517153985080886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef3d4be546bef14cb563c9dcc2202b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
