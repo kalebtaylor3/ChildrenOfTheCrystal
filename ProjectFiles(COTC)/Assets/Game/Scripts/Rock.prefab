@@ -239,6 +239,7 @@ MonoBehaviour:
   rock: {fileID: 6323953967352253865}
   spawnOnDeath:
   - {fileID: 100000, guid: de22137421d24f049b9b87e224ae7a0b, type: 3}
+  - {fileID: 5078517153985080886, guid: 472278c9236ec14478cf774a525227ba, type: 3}
 --- !u!114 &6530646622599825739
 MonoBehaviour:
   m_ObjectHideFlags: 0
