@@ -80,6 +80,8 @@ public class Dimension : MonoBehaviour
 
     public static event Action<string> OnDimension;
 
+    bool canSwitch = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,7 +102,7 @@ public class Dimension : MonoBehaviour
 
     private void Update()
     {
-        if (!inDimension && !playersForLayers[0].beingLifted && !playersForLayers[1].beingLifted)
+        if (!inDimension && !playersForLayers[0].beingLifted && !playersForLayers[1].beingLifted && canSwitch)
         {
             if (Input.GetKeyDown(KeyCode.Z))
                 Strength();
@@ -141,6 +143,7 @@ public class Dimension : MonoBehaviour
     {
         if (hasRed)
         {
+            canSwitch = false;
             DisableEffects();
             redEffect.SetActive(true);
             inDimension = true;
@@ -174,6 +177,7 @@ public class Dimension : MonoBehaviour
     {
         if (hasBlue)
         {
+            canSwitch = false;
             DisableEffects();
             blueEffect.SetActive(true);
             inDimension = true;
@@ -207,7 +211,7 @@ public class Dimension : MonoBehaviour
     {
         if (hasYellow)
         {
-
+            canSwitch = false;
             DisableEffects();
             yellowEffect.SetActive(true);
             inDimension = true;
@@ -241,6 +245,7 @@ public class Dimension : MonoBehaviour
     {
         if (hasGreen)
         {
+            canSwitch = false;
             DisableEffects();
             greenEffect.SetActive(true);
             inDimension = true;
@@ -271,32 +276,34 @@ public class Dimension : MonoBehaviour
 
     public void DisableAll(bool normal)
     {
-
-        if (normal)
-            DisableEffects();
-
-        for (int i = 0; i < dimensionList.Length; i++)
+        if (canSwitch)
         {
-            dimensionList[i].SetActive(false);
+            if (normal)
+                DisableEffects();
+
+            for (int i = 0; i < dimensionList.Length; i++)
+            {
+                dimensionList[i].SetActive(false);
+            }
+
+            for (int i = 0; i < hints.Length; i++)
+            {
+                hints[i].SetActive(true);
+            }
+            postEffects.ChangeDimension(Dimensions.Main);
+            dimensionList[(int)Dimensions.Main].SetActive(true);
+            playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 13);
+            playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 13);
+            inDimension = false;
+
+            redRune.SetActive(false);
+            greenRune.SetActive(false);
+            blueRune.SetActive(false);
+            yellowRune.SetActive(false);
+
+            currentDimension = Dimensions.Main;
+            OnDimension?.Invoke("Main");
         }
-
-        for (int i = 0; i < hints.Length; i++)
-        {
-            hints[i].SetActive(true);
-        }
-        postEffects.ChangeDimension(Dimensions.Main);
-        dimensionList[(int)Dimensions.Main].SetActive(true);
-        playersForLayers[0].SetLayerRecursively(playersForLayers[0].gameObject, 13);
-        playersForLayers[1].SetLayerRecursively(playersForLayers[1].gameObject, 13);
-        inDimension = false;
-
-        redRune.SetActive(false);
-        greenRune.SetActive(false);
-        blueRune.SetActive(false);
-        yellowRune.SetActive(false);
-
-        currentDimension = Dimensions.Main;
-        OnDimension?.Invoke("Main");
     }
 
     IEnumerator WaitForAnimation(PlayerMove player, int D)
@@ -322,6 +329,7 @@ public class Dimension : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         player.canMove = true;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+        canSwitch = true;
     }
 
     public void HasRed()
