@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class blockenter : MonoBehaviour
 {
@@ -13,10 +14,19 @@ public class blockenter : MonoBehaviour
 
     int count;
 
+    public bool exit;
+
+    public Text message;
+
     [SerializeField] private UnityEvent trigger;
 
     public bool forcePlayer;
     bool dontHappenAgain = false;
+
+    private void Start()
+    {
+        message.text = "";
+    }
 
     private void Update()
     {
@@ -26,11 +36,18 @@ public class blockenter : MonoBehaviour
         {
             Debug.Log("blocking");
             trigger.Invoke();
+            message.text = "";
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if(count != 2 && exit)
+        {
+            message.text = "Wait for other player!";
+        }
+
         if (other.GetComponent<PlayerMove>() == player1)
         {
             if (!happenOnce1)
