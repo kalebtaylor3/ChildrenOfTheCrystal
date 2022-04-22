@@ -12,7 +12,7 @@ public class WaitForCredits : MonoBehaviour
 
     IEnumerator CallCredits()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         Application.LoadLevel(1);
     }
 }
