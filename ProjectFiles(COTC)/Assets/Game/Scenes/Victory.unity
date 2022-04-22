@@ -280,7 +280,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Anselm and Aurora continue to venture into the forest, hoping to learn
-    more about how this "Evil Cyrstal" is connected to them...
+    more about how this "Evil Crystal" is connected to them...
 --- !u!222 &892612225
 CanvasRenderer:
   m_ObjectHideFlags: 0
