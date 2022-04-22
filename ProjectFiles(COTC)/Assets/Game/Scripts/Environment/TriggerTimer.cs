@@ -18,7 +18,7 @@ public class TriggerTimer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (happenOnce)
+        if (!happenOnce)
         {
             trigger.Invoke();
             mainCam.GetComponent<CameraFollow>().Shake(shakeInX, shakeInY);
